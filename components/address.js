@@ -11,7 +11,7 @@ const Address = () => (
     ></script>
 
     <Autocomplete
-      style={{ width: "90%" }}
+      style={{ width: "100%" }}
       onPlaceSelected={place => {
         console.log(place);
       }}
