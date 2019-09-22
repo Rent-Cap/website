@@ -40,8 +40,6 @@ const Header = () => (
         content="Are you a California resident who wants to know whether your rent is protected under rent control or the new Tenant Protections Act? Rent Cap can help you find out!"
       />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="/static/rentcap.svg" />
-      <link rel="icon" href="/static/rentcap.svg" type="image/svg+xml" />
     </Helmet>
     <TypographyStyle typography={typography} />
     <GoogleFont typography={typography} />
