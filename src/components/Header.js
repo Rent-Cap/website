@@ -10,6 +10,8 @@ const typography = new Typography(lincolnTheme);
 
 const StyledHeader = styled.header`
   display: inline-grid;
+  max-width: 100vw;
+  position: relative;
   a {
     display: flex;
     flex-direction: row;
@@ -26,6 +28,17 @@ const StyledHeader = styled.header`
       margin-bottom: 0;
       width: 48px;
     }
+  }
+  #languages {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    position: absolute;
+    right: 24px;
+    top: 8px;
   }
 `;
 
@@ -46,6 +59,14 @@ const Header = () => (
     <Link>
       <Logo />
     </Link>
+    <ul id="languages">
+      <li>
+        <Link to="/">English</Link>
+      </li>
+      <li>
+        <Link to="/es">Español</Link>
+      </li>
+    </ul>
   </StyledHeader>
 );
 
