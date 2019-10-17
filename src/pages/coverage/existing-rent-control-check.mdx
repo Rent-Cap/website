@@ -1,5 +1,8 @@
 import Layout from "../../components/layout";
 import { Link } from "gatsby";
+import styled from "styled-components";
+import { PrimaryButton } from "../../components/Buttons";
+import { SecondaryButton } from "../../components/Buttons";
 
 # Are you covered by existing rent control?
 
@@ -8,6 +11,6 @@ If you live in a place with rent control already, you may already be covered!
 If not, the new rent control law will cover you.
 
 <div>
-  <Link to="/coverage/not-covered">Yes</Link>&nbsp;
-  <Link to="/coverage/age-check">No</Link>
+  <PrimaryButton to="/coverage/not-covered">Yes</PrimaryButton>&nbsp;
+  <SecondaryButton to="/coverage/age-check" >No</SecondaryButton>
 </div>
