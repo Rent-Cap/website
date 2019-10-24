@@ -1,5 +1,8 @@
 import Layout from "../../components/layout";
 import { Link } from "gatsby";
+import styled from "styled-components";
+import { PrimaryButton } from "../../components/Buttons";
+import { SecondaryButton } from "../../components/Buttons";
 
 # Rent Checks
 
@@ -14,5 +17,9 @@ Does your city have a rent control ordinance in place?
   </ul>
 </details>
 
-<Link to="/coverage/overrides">Yes</Link>
-<Link to="/coverage/age-check">No</Link>
+
+<div>
+  <PrimaryButton to="/coverage/not-covered">Yes</PrimaryButton>&nbsp;
+  <SecondaryButton to="/coverage/age-check" >No</SecondaryButton>
+</div>
+

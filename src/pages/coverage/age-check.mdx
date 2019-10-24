@@ -1,5 +1,8 @@
 import Layout from "../../components/layout";
 import { Link } from "gatsby";
+import styled from "styled-components";
+import { PrimaryButton } from "../../components/Buttons";
+import { SecondaryButton } from "../../components/Buttons";
 
 # How old is your home?
 
@@ -10,6 +13,9 @@ It can be a bit tricky to find the specific date that this certificate was issue
 **Could your building get a driver's permit?**
 
 <div>
-  <Link to="/coverage/old-enough">Yes</Link>&nbsp;
-  <Link to="/coverage/not-covered">No</Link>
+  <PrimaryButton to="/coverage/old-enough">
+    Yes
+  </PrimaryButton>
+  &nbsp;
+  <SecondaryButton to="/coverage/not-covered">No</SecondaryButton>
 </div>
