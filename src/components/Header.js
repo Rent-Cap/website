@@ -22,11 +22,11 @@ const StyledHeader = styled.header`
     border-bottom: none;
     text-shadow: none;
     background-image: none;
-    grid-column-start: 2;
-    grid-column-end: span 2;
+    grid-column-start: 0;
+    grid-column-end: span 1;
     img {
       margin-bottom: 0;
-      width: 48px;
+      width: 100px;
     }
   }
   #languages {
@@ -61,7 +61,7 @@ const Header = () => (
     </Link>
     <ul id="languages">
       <li>
-        <Link to="/">English</Link>
+        <strong><Link to="/">English</Link></strong>
       </li>
       <li>
         <Link to="/es">Español</Link>
