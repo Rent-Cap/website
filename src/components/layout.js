@@ -28,9 +28,6 @@ const Container = styled.div`
   main {
     grid-area: main;
   }
-  footer {
-    grid-area: ft;
-  }
   .inline-grid {
     display: inline-grid;
     grid-template-columns: inherit;
