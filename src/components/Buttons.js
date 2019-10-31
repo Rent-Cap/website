@@ -4,7 +4,12 @@ import { Link } from "gatsby";
 
 const StyledPrimaryButton = styled.button`
   border-radius: 10px;
-  border: 4px solid greenyellow;
+  background: #FFCC00;
+  color: black;
+  padding: 28px 80px;
+  font-size: 24px;
+  line-height: 33px;
+  font-weight: 700;
 `;
 
 const StyledSecondaryButton = styled.button`

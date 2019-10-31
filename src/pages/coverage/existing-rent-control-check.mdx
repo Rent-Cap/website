@@ -3,23 +3,29 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import { PrimaryButton } from "../../components/Buttons";
 import { SecondaryButton } from "../../components/Buttons";
+import './form.css';
 
-# Rent Checks
-
-Does your city have a rent control ordinance in place?
-
-<details>
-  <summary>Cities with Rent Control</summary>
-  <ul>
-    <li>San Francisco</li>
-    <li>Second</li>
-    <li>Third</li>
-  </ul>
-</details>
+<h1 class="rent-control-check-title">Does your city have an existing rent control ordinance?</h1>
+<p class="rent-control-check-description">Most local rent control laws provide better protection than the new statewide law. The statewide law will only apply in cases where your local coverage is not as good. Click on your city below or select ‘My city is not listed’ to continue.</p>
 
 
-<div>
-  <PrimaryButton to="/coverage/not-covered">Yes</PrimaryButton>&nbsp;
-  <SecondaryButton to="/coverage/age-check" >No</SecondaryButton>
+<ul class="cities">
+  <li>Alameda</li>
+  <li>Berkeley</li>
+  <li>Beverly Hills</li>
+  <li>East Palo Alto</li>
+  <li>Hayward</li>
+  <li>Los Angeles</li>
+  <li>Los Gatos</li>
+  <li>Mountain View</li>
+  <li>Oakland</li>
+  <li>Palm Springs</li>
+  <li>Richmond</li>
+  <li>San Francisco</li>
+  <li>San Jose</li>
+  <li>Santa Monica</li>
+  <li>West Hollywood</li>
+</ul>
+<div class="rent-control-check-button-container">
+<PrimaryButton to="/coverage/overrides">My city is not listed</PrimaryButton>
 </div>
-
