@@ -1,0 +1,31 @@
+import Layout from "../../../components/layout";
+import { Link } from "gatsby";
+import styled from "styled-components";
+import { PrimaryButton } from "../../../components/Buttons";
+import { SecondaryButton } from "../../../components/Buttons";
+import '../form.css';
+
+<h1 class="rent-control-check-title">Does your city have an existing rent control ordinance?</h1>
+<p class="rent-control-check-description">Most local rent control laws provide better protection than the new statewide law. The statewide law will only apply in cases where your local coverage is not as good. Click on your city below or select ‘My city is not listed’ to continue.</p>
+
+
+<ul class="cities">
+  <li><Link to={`/coverage/existing-rent-control-check/alameda`}>Alameda</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/berkeley`}>Berkeley</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/beverly-hills`}>Beverly Hills</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/east-palo-alto`}>East Palo Alto</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/hayward`}>Hayward</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/los-angeles`}>Los Angeles</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/los-gatos`}>Los Gatos</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/mountain-view`}>Mountain View</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/oakland`}>Oakland</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/palm-springs`}>Palm Springs</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/richmond`}>Richmond</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/san-francisco`}>San Francisco</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/san-jose`}>San Jose</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/santa-monica`}>Santa Monica</Link></li>
+  <li><Link to={`/coverage/existing-rent-control-check/west-hollywood`}>West Hollywood</Link></li>
+</ul>
+<div class="rent-control-check-button-container">
+<PrimaryButton to="/coverage/overrides">My city is not listed</PrimaryButton>
+</div>
