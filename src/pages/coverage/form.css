@@ -33,6 +33,33 @@ details {
     display: flex;
     justify-content: center;
 }
+.building-card {
+    list-style-type: none;
+    width: 250px;
+    margin: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    cursor: pointer;
+}
+
+.building-card > div {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    background: lightgrey;
+}
+.building-card > h2 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+
+
+.buildings-container {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 @media only screen and (max-width: 768px) {
     .cities {
