@@ -3,19 +3,19 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import { PrimaryButton } from "../../components/Buttons";
 import { SecondaryButton } from "../../components/Buttons";
+import YearMinus15 from '../../components/YearMinus15';
 
-# How old is your home?
+<h1 class="form-title">Is your building over 15 years old?</h1>
+<p class="form-description">The rent cap law includes age requirements for the building in which tenants live.
+The age of your building is based on when it was first licensed to be rented,
+ not when it was was last renovated, painted, or cleaned. 
+ If your building was opened in <YearMinus15></YearMinus15> or earlier, click “Yes”.
+</p>
 
-The Renter's Protection Act does not apply to buildings that have recieved their certificate of occupancy within the last 15 years.
-
-It can be a bit tricky to find the specific date that this certificate was issued (we're working on how to find out for you automatically), but if people have been living in the building for more than 15 years, you're probably in good shape.
-
-**Could your building get a driver's permit?**
-
-<div>
+<div class="form-button-container age-check-form">
   <PrimaryButton to="/coverage/old-enough">
     Yes
   </PrimaryButton>
   &nbsp;
-  <SecondaryButton to="/coverage/not-covered">No</SecondaryButton>
+  <PrimaryButton to="/coverage/not-covered">No</PrimaryButton>
 </div>
