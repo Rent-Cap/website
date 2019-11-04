@@ -41,13 +41,15 @@ details {
     flex-direction: column;
     /* justify-content: center; */
     cursor: pointer;
+    background: #F5F5F5;
+    padding: 15px 5px;
 }
 
 .building-card > div {
     margin: 0 auto;
     width: 200px;
     height: 200px;
-    background: lightgrey;
+    background: #C4C4C4;
 }
 .building-card > h2 {
     text-align: center;
