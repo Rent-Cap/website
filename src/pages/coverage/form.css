@@ -59,6 +59,15 @@ details {
 
 .buildings-container {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.buildings-container > a {
+    margin: 0 auto;
+}
+.buildings-list {
+    margin-left: 0;
+    display: flex;
     flex-wrap: wrap;
 }
 

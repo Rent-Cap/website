@@ -32,10 +32,8 @@ const Buildings = () => {
     const listItems = buildingTypes.map(type => {
         return <Building key={type.title} title={type.title} description={type.description}></Building>
     })
-    // console.log('listItems', listItems)
     return (
-        <ul class="buildings-container">{listItems}</ul>
-        // <ul><li>hi</li></ul>
+        <ul class="buildings-list">{listItems}</ul>
     )
 }
 export default Buildings
