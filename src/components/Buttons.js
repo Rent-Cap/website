@@ -10,6 +10,8 @@ const StyledPrimaryButton = styled.button`
   font-size: 24px;
   line-height: 33px;
   font-weight: 700;
+  width: 392px;
+  cursor: pointer;
 `;
 
 const StyledSecondaryButton = styled.button`

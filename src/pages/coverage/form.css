@@ -17,25 +17,43 @@ details {
     font-weight: 300;
 }
 
-.rent-control-check-title {
+.form-title {
     font-size: 32px;
     line-height: 44px;
     text-align: center;
     font-weight: 700;
 }
 
-.rent-control-check-description {
+.form-description {
     font-size: 24px;
     line-height: 33px;
     margin-bottom: 2.5rem;
 }
-.rent-control-check-button-container {
+.form-button-container {
+    height: 88px;
     display: flex;
     justify-content: center;
+}
+.age-check-form {
+    justify-content: space-between;
+    margin: 80px 30px 0;
+}
+.form-button-container > button {
+    width: 392px;
+}
+footer {
+    text-align: center;
+    font-size: 18px;
+    grid-column: 4 / span 8;
+    font-weight: 200;
+    color: #979797;
 }
 
 @media only screen and (max-width: 768px) {
     .cities {
         grid-template-columns: 1fr
+    }
+    footer {
+        grid-column: 1 / span 8;
     }
 }
