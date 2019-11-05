@@ -27,6 +27,10 @@ const Container = styled.div`
   }
   main {
     grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .inline-grid {
     display: inline-grid;
