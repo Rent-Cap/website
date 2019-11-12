@@ -4,12 +4,7 @@ import { StaticQuery, graphql } from "gatsby";
 import Header from "./Header";
 import styled from "styled-components";
 import Footer from "../components/Footer";
-import { TypographyStyle, GoogleFont } from "react-typography";
-import Typography from "typography";
-import lincolnTheme from "typography-theme-lincoln";
 import "../styles/typography.scss";
-
-const typography = new Typography(lincolnTheme);
 
 const Container = styled.div`
   width: 100%;
@@ -74,8 +69,6 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        {/* <TypographyStyle typography={typography} /> */}
-
         <Container>
           <Header siteTitle={data.site.siteMetadata.title} />
           <main>{children}</main>

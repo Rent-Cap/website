@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const Building = props => (
-    <li class="building-card">
-        <div></div>
-        <h2>{props.title}</h2>
-        <p>{props.description}</p>
-    </li>
-)
+const Building = ({ title, description }) => (
+  <li className="building-card">
+    <div></div>
+    <h2>{title}</h2>
+    <p>{description}</p>
+  </li>
+);
 
-export default Building
+export default Building;
