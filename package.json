@@ -35,6 +35,8 @@
     "typography-theme-lincoln": "^0.16.19"
   },
   "devDependencies": {
+    "gatsby-plugin-sass": "^2.1.21",
+    "node-sass": "^4.13.0",
     "prettier": "^1.18.2"
   },
   "repository": {

@@ -1,59 +1,58 @@
 details {
-    color: red;
+  color: red;
 }
 
 .cities {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    list-style-type: none;
-    /* flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style-type: none;
+  /* flex-direction: column;
     flex-wrap: wrap;
     height: 200px; */
 }
 
 .cities > li {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 300;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 300;
 }
 
 .form-title {
-    font-size: 32px;
-    line-height: 44px;
-    text-align: center;
-    font-weight: 700;
+  font-size: 32px;
+  line-height: 44px;
+  text-align: center;
+  font-weight: 700;
 }
 
 .form-description {
-    font-size: 24px;
-    line-height: 33px;
-    margin-bottom: 2.5rem;
+  font-size: 24px;
+  line-height: 33px;
+  margin-bottom: 2.5rem;
 }
 .form-button-container {
-    height: 88px;
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .age-check-form {
-    justify-content: space-between;
-    margin: 80px 30px 0;
+  justify-content: space-between;
+  margin: 80px 30px 0;
 }
 .form-button-container > button {
-    width: 392px;
+  width: 392px;
 }
 footer {
-    text-align: center;
-    font-size: 18px;
-    grid-column: 4 / span 8;
-    font-weight: 200;
-    color: #979797;
+  text-align: center;
+  font-size: 18px;
+  grid-column: 4 / span 8;
+  font-weight: 200;
+  color: #979797;
 }
 
 @media only screen and (max-width: 768px) {
-    .cities {
-        grid-template-columns: 1fr
-    }
-    footer {
-        grid-column: 1 / span 8;
-    }
+  .cities {
+    grid-template-columns: 1fr;
+  }
+  footer {
+    grid-column: 1 / span 8;
+  }
 }

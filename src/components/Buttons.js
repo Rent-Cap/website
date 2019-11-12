@@ -1,17 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 
 const StyledPrimaryButton = styled.button`
+  display: inline-block;
   border-radius: 10px;
-  background: #FFCC00;
+  background: #ffcc00;
   color: black;
   padding: 28px 80px;
   font-size: 24px;
   line-height: 33px;
   font-weight: 700;
-  width: 392px;
+  display: inline-block;
+  width: 100%;
   cursor: pointer;
+  @media screen and (min-width: 767px) {
+    width: auto;
+  }
 `;
 
 const StyledSecondaryButton = styled.button`
@@ -21,21 +26,17 @@ const StyledSecondaryButton = styled.button`
 
 export const SecondaryButton = ({ to, children }) => {
   return (
-    <Link to={to}>
-      <StyledSecondaryButton>
-        {children}
-      </StyledSecondaryButton>
-    </Link>
-  )
-}
+    <StyledSecondaryButton onClick={() => navigate(to)}>
+      {children}
+    </StyledSecondaryButton>
+  );
+};
 
 export const PrimaryButton = ({ to, children }) => {
   return (
-    <Link to={to}>
-      <StyledPrimaryButton>
-        {children}
-      </StyledPrimaryButton>
-    </Link>
+    <StyledPrimaryButton onClick={() => navigate(to)} type="button">
+      {children}
+    </StyledPrimaryButton>
   );
 };
 

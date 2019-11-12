@@ -1,12 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { TypographyStyle, GoogleFont } from "react-typography";
-import Typography from "typography";
-import lincolnTheme from "typography-theme-lincoln";
 import Logo from "./Logo";
 import { Link } from "gatsby";
 import styled from "styled-components";
-const typography = new Typography(lincolnTheme);
 
 const StyledHeader = styled.header`
   display: inline-grid;
@@ -17,13 +13,13 @@ const StyledHeader = styled.header`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin-left: 24px;
     text-decoration: none;
     border-bottom: none;
     text-shadow: none;
     background-image: none;
-    grid-column-start: 0;
+    grid-column-start: 2;
     grid-column-end: span 1;
+    svg,
     img {
       margin-bottom: 0;
       width: 100px;
@@ -39,11 +35,17 @@ const StyledHeader = styled.header`
     position: absolute;
     right: 24px;
     top: 8px;
+    li {
+      margin-right: 12px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 `;
 
 const Header = () => (
-  <StyledHeader className="inline-grid">
+  <>
     <Helmet>
       <meta property="og:title" content="Rent Cap" />
       <meta property="og:site_name" content="Rent Cap" />
@@ -54,20 +56,22 @@ const Header = () => (
       />
       <meta property="og:type" content="website" />
     </Helmet>
-    <TypographyStyle typography={typography} />
-    <GoogleFont typography={typography} />
-    <Link>
-      <Logo />
-    </Link>
-    <ul id="languages">
-      <li>
-        <strong><Link to="/">English</Link></strong>
-      </li>
-      <li>
-        <Link to="/es">Español</Link>
-      </li>
-    </ul>
-  </StyledHeader>
+    <StyledHeader className="inline-grid">
+      <Link to="/">
+        <Logo />
+      </Link>
+      <ul id="languages">
+        <li>
+          <strong>
+            <Link to="/">English</Link>
+          </strong>
+        </li>
+        <li>
+          <Link to="/es">Español</Link>
+        </li>
+      </ul>
+    </StyledHeader>
+  </>
 );
 
 export default Header;
