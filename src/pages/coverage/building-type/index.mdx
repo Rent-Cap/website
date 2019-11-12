@@ -1,12 +1,12 @@
 import Layout from "../../../components/layout";
 import { Link } from "gatsby";
+import Buildings from "../../../components/buildings";
 
-# Building Type
+# What type of building is it?
 
-What type of building are you living in? There are some specific details that may apply for duplexes and condos.
+Different buildings are subject to different rules. Please select the building that best describes the one you live in.
+<div class="buildings-container">
+  <Buildings></Buildings>
+  <Link to="#">I don't know</Link>
+</div>
 
-I live in:
-
-<Link to="/coverage/building-type/condo">A Condo</Link>
-<Link to="/coverage/building-type/duplex">A Duplex</Link>
-<Link to="/coverage/covered">An Apartment Building</Link>

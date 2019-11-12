@@ -33,6 +33,43 @@ details {
   display: flex;
   justify-content: center;
 }
+.building-card {
+    list-style-type: none;
+    width: 250px;
+    margin: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    cursor: pointer;
+    background: #F5F5F5;
+    padding: 15px 5px;
+}
+
+.building-card > div {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    background: #C4C4C4;
+}
+.building-card > h2 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.buildings-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.buildings-container > a {
+    margin: 0 auto;
+}
+.buildings-list {
+    margin-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .age-check-form {
   justify-content: space-between;
   margin: 80px 30px 0;
