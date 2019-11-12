@@ -42,6 +42,10 @@ const Container = styled.div`
     min-height: calc(100vh - 85px);
     max-width: 100%;
     grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .inline-grid {
     display: inline-grid;
