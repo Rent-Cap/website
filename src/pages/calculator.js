@@ -19,7 +19,6 @@ import {
 } from "../methods/helpers";
 // import GenerateLetter from "../components/GenerateLetter";
 import withRedux from "../methods/withRedux";
-import Layout from "../components/Layout";
 
 const emptyRentRange1 = {
   rent: 0,
