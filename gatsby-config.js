@@ -9,9 +9,12 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: `gatsby-plugin-mdx`
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
       options: {
-        defaultLayouts: { default: path.resolve("./src/components/Layout.js") }
+        component: require.resolve(`./src/components/Layout.js`)
       }
     },
     "gatsby-plugin-react-helmet",
