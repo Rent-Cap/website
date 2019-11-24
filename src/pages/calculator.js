@@ -157,7 +157,7 @@ class Calculator extends React.Component {
       );
     });
     return (
-      <Layout>
+      <>
         <SEO title="Calculator" />
         <h1>{t("calculator-title")}</h1>
         <div className="card">
@@ -339,7 +339,7 @@ class Calculator extends React.Component {
         )}
         {/* TODO: Import GenerateLetter from calculator codebase */}
         {/* {this.state.showLetter && <GenerateLetter />} */}
-      </Layout>
+      </>
     );
   }
 }

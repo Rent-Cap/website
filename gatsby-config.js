@@ -29,8 +29,6 @@ module.exports = {
         path: `${__dirname}/src/pages`
       }
     },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
