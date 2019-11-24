@@ -1,21 +1,18 @@
 import Layout from "../../components/Layout";
 import { Link } from "gatsby";
-import styled from "styled-components";
 import { PrimaryButton } from "../../components/Buttons";
 import { SecondaryButton } from "../../components/Buttons";
-import YearMinus15 from '../../components/YearMinus15';
+import YearMinus15 from "../../components/YearMinus15";
 
 <h1 class="form-title">Is your building over 15 years old?</h1>
 <p class="form-description">The rent cap law includes age requirements for the building in which tenants live.
 The age of your building is based on when it was first licensed to be rented,
- not when it was was last renovated, painted, or cleaned. 
- If your building was opened in <YearMinus15></YearMinus15> or earlier, click “Yes”.
+not when it was was last renovated, painted, or cleaned.
+If your building was opened in <YearMinus15></YearMinus15> or earlier, click “Yes”.
 </p>
 
 <div class="form-button-container age-check-form">
-  <PrimaryButton to="/coverage/building-type">
-    Yes
-  </PrimaryButton>
+  <PrimaryButton to="/coverage/building-type">Yes</PrimaryButton>
   &nbsp;
   <PrimaryButton to="/coverage/not-covered">No</PrimaryButton>
 </div>

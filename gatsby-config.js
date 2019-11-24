@@ -43,7 +43,6 @@ module.exports = {
         icon: "src/images/rentcap2.svg" // This path is relative to the root of the site.
       }
     },
-    `gatsby-plugin-sass`,
-    `gatsby-plugin-styled-components`
+    `gatsby-plugin-sass`
   ]
 };

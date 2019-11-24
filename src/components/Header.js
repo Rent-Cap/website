@@ -2,47 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import Logo from "./Logo";
 import { Link } from "gatsby";
-import styled from "styled-components";
-
-const StyledHeader = styled.header`
-  display: inline-grid;
-  max-width: 100vw;
-  position: relative;
-  a {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    text-decoration: none;
-    border-bottom: none;
-    text-shadow: none;
-    background-image: none;
-    grid-column-start: 2;
-    grid-column-end: span 1;
-    svg,
-    img {
-      margin-bottom: 0;
-      width: 100px;
-    }
-  }
-  #languages {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    justify-content: center;
-    height: 100%;
-    align-items: center;
-    position: absolute;
-    right: 24px;
-    top: 8px;
-    li {
-      margin-right: 12px;
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-  }
-`;
+import "../styles/header.scss";
 
 const Header = () => (
   <>
@@ -56,7 +16,7 @@ const Header = () => (
       />
       <meta property="og:type" content="website" />
     </Helmet>
-    <StyledHeader className="inline-grid">
+    <header className="inline-grid">
       <Link to="/">
         <Logo />
       </Link>
@@ -70,7 +30,7 @@ const Header = () => (
           <Link to="/es">Español</Link>
         </li>
       </ul>
-    </StyledHeader>
+    </header>
   </>
 );
 

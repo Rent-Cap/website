@@ -1,0 +1,10 @@
+footer {
+  display: inline-grid;
+  grid-template-columns: inherit;
+  p {
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+    grid-column-start: 2;
+    grid-column-end: -2;
+  }
+}
