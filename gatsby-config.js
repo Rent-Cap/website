@@ -8,15 +8,8 @@ module.exports = {
     author: "@krpeacock"
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-mdx`
-    },
-    {
-      resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve(`./src/components/Layout.js`)
-      }
-    },
+    `gatsby-plugin-mdx`,
+    `gatsby-plugin-layout`,
     "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-source-filesystem`,
