@@ -1,0 +1,20 @@
+import AppContext from "../../../components/AppContext"
+
+<AppContext.Consumer>
+    {({ appCtx, updateContext }) => (
+        <div>
+            {
+                (appCtx.shared && appCtx.sharedTenantDuration) ?
+                <p>Congratulations! Since you live in an apartment building and at least one person has been renting for 2 years everyone on the lease or sub-leases gets both eviction and rent protection.</p>
+                : (appCtx.shared && appCtx.tenantDuration) ?
+                <p>Congratulations! Since you live in an apartment building and you have been renting for at least 1 year you get both rent and eviction protection. Since no-one you share with has been renting for 2 years only the people on your lease or sub-lease who have been renting for at least 1 year  will get these protections.</p>
+                : appCtx.shared ?
+                <p>Unfortunately since you haven't been rent your apartment for at least a year and no-one you share with or sub-let from has been renting for at least 2 years you don't yet have eviction proteciton, but you do have rent control. Once you've been renting a year or someone you share with has been renting 2 years you'll also get eviction proteciton.</p>
+                : (!appCtx.shared && appCtx.tenantDuration) ?
+                <p>Congratulations! Since you live in an apartment building and you have been renting for at least 1 year you get both rent and eviction protection. Since no-one you share with has been renting for 2 years only the people on your lease or sub-lease who have been renting for at least 1 year  will get these protections.</p>
+                :
+                <p>Since you haven't been renting for at least a year you don't yet have eviction protection but you do have rent protection. As soon as you've been renting for a full year you'll get eviction proteciton.</p>
+            }
+        </div>
+    )}
+</AppContext.Consumer>

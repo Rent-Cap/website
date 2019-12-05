@@ -22,7 +22,7 @@ export const SecondaryButton = ({ to, children }) => {
   );
 };
 
-export const PrimaryButton = ({ to, children }) => {
+export const PrimaryButton = ({ to, children}) => {
   return (
     <StyledPrimaryButton onClick={() => navigate(to)} type="button">
       {children}

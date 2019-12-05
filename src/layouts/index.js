@@ -5,12 +5,20 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/typography.scss";
 import "../styles/layout.scss";
+import AppContext from "../components/AppContext"
 
 // import "./layout.css";
 
-const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
+class Layout extends React.Component {
+
+  constructor (props) {
+    super(props);
+  }
+
+  render = () => (
+    <div>
+      <StaticQuery
+        query={graphql`
       query SiteTitleQuery {
         site {
           siteMetadata {
@@ -19,18 +27,21 @@ const Layout = ({ children }) => (
         }
       }
     `}
-    render={data => (
-      <div className="pageContainer">
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <main>{children}</main>
-        <Footer></Footer>
-      </div>
-    )}
-  />
-);
+        render={data => (
+          <div className="pageContainer">
+            <Header siteTitle={data.site.siteMetadata.title} />
+            <main>{this.props.children}</main>
+            <Footer></Footer>
+          </div>
+        )}
+      />
+    <AppContext.Consumer>{ appCtx => (console.log('wat', appCtx))}</AppContext.Consumer>
+    </div>
+  );
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired
-};
+  propTypes = {
+    children: PropTypes.node.isRequired
+  };
+}
 
 export default Layout;
