@@ -28,13 +28,16 @@ header {
     position: relative;
     align-items: flex-end;
     grid-column: 5;
+    @media (min-width: 767px) {
+      grid-column: 13;
+    }
     button {
       border: none;
       padding: 0;
       width: 32px;
       height: 32px;
     }
-    @media (min-width: 980px) {
+    @media (min-width: 1280px) {
       display: none;
     }
   }
@@ -54,6 +57,10 @@ header {
       text-align: right;
       border: 1px solid #acacac;
       border-radius: 5px;
+      @media (min-width: 767px) {
+        right: 0;
+        grid-column-end: 14;
+      }
 
       li {
         margin-right: 12px;
@@ -65,6 +72,28 @@ header {
           margin-right: 0;
         }
         a {
+        }
+      }
+    }
+    @media (min-width: 1280px) {
+      display: flex;
+      width: 100%;
+      grid-column-start: 3;
+      align-items: center;
+      grid-column-end: span 11;
+      ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+        margin-bottom: 0;
+        li {
+          margin-bottom: 0;
+          list-style: none;
+          margin-right: 24px;
+          &:last-child {
+            margin-right: 0;
+          }
         }
       }
     }
