@@ -1,13 +1,13 @@
-button {
+button,
+.button {
   background: none;
   border: none;
   padding: 12px 24px;
   cursor: pointer;
-  color: black;
-  font-size: 24px;
+  font-size: 1rem;
   line-height: 33px;
-  font-weight: 700;
   border-radius: 10px;
+  margin-bottom: 16px;
 }
 
 .primaryButton {
@@ -21,5 +21,7 @@ button {
 
 .secondaryButton {
   border-radius: 10px;
-  border: 4px solid purple;
+  display: block;
+  width: 100%;
+  border: 2px solid #acacac;
 }
