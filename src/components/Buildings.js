@@ -15,20 +15,20 @@ const buildingTypes = [
     title: "Duplex",
     description: "The property has exactly 2 separate units in it. The other unit may or may not be rented.",
     type: "duplex",
-    to: "",
+    to: "/tom/state/duplex",
   },
   {
     title: "Single Family",
     description: "The property has one living space in it and you rent either all or some of it (such as a bedroom or an 'in-law' apartment).",
     type: "sfh",
-    to: "",
+    to: "/tom/state/sfh",
   },
   {
     title: "Condo",
     description:
       "The property has multiple (3+) units that have been bought by individual owners. In a condo residents will either own their apartments or rent from different landlords.",
     type: "condo",
-    to: "",
+    to: "/tom/state/condo",
   }
 ];
 
