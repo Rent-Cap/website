@@ -4,7 +4,7 @@ header {
   position: relative;
   background: white;
   z-index: 10;
-  @media (max-width: 1280px) {
+  @media (max-width: 1279.9px) {
     z-index: 12;
   }
 
@@ -53,7 +53,7 @@ header {
   grid-row: 1;
   position: relative;
   z-index: 11;
-  @media (max-width: 1280px) {
+  @media (max-width: 1279.9px) {
     display: flex;
     flex-direction: column;
     list-style: none;
