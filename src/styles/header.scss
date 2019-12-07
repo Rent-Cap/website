@@ -28,7 +28,7 @@ header {
     position: relative;
     align-items: flex-end;
     grid-column: 5;
-    @media (min-width: 767px) {
+    @media (min-width: 980px) {
       grid-column: 13;
     }
     button {
