@@ -36,23 +36,23 @@ const Header = () => {
             </svg>
           </button>
         </div>
-        <div id="links" data-open={`${open}`}>
-          <ul>
-            <li>
-              <Link to="/eligibility">Are you Qualified?</Link>
-            </li>
-            <li>
-              <Link to="/calculator">Rent Calculator</Link>
-            </li>
-            <li>
-              <Link to="/about-the-bill">About the bill</Link>
-            </li>
-            <li>
-              <Link to="/resources">Resources</Link>
-            </li>
-          </ul>
-        </div>
       </header>
+      <div id="links" data-open={`${open}`}>
+        <ul>
+          <li>
+            <Link to="/eligibility">Are you Qualified?</Link>
+          </li>
+          <li>
+            <Link to="/calculator">Rent Calculator</Link>
+          </li>
+          <li>
+            <Link to="/about-the-bill">About the bill</Link>
+          </li>
+          <li>
+            <Link to="/resources">Resources</Link>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };
