@@ -12,7 +12,6 @@ const controlTowns = {
 };
 
 function FlowButton(props) {
-    console.log('zip: ' + props.appCtx.zip, 'town: ' + props.appCtx.town, 'county: ' + props.appCtx.county);
     var zip = props.appCtx.zip;
     var town = props.appCtx.town;
     var county = props.appCtx.county;

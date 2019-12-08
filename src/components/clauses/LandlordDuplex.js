@@ -15,8 +15,6 @@ class LandlordDuplex extends React.Component {
 
     onLandlordOccupies = (yes, oldCtx, updateContext, to) => {
 
-        console.log('click', yes, oldCtx, to);
-
         var newCtx = {};
         for (const key in oldCtx) {
             newCtx[key] = oldCtx[key];
@@ -32,8 +30,6 @@ class LandlordDuplex extends React.Component {
     }
 
     onLandlordOccupiedAtStart = (yes, oldCtx, updateContext, to) => {
-
-        console.log('click', yes, oldCtx, to);
 
         var newCtx = {};
         for (const key in oldCtx) {

@@ -64,7 +64,6 @@ class TenancyDuration extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <AppContext.Consumer>
                 {({ appCtx, updateContext }) => (

@@ -30,8 +30,6 @@ class Units extends React.Component {
 
     onChange = (olderThan, oldCtx, updateContext, to) => {
 
-        console.log('click', olderThan, oldCtx, to);
-
         var newCtx = {};
         for (const key in oldCtx) {
             newCtx[key] = oldCtx[key];

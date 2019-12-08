@@ -33,9 +33,7 @@ class AppContextProvider extends React.Component {
     }
 
     updateContext = (appCtx) => {
-        this.setState({ appCtx }, () => {
-            console.log('updated context : ' + appCtx);
-        });
+        this.setState({ appCtx });
     }
 
     componentDidMount() {

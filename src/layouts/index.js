@@ -35,7 +35,6 @@ class Layout extends React.Component {
           </div>
         )}
       />
-    <AppContext.Consumer>{ appCtx => (console.log('wat', appCtx))}</AppContext.Consumer>
     </div>
   );
 
