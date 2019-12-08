@@ -55,7 +55,7 @@ class BuildingAge extends React.Component {
                 {({ appCtx, updateContext }) => (
                     <div>
                     <p>Is your building at least {this.state.relYear} years old (built before {this.state.absYear})?</p>
-                    <StyledPrimaryButton onClick={(e)=> { this.onChange(true, appCtx, updateContext, this.state.yes)}} type="button">Yes</StyledPrimaryButton>
+                    <StyledPrimaryButton onClick={(e)=> { this.onChange(true, appCtx, updateContext, this.state.yes)}} type="button">Yes</StyledPrimaryButton>&nbsp;
                     <StyledPrimaryButton onClick={(e)=> { this.onChange(false, appCtx, updateContext, this.state.no)}} type="button">No</StyledPrimaryButton>
                     </div>
                 )}

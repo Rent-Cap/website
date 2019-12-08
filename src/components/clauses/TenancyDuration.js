@@ -8,9 +8,11 @@ class TenancyDuration extends React.Component {
         super(props);
         this.state = {
             shared: null,
-            sharedTenantDuration: null,
-            tenantDuration: null,
-            to: props.to,
+            sharedWithLandlord: null,
+            tenantOver24Mo: null,
+            allTenantsOver12Mo: null,
+            yes: props.yes,
+            no: props.no,
         }
     }
 
@@ -26,34 +28,38 @@ class TenancyDuration extends React.Component {
         updateContext(newCtx);
     }
 
-    onSharedDuration = (sharedTenantDuration, oldCtx, updateContext) => {
+    onLongestTenant = (tenantOver24Mo, oldCtx, updateContext) => {
         var newCtx = {};
         for (const key in oldCtx) {
             newCtx[key] = oldCtx[key];
         }
 
-        this.setState({ sharedTenantDuration });
+        this.setState({ tenantOver24Mo });
         
-        newCtx.sharedTenantDuration = sharedTenantDuration;
+        newCtx.tenantOver24Mo = tenantOver24Mo;
         updateContext(newCtx);
 
-        if (sharedTenantDuration) {
-            navigate(this.state.to);
+        if (tenantOver24Mo) {
+            navigate(this.state.yes);
         }
     }
 
-    onSingleDuration = (tenantDuration, oldCtx, updateContext) => {
+    onAllTenants = (allTenantsOver12Mo, oldCtx, updateContext) => {
         var newCtx = {};
         for (const key in oldCtx) {
             newCtx[key] = oldCtx[key];
         }
 
-        this.setState({ tenantDuration });
+        this.setState({ allTenantsOver12Mo });
         
-        newCtx.tenantDuration = tenantDuration;
+        newCtx.allTenantsOver12Mo = allTenantsOver12Mo;
         updateContext(newCtx);  
         
-        navigate(this.state.to);
+        if (allTenantsOver12Mo) {
+            navigate(this.state.yes);
+        } else {
+            navigate(this.state.no);
+        }
 
     }
 
@@ -64,22 +70,29 @@ class TenancyDuration extends React.Component {
                 {({ appCtx, updateContext }) => (
                     <div>
                         {this.state.shared === null ?
-                            <div>
-                                <p>Do you share your lease with another adult, or sub-lease from someone else who isn't the landlord?</p>
-                                <StyledPrimaryButton onClick={(e) => { this.onShare(false, appCtx, updateContext) }} type="button">I'm the only person on the lease</StyledPrimaryButton>
-                                <StyledPrimaryButton onClick={(e) => { this.onShare(true, appCtx, updateContext) }} type="button">I share my lease or sub-let</StyledPrimaryButton>
-                            </div>
-                        : (this.state.shared && this.state.sharedTenantDuration === null) ?
-                            <div>
-                                <p>Have you or anyone you share with or sub-let from been renting for at least 2 full years?</p>
-                                <StyledPrimaryButton onClick={(e) => { this.onSharedDuration(true, appCtx, updateContext) }} type="button">Yes</StyledPrimaryButton>
-                                <StyledPrimaryButton onClick={(e) => { this.onSharedDuration(false, appCtx, updateContext) }} type="button">No</StyledPrimaryButton>
-                            </div> :
-                            <div>
-                                <p>Have you been renting for at least 1 full year?</p>
-                                <StyledPrimaryButton onClick={(e) => { this.onSingleDuration(true, appCtx, updateContext) }} type="button">Yes</StyledPrimaryButton>
-                                <StyledPrimaryButton onClick={(e) => { this.onSingleDuration(false, appCtx, updateContext) }} type="button">No</StyledPrimaryButton>
-                            </div>
+                        <div>
+                            <p>Excluding your landlord do you share with another adult who is on your lease, or sub-lease from someone else?</p>
+                            <StyledPrimaryButton onClick={(e) => { this.onShare(false, appCtx, updateContext) }} type="button">I'm the only person on the lease</StyledPrimaryButton>&nbsp;
+                            <StyledPrimaryButton onClick={(e) => { this.onShare(true, appCtx, updateContext) }} type="button">I share my lease or sub-let</StyledPrimaryButton>
+                        </div>
+                        : (this.state.shared && this.state.tenantOver24Mo === null) ?
+                        <div>
+                            <p>Have you or anyone you share with or sub-let from been renting this property for at least 2 full years?</p>
+                            <StyledPrimaryButton onClick={(e) => { this.onLongestTenant(true, appCtx, updateContext) }} type="button">Yes</StyledPrimaryButton>&nbsp;
+                            <StyledPrimaryButton onClick={(e) => { this.onLongestTenant(false, appCtx, updateContext) }} type="button">No</StyledPrimaryButton>
+                        </div>
+                        : (this.state.shared) ?
+                        <div>
+                            <p>Has everyone you share with been renting for at least 1 full year?</p>
+                            <StyledPrimaryButton onClick={(e) => { this.onAllTenants(true, appCtx, updateContext) }} type="button">Yes</StyledPrimaryButton>&nbsp;
+                            <StyledPrimaryButton onClick={(e) => { this.onAllTenants(false, appCtx, updateContext) }} type="button">No</StyledPrimaryButton>
+                        </div>
+                        :
+                        <div>
+                            <p>Have you been renting for at least 1 full year?</p>
+                            <StyledPrimaryButton onClick={(e) => { this.onAllTenants(true, appCtx, updateContext) }} type="button">Yes</StyledPrimaryButton>&nbsp;
+                            <StyledPrimaryButton onClick={(e) => { this.onAllTenants(false, appCtx, updateContext) }} type="button">No</StyledPrimaryButton>
+                        </div>
                         }
                     </div>
                 )}

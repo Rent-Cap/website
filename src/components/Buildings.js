@@ -5,31 +5,24 @@ import { navigate } from "@reach/router";
 
 const buildingTypes = [
   {
-    title: "Apartment",
-    description:
-      "The property has multiple (3+) units that are all rented. In apartments buildings all residents will rent from the same owner.",
-      type: "apartment",
-      to: "/tom/state/apartments",
+    title: "Single Family",
+    description: "You live on a property that has one unit, such as a house, on it, even if you only rent a room or live in an 'in-law'.",
+    type: "sfh",
+    to: "/eligibility/state/sfh",
   },
   {
     title: "Duplex",
-    description: "The property has exactly 2 separate units in it. The other unit may or may not be rented.",
+    description: "You live in a property that has exactly two separate units in it.",
     type: "duplex",
-    to: "/tom/state/duplex",
+    to: "/eligibility/state/duplex",
   },
   {
-    title: "Single Family",
-    description: "The property has one living space in it and you rent either all or some of it (such as a bedroom or an 'in-law' apartment).",
-    type: "sfh",
-    to: "/tom/state/sfh",
-  },
-  {
-    title: "Condo",
+    title: "Apartment",
     description:
-      "The property has multiple (3+) units that have been bought by individual owners. In a condo residents will either own their apartments or rent from different landlords.",
-    type: "condo",
-    to: "/tom/state/condo",
-  }
+      "You live in a building with three or more units.",
+      type: "apartment",
+      to: "/eligibility/state/condo",
+  },
 ];
 
 const onClick = (appCtx, updateContext, type, to) => {

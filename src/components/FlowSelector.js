@@ -18,13 +18,11 @@ function FlowButton(props) {
     var county = props.appCtx.county;
     var to = ""
     if (town in controlTowns) {
-        to = "tom/cities/" + town;
+        to = "/eligibility/cities/" + town;
     } else if (county in controlCounties) {
-        to = "tom/counties/" + county;
+        to = "/eligibility/counties/" + county;
     } else if (zip != '') {
-        to = "tom/state"
-    } else {
-        to = "tom/noop"
+        to = "/eligibility/state"
     }
     return (<PrimaryButton to={to}>Look up</PrimaryButton>)
 }
@@ -41,8 +39,18 @@ class FlowSelector extends React.Component {
     render() {
         return (
             <AppContext.Consumer>
-                {({ updateContext, appCtx }) => (
-                    <FlowButton appCtx={appCtx} />
+                {({ appCtx, updateContext }) => (
+                    <div>
+                        {
+                            (appCtx.town !== undefined) ?
+                        <FlowButton appCtx={appCtx} />
+                        : (appCtx.zip !== undefined) ?
+                        <p class="error">Please enter a valid California ZIP code</p>
+                        :
+                        <span />
+                        }
+                    </div>
+
                 )}
             </AppContext.Consumer>
         )

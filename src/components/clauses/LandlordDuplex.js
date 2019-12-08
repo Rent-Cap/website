@@ -58,14 +58,14 @@ class LandlordDuplex extends React.Component {
                     
                     <div>
                         <p>Does your landlord live in the other unit of the Duplex you rent as their main residence?</p>
-                    <StyledPrimaryButton onClick={(e)=> { this.onLandlordOccupies(true, appCtx, updateContext, this.state.yes)}} type="button">Yes</StyledPrimaryButton>
+                    <StyledPrimaryButton onClick={(e)=> { this.onLandlordOccupies(true, appCtx, updateContext, this.state.yes)}} type="button">Yes</StyledPrimaryButton>&nbsp;
                     <StyledPrimaryButton onClick={(e)=> { this.onLandlordOccupies(false, appCtx, updateContext, this.state.no)}} type="button">No</StyledPrimaryButton>
                     </div>
                     :
                     
                     <div>
                         <p>Did your landlord live in the other unit of the Duplex when you started renting?</p>
-                    <StyledPrimaryButton onClick={(e)=> { this.onLandlordOccupiedAtStart(true, appCtx, updateContext, this.state.yes)}} type="button">Yes</StyledPrimaryButton>
+                    <StyledPrimaryButton onClick={(e)=> { this.onLandlordOccupiedAtStart(true, appCtx, updateContext, this.state.yes)}} type="button">Yes</StyledPrimaryButton>&nbsp;
                     <StyledPrimaryButton onClick={(e)=> { this.onLandlordOccupiedAtStart(false, appCtx, updateContext, this.state.no)}} type="button">No</StyledPrimaryButton>
                     </div>
                     }
