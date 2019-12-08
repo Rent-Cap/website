@@ -20,8 +20,8 @@ const buildingTypes = [
     title: "Apartment",
     description:
       "You live in a building with three or more units.",
-      type: "apartment",
-      to: "/eligibility/state/condo",
+    type: "apartment",
+    to: "/eligibility/state/condo",
   },
 ];
 
@@ -29,7 +29,14 @@ const onClick = (appCtx, updateContext, type, to) => {
   appCtx.buildingType = type;
   updateContext(appCtx);
 
-  navigate(to);
+  // TODO (tomc) unkludge this
+  if (type === 'sfh' && appCtx.shareWithLandlord) {
+    navigate('/eligibility/state/sfhShared')
+  } else if (type === 'sfh') {
+    navigate('/eligibility/state/sfhNotShared')
+  } else {
+    navigate(to);
+  }
 }
 
 const Buildings = (buildings) => {
@@ -44,7 +51,7 @@ const Buildings = (buildings) => {
             key={building.title}
             title={building.title}
             description={building.description}
-            onClick={(e)=>{onClick(appCtx, updateContext, building.type, building.to)}}
+            onClick={(e) => { onClick(appCtx, updateContext, building.type, building.to) }}
           ></Building>
         )}
       </AppContext.Consumer>
