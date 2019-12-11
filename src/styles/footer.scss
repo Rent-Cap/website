@@ -1,6 +1,8 @@
 footer {
   display: inline-grid;
   grid-template-columns: inherit;
+  margin: 0 32px;
+
   p {
     font-size: 0.8rem;
     line-height: 0.9rem;
