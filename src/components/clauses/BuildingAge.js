@@ -26,6 +26,7 @@ class BuildingAge extends React.Component {
             relYear: relYear,
             yes: props.yes,
             no: props.no,
+            stateName: props.stateName,
         }
     }
 
@@ -41,6 +42,9 @@ class BuildingAge extends React.Component {
         // set the least built before year as long as builtBefore isn't 0
         if (olderThan && oldCtx.builtBefore && oldCtx.builtBefore > this.state.absYear) {
             newCtx.builtBefore = this.state.absYear;
+            newCtx[this.state.stateName] = true;
+        } else {
+            newCtx[this.state.stateName] = false;
         }
         updateContext(newCtx);        
 
