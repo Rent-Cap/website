@@ -5,13 +5,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/typography.scss";
 import "../styles/layout.scss";
-import AppContext from "../components/AppContext"
 
+if (typeof document !== "undefined") {
+  require("details-element-polyfill");
+}
 // import "./layout.css";
 
 class Layout extends React.Component {
-
-  constructor (props) {
+  constructor(props) {
     super(props);
   }
 
@@ -19,14 +20,14 @@ class Layout extends React.Component {
     <div>
       <StaticQuery
         query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
+          query SiteTitleQuery {
+            site {
+              siteMetadata {
+                title
+              }
+            }
           }
-        }
-      }
-    `}
+        `}
         render={data => (
           <div className="pageContainer">
             <Header siteTitle={data.site.siteMetadata.title} />
