@@ -19,10 +19,15 @@ header {
     background-image: none;
     grid-column-start: 2;
     grid-column-end: span 1;
+    width: 90px;
+    @media (min-width: 767px) {
+      grid-column-end: span 2;
+      width: 120px;
+    }
     svg,
     img {
       margin-bottom: 0;
-      width: 100px;
+      //   width: 100px;
     }
   }
 
