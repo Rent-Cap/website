@@ -1,8 +1,27 @@
-Sorry. You are not currently eligible for either just cause eviction protection or rent control.
+import AppContext from "../../../../components/AppContext"
+import { PrimaryButton } from "../../../../components/Buttons";
 
-This is because: ...
+**Unfortunately**, you are not eligible for either just cause eviction protection or rent control.
+
+We think you are ineligible because:
+<AppContext.Consumer>
+    {({ appCtx }) => (
+        <div>
+            {
+                appCtx.ineligibleType ?
+                <p>Some kinds of buildings are ineligible such as government subsidized housing or university dorms. You answered that you rent a type of housing which is ineligible.</p>
+                : (!appCtx.app1482Age) ?
+                <p>Only buildings which have not been issued a certificate of occupancy in the last 15 years are eligible. Since you indicated your building is newer than 15 years old it is exempt. However it make become eligible in the future once it has had a certificate of occupancy for 15 years.</p>
+                : appCtx.sharedKitchenOrBath ?
+                <p>You answered that you live with your landlord and share a kitchen or bathroom with them. Landlords who share a kitchen and bathroom in their primary residence with tenants are exempt.</p>
+                : exemptionNotice ?
+                <p>You answered that you rent a single family home from an indvidual landlord. Landlords of single family homes that aren't a corporation, a real estate trust, or an LLC owned by a corporation are exempt as long as they notify their tenants. You answered that your landlord did notify you that you were exempt.</p>
+                :
+                <p>Sorry, we have an error and don't have the reason right now.</p>
+            }
+        </div>
+    )}
+</AppContext.Consumer>
 
 ## Are you having issues with your landlord?
 <PrimaryButton to="/gethelp">Get help from a local tenants right group!</PrimaryButton>
-
-TODO (tomc) we need something to cover length of rental and explain that you need a minimum vs the building isn't eligible (or when it would become so)
