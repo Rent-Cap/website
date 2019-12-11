@@ -19,6 +19,7 @@ import {
 } from "../methods/helpers";
 // import GenerateLetter from "../components/GenerateLetter";
 import withRedux from "../methods/withRedux";
+import "../styles/calculator.scss";
 
 const emptyRentRange1 = {
   rent: 0,
@@ -111,6 +112,7 @@ class Calculator extends React.Component {
     const { t, refund, changeRefund } = this.props;
     const maxRent = calculateMaxRent(this.state.pastRent, this.state.cpi);
     const rentIncreasePercentage = this.calculateRentIncreasePercentage();
+
     const updateRefund = () => {
       const t = calculateTotalAmountOwedToTenant(
         this.state.rentRanges,
@@ -249,6 +251,7 @@ class Calculator extends React.Component {
                       cpiSelection: "Other",
                       cpi: 0.033
                     });
+                    document.querySelector("#continue").scrollIntoView();
                   }}
                   className="dropdown-item"
                 >
@@ -261,7 +264,7 @@ class Calculator extends React.Component {
         <br />
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">
+            <h5 className="card-title" id="continue">
               What was your rent on March 15, 2019?
             </h5>
             <input

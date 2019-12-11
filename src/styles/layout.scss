@@ -1,10 +1,11 @@
 :root {
   margin: 0;
   padding: 0;
+  background: white;
   .pageContainer {
     width: 100%;
     display: grid;
-    grid-template-columns: 16px repeat(4, 1fr) 16px;
+    grid-template-columns: 32px repeat(4, 1fr) 32px;
     grid-template-rows: 85px auto auto;
     min-height: 100vh;
     grid-template-areas:
@@ -48,4 +49,21 @@
       }
     }
   }
+}
+input {
+  border: 1px solid #acacac;
+}
+button {
+  border: 1px solid #acacac;
+  background: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+  color: #3591cb;
 }
