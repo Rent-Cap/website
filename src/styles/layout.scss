@@ -35,7 +35,7 @@
       grid-area: main;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
     }
     .inline-grid {
@@ -56,6 +56,11 @@ input {
 button {
   border: 1px solid #acacac;
   background: none;
+}
+
+details {
+  width: 100%;
+  cursor: pointer;
 }
 
 h1,

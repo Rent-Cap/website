@@ -1,45 +1,60 @@
 import React from "react";
 import Building from "./Building";
+import AppContext from "./AppContext"
+import { navigate } from "@reach/router";
 
 const buildingTypes = [
   {
-    title: "Apartment",
-    description:
-      "Your building has multiple units that are all rented. No one owns their units in this building. "
+    title: "Single Family",
+    description: "You live on a property that has one unit, such as a house, on it, even if you only rent a room or live in an 'in-law'.",
+    type: "sfh",
+    to: "/eligibility/state/sfh",
   },
   {
     title: "Duplex",
-    description: "Your building has exactly 2 separate units in it. "
+    description: "You live in a property that has exactly two separate units in it.",
+    type: "duplex",
+    to: "/eligibility/state/duplex",
   },
   {
-    title: "Single Family",
-    description: "Your building has one living space in it that you rent. "
-  },
-  {
-    title: "Condo",
+    title: "Apartment",
     description:
-      "Your building has multiple units that have been bought by individual owners. Some may be owned, but you rent your unit. "
+      "You live in a building with three or more units.",
+    type: "apartment",
+    to: "/eligibility/state/condo",
   },
-  {
-    title: "Dormitory",
-    description:
-      "You are a student living in housing that is owned and managed by a school or university."
-  },
-  {
-    title: "Public Housing",
-    description:
-      "You live in housing that is owned or managed by your local goverment. This also include Below Market Rate (BMR) housing."
-  }
 ];
 
-const Buildings = () => {
-  const listItems = buildingTypes.map(type => {
+const onClick = (appCtx, updateContext, type, to) => {
+  appCtx.buildingType = type;
+  updateContext(appCtx);
+
+  // TODO (tomc) unkludge this
+  if (type === 'sfh' && appCtx.shareWithLandlord) {
+    navigate('/eligibility/state/sfhShared')
+  } else if (type === 'sfh') {
+    navigate('/eligibility/state/sfhNotShared')
+  } else {
+    navigate(to);
+  }
+}
+
+const Buildings = (buildings) => {
+  if (Object.keys(buildings).length === 0) {
+    buildings = buildingTypes;
+  }
+  const listItems = buildings.map(building => {
     return (
-      <Building
-        key={type.title}
-        title={type.title}
-        description={type.description}
-      ></Building>
+      <AppContext.Consumer>
+        {({ appCtx, updateContext }) => (
+          <Building
+            key={building.title}
+            title={building.title}
+            description={building.description}
+            onClick={(e) => { onClick(appCtx, updateContext, building.type, building.to) }}
+          ></Building>
+        )}
+      </AppContext.Consumer>
     );
   });
   return <ul className="buildings-list">{listItems}</ul>;
