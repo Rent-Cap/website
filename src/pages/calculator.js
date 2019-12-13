@@ -241,6 +241,7 @@ class Calculator extends React.Component {
             ) : (
               <MailChimp />
             )} */}
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScXhoVcWIEwDiToU4kcA_Mz-O5QgcTUeyBla7Op3lf3k_GZ8w/viewform?embedded=true" width="640" height="250" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
         <div className="card">
           <div className="card-body">
