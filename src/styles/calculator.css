@@ -1,0 +1,106 @@
+/* TODO: Convert to SCSS */
+.calculator-results {
+  display: flex;
+  margin: 0;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.calculator-results li:first-child {
+  margin-right: 50px;
+}
+.rent-input {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.rent-input-row {
+  margin-bottom: 40px;
+}
+.calculator-description {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 30px;
+}
+.dropdown-toggle {
+  width: 100%;
+}
+.dropdown-menu {
+  width: 100%;
+}
+.form-control {
+  min-width: 75px;
+}
+.calculator-description > h1 {
+  text-align: center;
+}
+.rent-date {
+  display: flex;
+  flex-direction: column;
+}
+.rent-date-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px;
+}
+.rent-date-picker {
+  display: flex;
+  align-items: center;
+}
+.rent-date-picker > img {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+.input-group.mb-3 {
+  margin-bottom: 0 !important;
+}
+.result-title {
+  text-transform: uppercase;
+  color: var(--secondary)
+}
+.refund-information {
+  text-align: center;
+}
+.refund-container {
+  text-align: center;
+  color: var(--success);
+}
+.calc-row {
+  color: var(--secondary)
+}
+.calc-row.zero {
+  text-decoration: line-through;
+}
+@media only screen and (min-width: 768px) {
+  .rent-input {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .rent-input-row {
+    display: flex;
+    align-items: flex-end;
+  }
+  .rent-input > .input-group {
+    width: 31%;
+  }
+  .rent-input > .mb-3, .input-group.mb-3 {
+    margin: 0 20px 0 0 !important;
+  }
+  .form-control {
+    height: 48px;
+  }
+  img.input-group-text {
+    width: 55px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .date-icon {
+    position: absolute;
+    left: -55px;
+    height: 46px;
+    width: 55px;
+
+  }
+}

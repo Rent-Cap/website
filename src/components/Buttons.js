@@ -13,6 +13,9 @@ export const StyledPrimaryButton = props => (
 export const StyledSecondaryButton = props => (
   <DefaultButton className="secondaryButton" {...props}></DefaultButton>
 );
+export const PrimaryButton2 = ({ onClick, children, style }) => (
+  <button type="button" onClick={onClick} style={style} className="btn btn-primary">{children}</button>
+);
 
 export const SecondaryButton = ({ to, children }) => {
   return (
