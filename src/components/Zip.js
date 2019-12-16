@@ -40,10 +40,12 @@ class Zip extends React.Component {
       newCtx.town = zipDB[newZip].town;
       newCtx.area = zipDB[newZip].area;
       newCtx.county = zipDB[newZip].county;
+      newCtx.validCAZip = true;
     } else {
       newCtx.town = undefined;
       newCtx.area = undefined;
       newCtx.county = undefined;
+      newCtx.validCAZip = false;
     }
     // we always update at least the zip for error handling
     updateContext(newCtx);
