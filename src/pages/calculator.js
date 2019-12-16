@@ -294,7 +294,7 @@ class Calculator extends React.Component {
         <Disclaimer />
         <br />
         <br />
-        {this.state.showSection
+        {/* {this.state.showSection
           ? (
             <h4>
               Enter your information below to determine how much money
@@ -304,7 +304,7 @@ class Calculator extends React.Component {
             <PrimaryButton2 style={{ width: '100%' }} onClick={() => this.setState({ showSection: true })}>
               Did your rent increase on or after January 1st, 2020?
             </PrimaryButton2>
-          )}
+          )} */}
         <br />
         {this.state.showSection
           && (
