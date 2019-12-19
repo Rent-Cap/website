@@ -1,5 +1,8 @@
-import { PrimaryButton } from "../../../components/Buttons";
+import YesNoState from "../../../components/clauses/YesNoState";
 
-Let's see if you are eligible under the statewide protections of AB 1482.
-
-<PrimaryButton to="/eligibility/state/ineligibleType">Let's Go!</PrimaryButton>
+<YesNoState
+  yes="/eligibility/state/ineligibleType"
+  no="/eligibility/state/ineligibleType"
+  questionText="Has everyone in your home lived there for at least 1 year (12 months), or, has at least 1 person lived in your home continuously for at least 2 years (24 months)?"
+  stateName="ab1482TenancyDuration"
+/>
