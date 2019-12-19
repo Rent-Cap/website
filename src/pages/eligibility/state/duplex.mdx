@@ -1,5 +1,7 @@
-import LandlordDuplex from "../../../components/clauses/LandlordDuplex"
+import YesNoState from "../../../components/clauses/YesNoState"
 
-<div>
-<LandlordDuplex yes="/eligibility/state/fin/nojcnorc" no="/eligibility/state/rc" />
-</div>
+<YesNoState
+yes="/eligibility/state/sharedDuplex"
+no="/eligibility/state/sharedUnitWithLandlord" 
+questionText="A duplex is property with exactly 2 units. Do you live in duplex?" 
+stateName="duplex" />

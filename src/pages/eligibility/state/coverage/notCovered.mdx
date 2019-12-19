@@ -1,0 +1,31 @@
+import AppContext from "../../../../components/AppContext"
+import { PrimaryButton } from "../../../../components/Buttons";
+
+**Unfortunately**, we think that you are not covered either just cause eviction protection or rent control by the Tenant Proteciton Act. You may have other rights, so if you having issues with your housing situation reach out for help below!
+
+## Why we believe you are ineligible
+<AppContext.Consumer>
+    {({ appCtx }) => (
+        <div>
+            {
+                appCtx.ineligibleType ?
+                <p>You're not covered by the Tenant Protection Act. Some kinds of buildings are ineligible such as government subsidized housing or university dorms. You answered that you rent a type of housing which is ineligible but if you live in subsidized housing, you may have other legal protections against evictions and rent increases. We urge you to seek free legal advice by getting help from a local non-profit below.</p>
+                : (!appCtx.builtBefore2005) ?
+                <p>Only buildings which have not been issued a "certificate of occupancy" in the last 15 years are eligible. Since you indicated your building is newer than 15 years old it is <em>likely</em> to be exempt. It will become eligible in the future once it has had a certificate of occupancy for 15 years.</p>
+                : appCtx.sharedKitchenOrBath ?
+                <p>Landlords who share a kitchen and bathroom in their primary residence with tenants are exempt. You answered that you live with your landlord and share a kitchen or bathroom with them. </p>
+                : appCtx.sharedDuplex ?
+                <p>If a landlord owns and occupies one unit of a Duplex then the other unit of the Duplex is not covered by the Tenant Protection Act. You answered that your landlord has lived in one unit of your Duplex since you moved in.</p>
+                : appCtx.sharedUnitWithLandlord ?
+                <p>Since you share with your landlord and they don't rent more than 2 units we think your unit is not covered by the Tenant Protection Act.</p>
+                : appCtx.exemptionNotice ?
+                <p>You answered that you rent a single family home from an indvidual landlord. Landlords of single family homes that aren't a corporation, a real estate trust, or an LLC owned by a corporation are exempt as long as they notify their tenants. You answered that your landlord did notify you that you were exempt.</p>
+                : 
+                <p>Sorry, we have an error and don't have the reason right now.</p>
+            }
+        </div>
+    )}
+</AppContext.Consumer>
+
+## Are you having issues with your landlord?
+<PrimaryButton to="/gethelp">Get help now!</PrimaryButton>

@@ -3,7 +3,7 @@ import React from "react"
 import AppContext from "../AppContext"
 import { navigate } from "gatsby";
 
-class YesNoState extends React.Component {
+class YesNoMaybeState extends React.Component {
     constructor(props) {
         super(props);
 
@@ -63,4 +63,4 @@ class YesNoState extends React.Component {
     }
 }
 
-export default YesNoState;
+export default YesNoMaybeState;
