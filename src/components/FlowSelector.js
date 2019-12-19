@@ -1,35 +1,44 @@
-import { PrimaryButton } from "../components/Buttons";
+import { StyledPrimaryButton } from "../components/Buttons";
 import React from "react";
 import AppContext from "./AppContext";
 import {
   regulatedCities,
   regulatedCounties
 } from "../../data/regulatedLocations";
-
-function FlowButton(props) {
-  console.log(props, regulatedCities, regulatedCounties);
-  var zip = props.appCtx.zip;
-  var town = props.appCtx.town;
-  var county = props.appCtx.county;
-  var to = "";
-  if (town in regulatedCities) {
-    console.log("town in regulated");
-    to = "/eligibility/cities/" + town;
-  } else if (county in regulatedCounties) {
-    console.log("county in regulated");
-    to = "/eligibility/counties/" + county;
-  } else if (zip != "") {
-    to = "/eligibility/state";
-  }
-  return <PrimaryButton to={to}>Look up</PrimaryButton>;
-}
+import { navigate } from "@reach/router";
 
 class FlowSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      zip: ""
+      zip: "",
+      disabled: true,
     };
+  }
+
+  onClick(appCtx) {
+    var zip = appCtx.zip;
+
+    var zip = appCtx.zip;
+    var town = appCtx.town;
+    var county = appCtx.county;
+    var to = "";
+    if (town !== "") {
+      var disabled = false;
+      this.setState({ disabled });
+    }
+
+    if (town in regulatedCities) {
+      to = "/eligibility/cities/" + town;
+    } else if (county in regulatedCounties) {
+      to = "/eligibility/counties/" + county;
+    } else if (town != "") {
+      to = "/eligibility/state";
+    }
+
+    if (to) {
+      navigate(to);
+    }
   }
 
   render() {
@@ -37,13 +46,12 @@ class FlowSelector extends React.Component {
       <AppContext.Consumer>
         {({ appCtx, updateContext }) => (
           <div>
-            {appCtx.town !== undefined ? (
-              <FlowButton appCtx={appCtx} />
-            ) : appCtx.zip !== undefined ? (
-              <p class="error">Please enter a valid California ZIP code</p>
-            ) : (
-              <span />
-            )}
+            <StyledPrimaryButton disabled={!appCtx.validCAZip} onClick={(e)=>{this.onClick(appCtx)}}>Look up</StyledPrimaryButton>
+            {(appCtx.town === undefined && appCtx.zip !== undefined) ?
+              <p className="error">Please enter a valid California ZIP code</p>
+            :
+              <p className="error"></p>
+            }
           </div>
         )}
       </AppContext.Consumer>
