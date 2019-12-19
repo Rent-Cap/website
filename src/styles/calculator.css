@@ -6,6 +6,12 @@
   justify-content: center;
   margin-bottom: 30px;
 }
+.calculator-container {
+  width: 100%;
+}
+.google-form {
+  width: 100%;
+}
 .calculator-results li:first-child {
   margin-right: 50px;
 }

@@ -9,7 +9,6 @@ import {
 import { handleInput, calculateTotalAmountOwedToTenant, calculateMaxRent } from '../methods/helpers';
 // import GenerateLetter from '../components/GenerateLetter';
 import withRedux from '../methods/withRedux';
-import { layout as Layout } from '../layouts/index';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import SEO from '../components/Seo';
@@ -219,7 +218,7 @@ class Calculator extends React.Component {
       )
     })
     return (
-      <div>
+      <div className="calculator-container">
         {/* <SEO title="Calculator" /> */}
         <div className="calculator-description">
           <h1>Rent Calculator</h1>
@@ -241,7 +240,7 @@ class Calculator extends React.Component {
             ) : (
               <MailChimp />
             )} */}
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScXhoVcWIEwDiToU4kcA_Mz-O5QgcTUeyBla7Op3lf3k_GZ8w/viewform?embedded=true" width="640" height="250" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <iframe className="google-form" src="https://docs.google.com/forms/d/e/1FAIpQLScXhoVcWIEwDiToU4kcA_Mz-O5QgcTUeyBla7Op3lf3k_GZ8w/viewform?embedded=true" height="250" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
         <div className="card">
           <div className="card-body">
