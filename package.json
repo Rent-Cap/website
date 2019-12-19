@@ -14,6 +14,11 @@
       "name": "Kyle Peacock",
       "email": "kyle@peacock.dev",
       "url": "https://kyle-peacock.com"
+    },
+    {
+      "name": "Herman Borrego",
+      "email": "herman@borrego.ca",
+      "url": "https://borrego.ca"
     }
   ],
   "dependencies": {
