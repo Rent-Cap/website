@@ -9,6 +9,13 @@
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "contributors": [
+    {
+      "name": "Kyle Peacock",
+      "email": "kyle@peacock.dev",
+      "url": "https://kyle-peacock.com"
+    }
+  ],
   "dependencies": {
     "@mdx-js/loader": "^1.4.5",
     "@mdx-js/mdx": "^1.4.5",

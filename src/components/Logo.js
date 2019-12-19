@@ -17,6 +17,8 @@ const Logo = () => (
       </g>
     </svg>
     <span>
+      California
+      <br />
       Tenant
       <br />
       Protections
