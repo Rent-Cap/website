@@ -2,11 +2,15 @@
   margin: 0;
   padding: 0;
   background: white;
+  --header-height: 85px;
+  @media (min-width: 980px) {
+    --header-height: 100px;
+  }
   .pageContainer {
     width: 100%;
     display: grid;
     grid-template-columns: 32px repeat(4, 1fr) 32px;
-    grid-template-rows: 85px auto auto;
+    grid-template-rows: var(--header-height) auto auto;
     min-height: 100vh;
     grid-template-areas:
       "hd  hd   hd   hd   hd   hd"
