@@ -18,6 +18,9 @@ const Header = () => {
         />
         <meta property="og:type" content="website" />
       </Helmet>
+      <a id="skip-links" href="#main-content">
+        Skip Links
+      </a>
       <header className="inline-grid">
         <Link to="/">
           <Logo />

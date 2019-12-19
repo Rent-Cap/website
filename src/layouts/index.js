@@ -31,7 +31,7 @@ class Layout extends React.Component {
         render={data => (
           <div className="pageContainer">
             <Header siteTitle={data.site.siteMetadata.title} />
-            <main>{this.props.children}</main>
+            <main id="main-content">{this.props.children}</main>
             <Footer></Footer>
           </div>
         )}
