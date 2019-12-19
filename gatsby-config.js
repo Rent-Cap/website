@@ -9,6 +9,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-mdx`,
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-layout`,
     "gatsby-plugin-react-helmet",
     {
