@@ -49,26 +49,32 @@
       }
     }
   }
-}
-input {
-  border: 1px solid #acacac;
-}
-button {
-  border: 1px solid #acacac;
-  background: none;
-}
 
-details {
-  width: 100%;
-  cursor: pointer;
-}
+  input {
+    border: 1px solid #acacac;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-align: center;
-  color: #3591cb;
+  details {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-align: center;
+    color: #3591cb;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    margin: 16px 0;
+    font-size: 28px;
+  }
+  h2 {
+  }
 }

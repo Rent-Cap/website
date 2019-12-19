@@ -18,16 +18,51 @@ header {
     text-shadow: none;
     background-image: none;
     grid-column-start: 2;
-    grid-column-end: span 1;
-    width: 90px;
+    grid-column-end: span 3;
+
+    .img-with-text {
+      display: flex;
+      display: row;
+      justify-content: center;
+      align-items: flex-end;
+      font-size: 18px;
+      font-family: IBMPlexMono-SemiBold, IBM Plex Mono;
+      font-weight: 600;
+      line-height: 18px;
+      svg {
+        width: 25px;
+        padding: 0;
+        margin-right: 8px;
+      }
+      span {
+        position: relative;
+      }
+    }
+
+    span {
+      color: black;
+    }
     @media (min-width: 767px) {
       grid-column-end: span 2;
       width: 120px;
     }
     svg,
     img {
+      width: 100%;
       margin-bottom: 0;
       //   width: 100px;
+    }
+  }
+
+  #logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100px;
+    img,
+    span {
+      display: block;
+      width: 50%;
     }
   }
 
@@ -146,6 +181,7 @@ header {
     grid-column-start: 3;
     align-items: center;
     grid-column-end: span 11;
+    grid-area: hr;
     ul {
       display: flex;
       flex-direction: row;
