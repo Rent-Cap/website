@@ -1,5 +1,4 @@
-button,
-.button {
+@mixin button {
   background: none;
   border: none;
   padding: 12px 24px;
@@ -10,7 +9,17 @@ button,
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.primaryButton {
+button .button {
+  @include button();
+}
+
+@mixin overrideBootstrapLink {
+  background: none;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+@mixin primaryButton() {
   display: inline-block;
   background: #8abaf2;
   color: white;
@@ -21,9 +30,21 @@ button,
   }
 }
 
+.primaryButton {
+  @include button();
+  @include primaryButton();
+}
+
 .secondaryButton {
   border-radius: 10px;
   display: block;
   width: 100%;
   border: 2px solid #acacac;
+}
+
+.download {
+  @include button();
+  @include primaryButton();
+  box-shadow: none;
+  text-shadow: none;
 }

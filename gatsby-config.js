@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   siteMetadata: {
-    title: "Rent Cap",
+    title: "California Renter Protections",
     description:
       "Are you a California resident who wants to know whether your rent is protected under rent control or the new Tenant Protections Act? Rent Cap can help you find out!",
     author: "@krpeacock"
