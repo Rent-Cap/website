@@ -2,21 +2,21 @@ import React from 'react';
 // import { withTranslation } from 'react-i18next';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
-import Disclaimer from '../components/Disclaimer';
+import Disclaimer from  '../../components/Disclaimer';
 import {
   PrimaryButton, SuccessButton, DangerButton, PrimaryButton2,
-} from '../components/Buttons';
-import { handleInput, calculateTotalAmountOwedToTenant, calculateMaxRent } from '../methods/helpers';
-// import GenerateLetter from '../components/GenerateLetter';
-import withRedux from '../methods/withRedux';
-import { layout as Layout } from '../layouts/index';
+} from '../../components/Buttons';
+import { handleInput, calculateTotalAmountOwedToTenant, calculateMaxRent } from '../../methods/helpers';
+// import GenerateLetter from  '../../components/GenerateLetter';
+import withRedux from  '../../methods/withRedux';
+import { layout as Layout } from '../../layouts/index';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import SEO from '../components/Seo';
-// import MailChimp from '../components/MailChimp'
-import '../styles/calculator.css'
-import zipDB from '../../data/zipDB.js'
-import calendar from '../images/calendar.svg'
+import SEO from  '../../components/Seo';
+// import MailChimp from  '../../components/MailChimp';
+import '../../styles/calculator.css'
+import zipDB from  '../../../data/zipDB.js';
+import calendar from  '../../images/calendar.svg';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const emptyRentRange1 = {

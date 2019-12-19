@@ -1,8 +1,7 @@
-import { PrimaryButton } from "../../../../components/Buttons";
-import AppContext from "../../../../components/AppContext"
+import AppContext from  '../../../../../components/AppContext';
+import { PrimaryButton } from "../../../../../components/Buttons";
 
 # Your Rights
-
 
 
 <AppContext.Consumer>
@@ -24,17 +23,17 @@ import AppContext from "../../../../components/AppContext"
             : (appCtx.builtBefore2005==='yes') ?
             <div>
                 <p><strong>Congratulations</strong> your landlord can't legally increase your rent more than a set amount each year based on your current rent and where you live.</p>
-                <PrimaryButton to="/calculator">Find out what my rent cap is</PrimaryButton>
+                <PrimaryButton to="/es//calculator">Find out what my rent cap is</PrimaryButton>
             </div>
             :
             <div>
                 <p><strong>Congratulations</strong> we think it is <em>likely</em> your landlord can't legally increase your rent more than a set amount each year based on your current rent and where you live.</p>
-                <PrimaryButton to="/calculator">Find out what my rent cap is</PrimaryButton>
+                <PrimaryButton to="/es//calculator">Find out what my rent cap is</PrimaryButton>
             </div>
             }
             <p>Remember these aren't your only rights as a tenant, just the ones covered by AB-1482. If you are in doubt, or worried about your living situation reach out to your local city or county government for support, or a local tenants rights group. We can connect you with them below.</p>
             <h1>Having issues with your tenancy?</h1>
-            <PrimaryButton to="/gethelp">Get help now!</PrimaryButton>
+            <PrimaryButton to="/es//gethelp">Get help now!</PrimaryButton>
         </div>
     )}
 </AppContext.Consumer>

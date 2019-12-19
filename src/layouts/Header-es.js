@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Helmet from "react-helmet";
-import Logo from "./Logo";
+import Logo from "../components/Logo";
 import { Link } from "gatsby";
 import "../styles/header.scss";
 
@@ -49,7 +49,7 @@ const Header = () => {
                 setOpen(false);
               }}
             >
-              Are you Qualified?
+             ¿Estás calificado?
             </Link>
           </li>
           <li>
@@ -59,7 +59,7 @@ const Header = () => {
                 setOpen(false);
               }}
             >
-              Rent Calculator
+              Calculadora de alquiler
             </Link>
           </li>
           <li>
@@ -69,7 +69,7 @@ const Header = () => {
                 setOpen(false);
               }}
             >
-              About the bill
+              Sobre la legislacion
             </Link>
           </li>
           <li>
@@ -79,7 +79,7 @@ const Header = () => {
                 setOpen(false);
               }}
             >
-              Resources
+              Auydas
             </Link>
           </li>
         </ul>

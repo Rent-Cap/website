@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import AppContext from '../components/AppContext';
+import HeaderEn from "./Header-en";
+import HeaderEs from "./Header-es";
+import FooterEn from "./Footer-en";
+import FooterEs from "./Footer-es";
 import "../styles/typography.scss";
 import "../styles/layout.scss";
 
@@ -30,9 +33,23 @@ class Layout extends React.Component {
         `}
         render={data => (
           <div className="pageContainer">
-            <Header siteTitle={data.site.siteMetadata.title} />
+            <AppContext.Consumer>
+              {({ appCtx, updateContext }) => (
+                (appCtx.lang && appCtx.lang === 'es') ?
+                  <HeaderEn siteTitle={data.site.siteMetadata.title} />
+                  :
+                  <HeaderEs siteTitle={data.site.siteMetadata.title} />
+              )}
+            </AppContext.Consumer>
             <main id="main-content">{this.props.children}</main>
-            <Footer></Footer>
+            <AppContext.Consumer>
+              {({ appCtx, updateContext }) => (
+                (appCtx.lang && appCtx.lang === 'es') ?
+                  <FooterEn />
+                  :
+                  <FooterEs />
+              )}
+            </AppContext.Consumer>
           </div>
         )}
       />
