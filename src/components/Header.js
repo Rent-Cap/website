@@ -43,16 +43,44 @@ const Header = () => {
       <div id="links" data-open={`${open}`}>
         <ul>
           <li>
-            <Link to="/eligibility">Are you Qualified?</Link>
+            <Link
+              to="/eligibility"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Are you Qualified?
+            </Link>
           </li>
           <li>
-            <Link to="/calculator">Rent Calculator</Link>
+            <Link
+              to="/calculator"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Rent Calculator
+            </Link>
           </li>
           <li>
-            <Link to="/about-the-bill">About the bill</Link>
+            <Link
+              to="/about-the-bill"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              About the bill
+            </Link>
           </li>
           <li>
-            <Link to="/resources">Resources</Link>
+            <Link
+              to="/resources"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Resources
+            </Link>
           </li>
         </ul>
       </div>
