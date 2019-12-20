@@ -72,7 +72,7 @@ const Header = ({ location }) => {
                 setOpen(false);
               }}
             >
-              Calcule Su Alquiler
+              Calcule Su Renta
             </Link>
           </li>
           <li>

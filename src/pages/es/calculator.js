@@ -266,18 +266,18 @@ class Calculator extends React.Component {
       <div>
         {/* <SEO title="Calculator" /> */}
         <div className="calculator-description">
-          <h1>Calculadora de Alquiler</h1>
+          <h1>Calculadora de Renta</h1>
           <p>
             Los inquilinos elegibles para protección bajo la Ley de Protección
-            al Inquilino de 2019 están protegidos contra aumentos de alquiler
+            al Inquilino de 2019 están protegidos contra aumentos de renta
             que exceden el 10% en un período de un año o la inflación + 5%, lo
             que sea menor. Si ha recibido un aumento de renta, puede usar
             nuestra calculadora para ayudarlo a determinar cuál es el aumento
             permitido según la ley, y si su aumento de renta excede el límite.
-            Los inquilinos elegibles que obtuvieron un aumento en el alquiler en
+            Los inquilinos elegibles que obtuvieron un aumento en la renta en
             cualquier momento a partir del 15 de marzo de 2019 deben usar la
-            calculadora de alquiler, ya que los aumentos en 2019 pueden
-            revertirse, lo que resulta en una reducción del alquiler.
+            calculadora de renta, ya que los aumentos en 2019 pueden
+            revertirse, lo que resulta en una reducción de la renta.
           </p>
           {/* {this.state.hideMailChimp
             ? (
@@ -327,7 +327,7 @@ class Calculator extends React.Component {
                 type="number"
                 className="form-control"
                 value={this.state.pastRent}
-                placeholder="Monto de arriendo"
+                placeholder="Monto de renta"
                 onChange={e => this.handlePastRentChange(e)}
               />
             </div>
