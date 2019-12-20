@@ -19,6 +19,8 @@ header {
   max-width: 100vw;
   position: relative;
   background: white;
+  grid-template-columns: inherit;
+  grid-column-gap: inherit;
   z-index: 10;
   @media (max-width: 1279.9px) {
     z-index: 12;
@@ -86,7 +88,9 @@ header {
     grid-column: 5;
     display: flex;
     flex-direction: row;
-    @media screen and (min-width: 767px) {
+    width: 100%;
+    justify-content: flex-end;
+    @media screen and (min-width: 980px) {
       grid-column: 13;
     }
     @media screen and (min-width: 1280px) {
