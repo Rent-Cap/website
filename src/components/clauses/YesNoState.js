@@ -13,16 +13,18 @@ class YesNoState extends React.Component {
             this.setState({ hasError: true});
             return
         }
-        var yesText = props.yesText ? props.yesText : 'Yes';
-        var noText = props.noText ? props.noText : 'No';
 
         this.state = {
             stateName: props.stateName,
             questionText: props.questionText,
+            yesText: props.yesText,
+            noText: props.noText,
             yes: props.yes,
             no: props.no,
-            yesText: yesText,
-            noText: noText,
+            dict: {
+                en: {yes:'Yes', no:'No'},
+                es: {yes:'Si', no:'No'}
+            }
         }
     }
 
@@ -48,8 +50,8 @@ class YesNoState extends React.Component {
                 {({ appCtx, updateContext }) => (
                     <div>
                     <p>{this.state.questionText}</p>
-                    <StyledPrimaryButton onClick={(e)=> { this.onChange(true, appCtx, updateContext)}} type="button">{this.state.yesText}</StyledPrimaryButton>&nbsp;
-                    <StyledPrimaryButton onClick={(e)=> { this.onChange(false, appCtx, updateContext)}} type="button">{this.state.noText}</StyledPrimaryButton>
+                    <StyledPrimaryButton onClick={(e)=> { this.onChange(true, appCtx, updateContext)}} type="button">{this.state.yesText ? this.state.yesText : this.state.dict[appCtx.lang].yes}</StyledPrimaryButton>&nbsp;
+                    <StyledPrimaryButton onClick={(e)=> { this.onChange(false, appCtx, updateContext)}} type="button">{this.state.noText ? this.state.noText : this.state.dict[appCtx.lang].no}</StyledPrimaryButton>
                     </div>
                 )}
             </AppContext.Consumer>
