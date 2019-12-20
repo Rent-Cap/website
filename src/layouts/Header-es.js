@@ -22,7 +22,7 @@ const Header = () => {
         Skip Links
       </a>
       <header className="inline-grid">
-        <Link to="/">
+        <Link to="/es">
           <Logo />
         </Link>
         <div id="mobile-trigger">
@@ -44,42 +44,42 @@ const Header = () => {
         <ul>
           <li>
             <Link
-              to="/eligibility"
+              to="/es/eligibility"
               onClick={() => {
                 setOpen(false);
               }}
             >
-             ¿Estás calificado?
+              ¿Estoy Protegido?
             </Link>
           </li>
           <li>
             <Link
-              to="/calculator"
+              to="/es/calculator"
               onClick={() => {
                 setOpen(false);
               }}
             >
-              Calculadora de alquiler
+              Calcule Su Alquiler
             </Link>
           </li>
           <li>
             <Link
-              to="/about-the-bill"
+              to="/es/about-the-bill"
               onClick={() => {
                 setOpen(false);
               }}
             >
-              Sobre la legislacion
+              Sobre La Protección de Inquilinos
             </Link>
           </li>
           <li>
             <Link
-              to="/resources"
+              to="/es/resources"
               onClick={() => {
                 setOpen(false);
               }}
             >
-              Auydas
+              Recursos
             </Link>
           </li>
         </ul>

@@ -5,9 +5,10 @@ import { Link } from "gatsby";
 const Footer = () => (
   <footer>
     <p>
-      The information contained on this website is provided for informational
-      purposes only, and should not be considered legal advice on any matter.{" "}
-      <Link to="/about-us">About Us</Link>
+    La información proporcionada en esta pagina web es solo para orientación general. 
+    Si actualmente está sujeto a un proceso de desalojo o un aumento de la renta, o
+    está bajo amenaza de cualquiera de estos, consulte a un abogado o busque ayuda 
+    en nuestra página de Recursos{" "} <Link to="/es/about-us">Sobre Nosotros</Link>
     </p>
   </footer>
 );
