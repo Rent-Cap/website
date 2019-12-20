@@ -37,10 +37,10 @@ const LanguageSelect = ({ location, updateContext }) => {
     <div className="lang-select-wrapper">
       <select id="lang-select" onChange={handleChange}>
         <option value="en" defaultValue selected={currentLanguage === "en"}>
-          English
+          EN
         </option>
         <option value="es" selected={currentLanguage === "es"}>
-          Español
+          ES
         </option>
       </select>
       <i className="down"></i>
