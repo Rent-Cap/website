@@ -35,19 +35,19 @@ class Layout extends React.Component {
           <div className="pageContainer">
             <AppContext.Consumer>
               {({ appCtx, updateContext }) => (
-                (appCtx.lang && appCtx.lang === 'es') ?
-                  <HeaderEn siteTitle={data.site.siteMetadata.title} />
+                ((appCtx.lang && appCtx.lang === 'es')) ?
+                  <HeaderEs siteTitle={data.site.siteMetadata.title} location={this.props.location} />
                   :
-                  <HeaderEs siteTitle={data.site.siteMetadata.title} />
+                  <HeaderEn siteTitle={data.site.siteMetadata.title} location={this.props.location} />
               )}
             </AppContext.Consumer>
             <main id="main-content">{this.props.children}</main>
             <AppContext.Consumer>
               {({ appCtx, updateContext }) => (
                 (appCtx.lang && appCtx.lang === 'es') ?
-                  <FooterEn />
-                  :
                   <FooterEs />
+                  :
+                  <FooterEn />
               )}
             </AppContext.Consumer>
           </div>

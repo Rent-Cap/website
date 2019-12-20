@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Helmet from "react-helmet";
 import Logo from '../components/Logo';
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import "../styles/header.scss";
+import AppContext from '../components/AppContext';
 
-const Header = () => {
+const Header = (props) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -40,6 +41,13 @@ const Header = () => {
           </button>
         </div>
       </header>
+      <AppContext.Consumer>
+              {({ appCtx, updateContext }) => (
+      <div>
+        <button onClick={() => {updateContext({ lang:'en' }); const url = props.location.pathname; if (url.startsWith('/es')) { navigate(url.substring(3));}}}>en</button> / <button onClick={() => {updateContext({ lang:'es' }); const url = props.location.pathname; if (!url.startsWith('/es')) { navigate('/es' + url);}}}>es</button>
+      </div>
+              )}
+      </AppContext.Consumer>
       <div id="links" data-open={`${open}`}>
         <ul>
           <li>
