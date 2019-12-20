@@ -1,28 +1,48 @@
 import React from "react";
 import { PrimaryButton } from "../components/Buttons";
-import AppContext from "../components/AppContext"
+import AppContext from "../components/AppContext";
 
 const County = () => {
-    return (
-        <AppContext.Consumer>
-            {({ appCtx, updateContext }) => (
-                <div>
-                    <p>It looks like you live in { appCtx.town } in { appCtx.county } county.</p>
+  return (
+    <AppContext.Consumer>
+      {({ appCtx, updateContext }) => (
+        <div>
+          <p>
+            Parece que usted vive en {appCtx.town} en el condado de{" "}
+            {appCtx.county}.
+          </p>
 
-                    <p>Either { appCtx.town } doesn't have has rent or eviction protections, or you weren't eligible.</p>
-                    <p>Since {appCtx.county } county has some protections we want to figure out if you are eligible for those protections provided by { appCtx.county } county law. If those don't apply the state-wide protections in AB1482 may still apply to you.</p>
+          <p>
+            Puede que {appCtx.town} no tenga protección de renta o desalojo,
+            o no usted no sea elegible.
+          </p>
+          <p>
+            Dado que el condado de {appCtx.county} tiene algunas protecciones,
+            queremos determinar si usted es elegible para esas protecciones
+            proporcionadas por la ley del condado de {appCtx.county}. Si esos no
+            aplican, las protecciones estatales en AB1482 aún pueden aplicarle a
+            usted.
+          </p>
 
-                    <p>You can reach out to these great resources in { appCtx.county } county to figure out if you are eligible.</p>
-                    <PrimaryButton to="/es/gethelp">Get help from a local tenants right group!</PrimaryButton>
-                    
+          <p>
+            Puede comunicarse con estos recursos útiles en {appCtx.county} para
+            determinar si es elegible.
+          </p>
+          <PrimaryButton to="/es/gethelp">
+            Obtenga ayuda de un grupo adecuado de inquilinos locales.
+          </PrimaryButton>
 
-                    <p><br />Do you get rent control in { appCtx.county } county?</p>
-                    <PrimaryButton to="/es/eligibility/state">No, help my check state-wide</PrimaryButton>
-                    
-                </div>
-            )}
-        </AppContext.Consumer>
-    )
+          <p>
+            <br />
+            ¿Cree no tener control de renta en el condado de {appCtx.county}?
+          </p>
+          <PrimaryButton to="/es/eligibility/state">
+            Verifique su situación en todo el estado de California.
+          </PrimaryButton>
+        </div>
+      )}
+    </AppContext.Consumer>
+  );
 };
 
 export default County;

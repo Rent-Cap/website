@@ -68,7 +68,7 @@ const Header = (props) => {
                 setOpen(false);
               }}
             >
-              Calcule Su Alquiler
+              Calcule Su Renta
             </Link>
           </li>
           <li>
