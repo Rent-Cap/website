@@ -22,45 +22,44 @@ shared_with_landlord_start_of_lease: null, // did they share with the landlord a
 */
 
 const defaultState = {
-    appCtx: {},
-    updateContext: () => { },
-}
+  appCtx: { lang: "en" },
+  updateContext: () => {}
+};
 const AppContext = React.createContext(defaultState);
 
 class AppContextProvider extends React.Component {
-    state = {
-        appCtx: {}
+  state = {
+    ...defaultState
+  };
+
+  updateContext = appCtx => {
+    appCtx = { ...this.state.appCtx, ...appCtx };
+    this.setState({ appCtx });
+  };
+
+  componentDidMount() {
+    // Getting appstate mode value from localStorage!
+    const lsAppCtx = JSON.parse(localStorage.getItem("appCtx"));
+    if (lsAppCtx) {
+      this.setState({ appCtx: { ...lsAppCtx } });
     }
+  }
 
-    updateContext = (appCtx) => {
-        appCtx = {...this.state.appCtx, ...appCtx};
-        this.setState({ appCtx });
-    }
+  render() {
+    const { children } = this.props;
+    const { appCtx } = this.state;
 
-    componentDidMount() {
-        // Getting appstate mode value from localStorage!
-        const lsAppCtx = JSON.parse(localStorage.getItem("appCtx"))
-        if (lsAppCtx) {
-            this.setState({ appCtx: lsAppCtx })
-        }
-    }
-
-    render() {
-        const { children } = this.props;
-        const { appCtx } = this.state;
-
-        return (
-            <AppContext.Provider
-                value={{
-                    appCtx,
-                    updateContext: this.updateContext,
-                }}
-            >
-                {children}
-            </AppContext.Provider>
-        )
-
-    }
+    return (
+      <AppContext.Provider
+        value={{
+          appCtx,
+          updateContext: this.updateContext
+        }}
+      >
+        {children}
+      </AppContext.Provider>
+    );
+  }
 }
 
 export default AppContext;
