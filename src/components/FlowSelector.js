@@ -39,7 +39,7 @@ class FlowSelector extends React.Component {
     }
 
     if (appCtx.lang !== 'undefined' && appCtx.lang === 'es') {
-      to = '/es/' + to;
+      to = '/es' + to;
     }
 
     if (to) {
