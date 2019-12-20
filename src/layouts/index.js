@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import AppContext from "../components/AppContext";
+import HeaderEn from "./Header-en";
+import HeaderEs from "./Header-es";
+import FooterEn from "./Footer-en";
+import FooterEs from "./Footer-es";
 import "../styles/typography.scss";
 import "../styles/layout.scss";
 
@@ -11,12 +14,8 @@ if (typeof document !== "undefined") {
 }
 // import "./layout.css";
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render = () => (
+const Layout = ({ location, children }) => {
+  return (
     <div>
       <StaticQuery
         query={graphql`
@@ -30,18 +29,39 @@ class Layout extends React.Component {
         `}
         render={data => (
           <div className="pageContainer">
-            <Header siteTitle={data.site.siteMetadata.title} />
-            <main id="main-content">{this.props.children}</main>
-            <Footer></Footer>
+            <AppContext.Consumer>
+              {({ appCtx, updateContext }) => {
+                return (
+                  <>
+                    {appCtx.lang && appCtx.lang === "es" ? (
+                      <HeaderEs
+                        siteTitle={data.site.siteMetadata.title}
+                        location={location}
+                      />
+                    ) : (
+                      <HeaderEn
+                        siteTitle={data.site.siteMetadata.title}
+                        location={location}
+                      />
+                    )}
+                    <main id="main-content">{children}</main>
+                    {appCtx.lang && appCtx.lang === "es" ? (
+                      <FooterEs />
+                    ) : (
+                      <FooterEn />
+                    )}
+                  </>
+                );
+              }}
+            </AppContext.Consumer>
           </div>
         )}
       />
     </div>
   );
-
-  propTypes = {
-    children: PropTypes.node.isRequired
-  };
-}
+};
+Layout.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export default Layout;

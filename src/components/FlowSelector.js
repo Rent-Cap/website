@@ -12,6 +12,8 @@ class FlowSelector extends React.Component {
     super(props);
     this.state = {
       zip: "",
+      btnText: props.btnText,
+      errText: props.errText,
       disabled: true,
     };
   }
@@ -36,6 +38,10 @@ class FlowSelector extends React.Component {
       to = "/eligibility/state";
     }
 
+    if (appCtx.lang !== 'undefined' && appCtx.lang === 'es') {
+      to = '/es' + to;
+    }
+
     if (to) {
       navigate(to);
     }
@@ -46,9 +52,9 @@ class FlowSelector extends React.Component {
       <AppContext.Consumer>
         {({ appCtx, updateContext }) => (
           <div>
-            <StyledPrimaryButton disabled={!appCtx.validCAZip} onClick={(e)=>{this.onClick(appCtx)}}>Look up</StyledPrimaryButton>
+            <StyledPrimaryButton disabled={!appCtx.validCAZip} onClick={(e)=>{this.onClick(appCtx)}}>{this.state.btnText}</StyledPrimaryButton>
             {(appCtx.town === undefined && appCtx.zip !== undefined) ?
-              <p className="error">Please enter a valid California ZIP code</p>
+              <p className="error">{this.state.errText}</p>
             :
               <p className="error"></p>
             }

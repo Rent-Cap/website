@@ -13,9 +13,6 @@ class YesNoMaybeState extends React.Component {
             this.setState({ hasError: true});
             return
         }
-        var yesText = props.yesText ? props.yesText : 'Yes';
-        var noText = props.noText ? props.noText : 'No';
-        var maybeText = props.maybeText ? props.maybeText: "I don't know";
 
         this.state = {
             stateName: props.stateName,
@@ -23,9 +20,13 @@ class YesNoMaybeState extends React.Component {
             yes: props.yes,
             no: props.no,
             maybe: props.maybe,
-            yesText: yesText,
-            noText: noText,
-            maybeText: maybeText,
+            yesText: props.yesText,
+            noText: props.noText,
+            maybeText: props.maybeText,
+            dict: {
+                en: {yes:'Yes', no:'No', maybe:"I don't know"},
+                es: {yes:'Si', no:'No', maybe:'No lo sé'}
+            }
         }
     }
 
@@ -53,9 +54,9 @@ class YesNoMaybeState extends React.Component {
                 {({ appCtx, updateContext }) => (
                     <div>
                     <p>{this.state.questionText}</p>
-                    <StyledPrimaryButton onClick={(e)=> { this.onChange('yes', appCtx, updateContext)}} type="button">{this.state.yesText}</StyledPrimaryButton>&nbsp;
-                    <StyledPrimaryButton onClick={(e)=> { this.onChange('no', appCtx, updateContext)}} type="button">{this.state.noText}</StyledPrimaryButton>&nbsp;
-                    <StyledPrimaryButton onClick={(e)=> { this.onChange('idk', appCtx, updateContext)}} type="button">{this.state.maybeText}</StyledPrimaryButton>
+                    <StyledPrimaryButton onClick={(e)=> { this.onChange('yes', appCtx, updateContext)}} type="button">{this.state.yesText ? this.state.yesText : this.state.dict[appCtx.lang].yes}</StyledPrimaryButton>&nbsp;
+                    <StyledPrimaryButton onClick={(e)=> { this.onChange('no', appCtx, updateContext)}} type="button">{this.state.yesText ? this.state.yesText : this.state.dict[appCtx.lang].no}</StyledPrimaryButton>&nbsp;
+                    <StyledPrimaryButton onClick={(e)=> { this.onChange('idk', appCtx, updateContext)}} type="button">{this.state.yesText ? this.state.yesText : this.state.dict[appCtx.lang].maybe}</StyledPrimaryButton>
                     </div>
                 )}
             </AppContext.Consumer>
