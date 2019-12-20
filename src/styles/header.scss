@@ -116,12 +116,13 @@ header {
       }
     }
     .lang-select-wrapper {
-      padding-right: 12px;
+      padding-right: 10px;
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       position: relative;
+      min-width: 75px;
       #lang-select {
         display: block;
         font-size: 16px;
