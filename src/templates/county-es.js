@@ -13,11 +13,11 @@ const County = () => {
                     <p>Since {appCtx.county } county has some protections we want to figure out if you are eligible for those protections provided by { appCtx.county } county law. If those don't apply the state-wide protections in AB1482 may still apply to you.</p>
 
                     <p>You can reach out to these great resources in { appCtx.county } county to figure out if you are eligible.</p>
-                    <PrimaryButton to="/gethelp">Get help from a local tenants right group!</PrimaryButton>
+                    <PrimaryButton to="/es/gethelp">Get help from a local tenants right group!</PrimaryButton>
                     
 
                     <p><br />Do you get rent control in { appCtx.county } county?</p>
-                    <PrimaryButton to="/eligibility/state">No, help my check state-wide</PrimaryButton>
+                    <PrimaryButton to="/es/eligibility/state">No, help my check state-wide</PrimaryButton>
                     
                 </div>
             )}

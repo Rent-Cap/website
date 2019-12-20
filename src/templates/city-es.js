@@ -22,7 +22,7 @@ const City = () => {
             You can reach out to these great resources in {appCtx.town} to
             figure out if you are eligible.
           </p>
-          <PrimaryButton to="/resources">
+          <PrimaryButton to="/es/resources">
             Get help from a local tenants right group!
           </PrimaryButton>
 
@@ -31,7 +31,7 @@ const City = () => {
             Think you may not be covered under rent control provisions in{" "}
             {appCtx.town}?
           </p>
-          <PrimaryButton to="/eligibility/state/">
+          <PrimaryButton to="/es/eligibility/state/">
             Check my status state-wide
           </PrimaryButton>
         </div>
