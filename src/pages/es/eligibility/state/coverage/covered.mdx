@@ -7,33 +7,33 @@ import { PrimaryButton } from "../../../../../components/Buttons";
 <AppContext.Consumer>
     {({ appCtx }) => (
         <div>
-            <h2>Protection from "unjust" evictions</h2>
+            <h2>Protección contra desalojos "injustos"</h2>
             {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ? 
-                <p><strong>Congratulations</strong> you are protected from "unjust" evictions under AB-1482.</p>
+                <p><strong>Felicitaciones</strong> usted está protegido de desalojos "injustos" bajo AB-1482.</p>
             : (appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='idk') ?
-                <p><strong>Congratulations</strong> we think you are <em>likely</em> to be protected from "unjust" evictions under AB-1482, as long are your building hasn't recieved a "certificate of occupancy" within the last 15 years. Since you didn't know how old your building is we'd recommend connecting with local resources below to find out.</p>
+                <p><strong>Felicitaciones</strong> creemos que es <em>probable</em> que usted esta protegido de desalojos "injustos" bajo AB-1482, siempre y cuando su edificio no haya recibido un "certificado de ocupación" en los últimos 15 años. Como no sabía la antigüedad de su edificio, le recomendamos que se conecte con los recursos locales a continuación para averiguarlo.</p>
             :
-                <p><strong>Unfortunately</strong> you won't get eviction protection until everyone you live with has there for 1 year, or at least one person you live with has been there for 2 years.</p>
+                <p><strong>Desafortunadamente</strong> no obtendrá protección de desalojo hasta que todas las personas con las que viva tengan allí durante 1 año, o al menos una persona con la que viva haya estado allí durante 2 años.</p>
             }
-            <h2>Limited rent increases</h2>
+            <h2>Aumentos de renta limitados</h2>
             {(appCtx.voucher) ?
             <div>
-                <p>Since you recieve a voucher to support your housing costs you aren't eligible for capped rent under AB-1482. However you are very likely to have other protections on your rent. If you need help reach out below.</p>
+                <p>Dado que recibe un cupón para cubrir los costos de su vivienda, usted no es elegible para el limite de alquiler bajo AB-1482. Sin embargo, es muy probable que tenga otras protecciones en su alquiler. Si necesita ayuda, comuníquese a continuación.</p>
             </div>
             : (appCtx.builtBefore2005==='yes') ?
             <div>
-                <p><strong>Congratulations</strong> your landlord can't legally increase your rent more than a set amount each year based on your current rent and where you live.</p>
-                <PrimaryButton to="/es//calculator">Find out what my rent cap is</PrimaryButton>
+                <p><strong>Felicitaciones</strong> su arrendador no puede aumentar legalmente su alquiler más de la cantidad establecida cada año en función de su alquiler actual y el lugar donde vive.</p>
+                <PrimaryButton to="/es//calculator">Descubra cuál es su límite de renta</PrimaryButton>
             </div>
             :
             <div>
-                <p><strong>Congratulations</strong> we think it is <em>likely</em> your landlord can't legally increase your rent more than a set amount each year based on your current rent and where you live.</p>
+                <p><strong>Felicitaciones</strong> creemos que es <em>probable</em> que su arrendador no pueda aumentar legalmente su alquiler más de la cantidad establecida cada año en función de su alquiler actual y el lugar donde vive.</p>
                 <PrimaryButton to="/es//calculator">Find out what my rent cap is</PrimaryButton>
             </div>
             }
-            <p>Remember these aren't your only rights as a tenant, just the ones covered by AB-1482. If you are in doubt, or worried about your living situation reach out to your local city or county government for support, or a local tenants rights group. We can connect you with them below.</p>
-            <h1>Having issues with your tenancy?</h1>
-            <PrimaryButton to="/es//gethelp">Get help now!</PrimaryButton>
+            <p>Recuerde que estos no son sus únicos derechos como inquilino, solo los cubiertos por AB-1482. Si tiene dudas o está preocupado por su situación de vida, comuníquese con el gobierno local de su ciudad o condado para obtener ayuda o con un grupo local de derechos de los inquilinos. Podemos conectarlo con ellos a continuación.</p>
+            <h1>¿Tienes problemas con su alquiler?</h1>
+            <PrimaryButton to="/es//gethelp">¡Lo podemos ayudar!</PrimaryButton>
         </div>
     )}
 </AppContext.Consumer>

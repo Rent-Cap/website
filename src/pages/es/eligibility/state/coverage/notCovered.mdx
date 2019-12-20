@@ -1,31 +1,31 @@
 import AppContext from  '../../../../../components/AppContext';
 import { PrimaryButton } from "../../../../../components/Buttons";
 
-**Unfortunately**, we think that you are not covered either just cause eviction protection or rent control by the Tenant Proteciton Act. You may have other rights, so if you having issues with your housing situation reach out for help below!
+**Desafortunadamente**, creemos que usted no está cubierto, ya sea por causa de la protección de desalojo o por el control de la renta por la Ley de Protección de Inquilinos. Es posible que tenga otros derechos, así que si tiene problemas con su situación de vivienda, ¡busque ayuda a continuación!
 
-## Why we believe you are ineligible
+## Por qué creemos que usted no es elegible
 <AppContext.Consumer>
     {({ appCtx }) => (
         <div>
             {
                 appCtx.ineligibleType ?
-                <p>You're not covered by the Tenant Protection Act. Some kinds of buildings are ineligible such as government subsidized housing or university dorms. You answered that you rent a type of housing which is ineligible but if you live in subsidized housing, you may have other legal protections against evictions and rent increases. We urge you to seek free legal advice by getting help from a local non-profit below.</p>
+                <p>No está cubierto por la Ley de Protección del Inquilino. Algunos tipos de edificios no son elegibles, como viviendas subsidiadas por el gobierno o residencias universitarias. Respondió que alquila un tipo de vivienda que no es elegible, pero si vive en una vivienda subsidiada, puede tener otras protecciones legales contra desalojos y aumentos de alquiler. Le suregimos buscar asesoramiento legal gratuito al obtener ayuda de una organización local sin fines de lucro a continuación.</p>
                 : (!appCtx.builtBefore2005) ?
-                <p>Only buildings which have not been issued a "certificate of occupancy" in the last 15 years are eligible. Since you indicated your building is newer than 15 years old it is <em>likely</em> to be exempt. It will become eligible in the future once it has had a certificate of occupancy for 15 years.</p>
+                <p>Solo son elegibles los edificios que no hayan recibido un "certificado de ocupación" en los últimos 15 años. Dado que usted indicó que su edificio tiene más de 15 años de antigüedad, es <em>probable</em> de estar exento. Será elegible en el futuro una vez que haya tenido un certificado de ocupación por 15 años.</p>
                 : appCtx.sharedKitchenOrBath ?
-                <p>Landlords who share a kitchen and bathroom in their primary residence with tenants are exempt. You answered that you live with your landlord and share a kitchen or bathroom with them. </p>
+                <p>Los propietarios que comparten una cocina y un baño en su residencia principal con los inquilinos están exentos. Usted respondió que vive con su arrendador y comparte una cocina o baño con ellos.</p>
                 : appCtx.sharedDuplex ?
-                <p>If a landlord owns and occupies one unit of a Duplex then the other unit of the Duplex is not covered by the Tenant Protection Act. You answered that your landlord has lived in one unit of your Duplex since you moved in.</p>
+                <p>Si un propietario ocupa una unidad de un dúplex, la otra unidad del dúplex no está cubierta por la Ley de protección del inquilino. Usted respondió que su propietario ha vivido en una unidad de su Duplex desde que se mudó.</p>
                 : appCtx.sharedUnitWithLandlord ?
-                <p>Since you share with your landlord and they don't rent more than 2 units we think your unit is not covered by the Tenant Protection Act.</p>
+                <p>Como usted comparte con su arrendador y no alquila más de 2 unidades, creemos que su unidad no está cubierta por la Ley de Protección al Inquilino.</p>
                 : appCtx.exemptionNotice ?
-                <p>You answered that you rent a single family home from an indvidual landlord. Landlords of single family homes that aren't a corporation, a real estate trust, or an LLC owned by a corporation are exempt as long as they notify their tenants. You answered that your landlord did notify you that you were exempt.</p>
+                <p>Usted respondió que alquila una casa unifamiliar de un propietario individual. Los propietarios de viviendas unifamiliares que no son una corporación, un fideicomiso de bienes raíces o una LLC propiedad de una corporación están exentos siempre que notifiquen a sus inquilinos. Respondió que su arrendador le notificó que estaba exento.</p>
                 : 
-                <p>Sorry, we have an error and don't have the reason right now.</p>
+                <p>Lo sentimos, tenemos un error y no tenemos la razón en este momento.</p>
             }
         </div>
     )}
 </AppContext.Consumer>
 
-## Are you having issues with your landlord?
-<PrimaryButton to="/es//gethelp">Get help now!</PrimaryButton>
+## ¿Tiene problemas con su arrendador?
+<PrimaryButton to="/es//gethelp">¡Lo podemos ayudar!</PrimaryButton>
