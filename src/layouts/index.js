@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import AppContext from '../components/AppContext';
+import AppContext from "../components/AppContext";
 import HeaderEn from "./Header-en";
 import HeaderEs from "./Header-es";
 import FooterEn from "./Footer-en";
@@ -14,12 +14,8 @@ if (typeof document !== "undefined") {
 }
 // import "./layout.css";
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render = () => (
+const Layout = ({ location, children }) => {
+  return (
     <div>
       <StaticQuery
         query={graphql`
@@ -34,31 +30,38 @@ class Layout extends React.Component {
         render={data => (
           <div className="pageContainer">
             <AppContext.Consumer>
-              {({ appCtx, updateContext }) => (
-                ((appCtx.lang && appCtx.lang === 'es')) ?
-                  <HeaderEs siteTitle={data.site.siteMetadata.title} location={this.props.location} />
-                  :
-                  <HeaderEn siteTitle={data.site.siteMetadata.title} location={this.props.location} />
-              )}
-            </AppContext.Consumer>
-            <main id="main-content">{this.props.children}</main>
-            <AppContext.Consumer>
-              {({ appCtx, updateContext }) => (
-                (appCtx.lang && appCtx.lang === 'es') ?
-                  <FooterEs />
-                  :
-                  <FooterEn />
-              )}
+              {({ appCtx, updateContext }) => {
+                return (
+                  <>
+                    {appCtx.lang && appCtx.lang === "es" ? (
+                      <HeaderEs
+                        siteTitle={data.site.siteMetadata.title}
+                        location={location}
+                      />
+                    ) : (
+                      <HeaderEn
+                        siteTitle={data.site.siteMetadata.title}
+                        location={location}
+                      />
+                    )}
+                    <main id="main-content">{children}</main>
+                    {appCtx.lang && appCtx.lang === "es" ? (
+                      <FooterEs />
+                    ) : (
+                      <FooterEn />
+                    )}
+                  </>
+                );
+              }}
             </AppContext.Consumer>
           </div>
         )}
       />
     </div>
   );
-
-  propTypes = {
-    children: PropTypes.node.isRequired
-  };
-}
+};
+Layout.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export default Layout;
