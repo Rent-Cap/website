@@ -55,8 +55,8 @@ class YesNoMaybeState extends React.Component {
                     <div>
                     <p>{this.state.questionText}</p>
                     <StyledPrimaryButton onClick={(e)=> { this.onChange('yes', appCtx, updateContext)}} type="button">{this.state.yesText ? this.state.yesText : this.state.dict[appCtx.lang].yes}</StyledPrimaryButton>&nbsp;
-                    <StyledPrimaryButton onClick={(e)=> { this.onChange('no', appCtx, updateContext)}} type="button">{this.state.yesText ? this.state.yesText : this.state.dict[appCtx.lang].no}</StyledPrimaryButton>&nbsp;
-                    <StyledPrimaryButton onClick={(e)=> { this.onChange('idk', appCtx, updateContext)}} type="button">{this.state.yesText ? this.state.yesText : this.state.dict[appCtx.lang].maybe}</StyledPrimaryButton>
+                    <StyledPrimaryButton onClick={(e)=> { this.onChange('no', appCtx, updateContext)}} type="button">{this.state.noText ? this.state.noText : this.state.dict[appCtx.lang].no}</StyledPrimaryButton>&nbsp;
+                    <StyledPrimaryButton onClick={(e)=> { this.onChange('idk', appCtx, updateContext)}} type="button">{this.state.maybeText ? this.state.maybeText : this.state.dict[appCtx.lang].maybe}</StyledPrimaryButton>
                     </div>
                 )}
             </AppContext.Consumer>
