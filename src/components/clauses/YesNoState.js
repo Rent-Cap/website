@@ -9,13 +9,13 @@ const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
     es: { yes: "Si", no: "No" }
   };
 
-  const onChange = (yes, oldCtx, updateContext) => {
+  const onChange = (answer, oldCtx, updateContext) => {
     var newCtx = { ...oldCtx };
 
-    newCtx[stateName] = yes;
+    newCtx[stateName] = answer;
     updateContext(newCtx);
 
-    if (yes) {
+    if (answer) {
       navigate(yes);
     } else {
       navigate(no);
