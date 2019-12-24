@@ -1,10 +1,27 @@
 import ContactForm from "../components/contactACCE";
+import { QuickContactForm, FullContactForm } from "../components/contactACCE";
 
 <ContactForm />
+<QuickContactForm />
+<FullContactForm />
 
 <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-  <input type="hidden" name="form-name" value="testContact" />
-  <input type="text" name="name" />
+  <input type="hidden" name="quickForm" value="testQuickContact" />
+  <input type="text" name="givenName" />
+  <input type="text" name="familyName" />
+  <input type="tel" name="cell" />
   <input type="email" name="email" />
-  <textarea name="message"></textarea>
+</form>
+
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="fullForm" value="testFullContact" />
+  <input type="text" name="givenName" />
+  <input type="text" name="familyName" />
+  <input type="tel" name="cell" />
+  <input type="email" name="email" />
+  <input type="checkbox" name="rentIncrease" />
+  <input type="checkbox" name="eviction" />
+  <input type="checkbox" name="landlordOther" />
+  <input type="checkbox" name="understandRights" />
+  <input type="checkbox" name="fightForRights" />
 </form>
