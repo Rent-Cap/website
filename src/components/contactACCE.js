@@ -55,7 +55,7 @@ class QuickContactForm extends React.Component {
                     !appCtx.quickFormSubmit ?
                         <div>
                             <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} name="testContact" data-netlify="true" data-netlify-honeypot="bot-field">
-                                <input type="hidden" name="form-name" value="testContact" />
+                                <input type="hidden" name="form-name" value="testQuickContact" />
                                 <p>
                                     <label>
                                         Given name: <input type="text" name="givenName" value={givenName} onChange={this.handleChange} />&nbsp;
@@ -132,7 +132,7 @@ class FullContactForm extends React.Component {
             <AppContext.Consumer>
                 {({ appCtx, updateContext }) => (
                     <form onSubmit={this.handleSubmit} name="testContact" data-netlify="true" data-netlify-honeypot="bot-field">
-                        <input type="hidden" name="form-name" value="testContact" />
+                        <input type="hidden" name="form-name" value="testFullContact" />
                         <p>
                             <label>
                                 Given name: <input type="text" name="givenName" value={givenName} onChange={this.handleChange} />&nbsp;
