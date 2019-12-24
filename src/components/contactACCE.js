@@ -54,7 +54,7 @@ class QuickContactForm extends React.Component {
                 {({ appCtx, updateContext }) => (
                     !appCtx.quickFormSubmit ?
                         <div>
-                            <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} name="testContact" data-netlify="true" data-netlify-honeypot="bot-field">
+                            <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} name="testQuickContact" data-netlify="true" data-netlify-honeypot="bot-field">
                                 <input type="hidden" name="form-name" value="testQuickContact" />
                                 <p>
                                     <label>
@@ -131,7 +131,7 @@ class FullContactForm extends React.Component {
         return (
             <AppContext.Consumer>
                 {({ appCtx, updateContext }) => (
-                    <form onSubmit={this.handleSubmit} name="testContact" data-netlify="true" data-netlify-honeypot="bot-field">
+                    <form onSubmit={this.handleSubmit} name="testFullContact" data-netlify="true" data-netlify-honeypot="bot-field">
                         <input type="hidden" name="form-name" value="testFullContact" />
                         <p>
                             <label>
