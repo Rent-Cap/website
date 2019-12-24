@@ -32,7 +32,7 @@ class QuickContactForm extends React.Component {
         fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({ "form-name": "testContact", ...this.state })
+            body: encode({ "form-name": "testQuickContact", ...this.state })
         })
             .then(() => {
                 const quickFormSubmit = true;
@@ -108,7 +108,7 @@ class FullContactForm extends React.Component {
         fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({ "form-name": "testContact", ...this.state })
+            body: encode({ "form-name": "testFullContact", ...this.state })
         })
             .then(() => alert("Success!"))
             .catch(error => alert(error));
