@@ -1,9 +1,11 @@
 import ContactForm from "../components/contactACCE";
 import { QuickContactForm, FullContactForm } from "../components/contactACCE";
 
+
+# Quick Contact Form
+This form is the short form for use at the front of flows and self-hides after submissions.
 <ContactForm />
-<QuickContactForm />
-<FullContactForm />
+<hr />
 
 <form name="contact" netlify netlify-honeypot="bot-field" hidden>
   <input type="hidden" name="quickForm" value="testQuickContact" />
@@ -12,6 +14,12 @@ import { QuickContactForm, FullContactForm } from "../components/contactACCE";
   <input type="tel" name="cell" />
   <input type="email" name="email" />
 </form>
+
+# Full Contact Form
+This form is the fuller form for use at the end of flows or on the "Get Help" page. If you filled in a flow or the calculator it provides the option to share those answers with ACCE
+<hr />
+<FullContactForm />
+
 
 <form name="contact" netlify netlify-honeypot="bot-field" hidden>
   <input type="hidden" name="fullForm" value="testFullContact" />
