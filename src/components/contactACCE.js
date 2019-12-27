@@ -116,7 +116,7 @@ class FullContactForm extends React.Component {
         e.preventDefault();
     };
 
-    checkBoxes = { "rentIncrease": true, "eviction": true, "landlordOther": true, "understandRights": true, "fightForRights": true , contactCall: true, contactEmail: true, contactTxt: true};
+    checkBoxes = { "rentIncrease": true, "eviction": true, "landlordOther": true, "understandRights": true, "fightForRights": true , "contactCall": true, "contactEmail": true, "contactTxt": true};
 
     handleChange = e => {
         var value = e.target.value;
@@ -135,10 +135,10 @@ class FullContactForm extends React.Component {
                         <input type="hidden" name="form-name" value="testFullContact" />
                         <p>
                             <label>
-                                Given name: <input type="text" name="givenName" value={givenName} onChange={this.handleChange} />&nbsp;
+                                First: <input type="text" name="firstName" value={givenName} onChange={this.handleChange} />&nbsp;
                     </label>
                             <label>
-                                Family name: <input type="text" name="familyName" value={familyName} onChange={this.handleChange} />
+                                Last: <input type="text" name="lastName" value={familyName} onChange={this.handleChange} />
                             </label>
                         </p>
 
