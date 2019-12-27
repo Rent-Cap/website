@@ -116,7 +116,7 @@ class FullContactForm extends React.Component {
         e.preventDefault();
     };
 
-    checkBoxes = { "rentIncrease": true, "eviction": true, "landlordOther": true, "understandRights": true, "fightForRights": true };
+    checkBoxes = { "rentIncrease": true, "eviction": true, "landlordOther": true, "understandRights": true, "fightForRights": true , contactCall: true, contactEmail: true, contactTxt: true};
 
     handleChange = e => {
         var value = e.target.value;
