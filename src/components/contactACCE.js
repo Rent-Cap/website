@@ -225,7 +225,11 @@ class FullContactForm extends React.Component {
                                             <input type="checkbox" name="contactEmail" checked={contactEmail} onChange={this.handleChange} /> Contact me by email
                                 </label>
                                     </p>
-                                    : <div></div>
+                                    : <div>
+                                        <input type="hidden" name="contactCall" />
+                                        <input type="hidden" name="contactTxt" />
+                                        <input type="hidden" name="contactEmail" />
+                                    </div>
                                 }
                             </fieldset>
                             :
