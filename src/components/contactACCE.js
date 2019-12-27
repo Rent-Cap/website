@@ -95,7 +95,7 @@ class FullContactForm extends React.Component {
             to: "",
             share1482Answers: true, shareRentCalc: true,
             contactCall: true, contactTxt: true, contactEmail: true,
-            givenName: "", familyName: "", cell: "", email: "",
+            firstName: "", lastName: "", cell: "", email: "",
             rentIncrease: false, eviction: false, landlordOther: false, understandRights: false, fightForRights: false,
             submitText: props.submitText,
             dict: contactDict,
@@ -127,7 +127,7 @@ class FullContactForm extends React.Component {
     };
 
     render() {
-        const { givenName, familyName, cell, email, rentIncrease, eviction, landlordOther, understandRights, fightForRights, share1482Answers, sharecRentCalc, contactEmail, contactTxt, contactCall, submitText, dict } = this.state;
+        const { firstName, lastName, cell, email, rentIncrease, eviction, landlordOther, understandRights, fightForRights, share1482Answers, sharecRentCalc, contactEmail, contactTxt, contactCall, submitText, dict } = this.state;
         return (
             <AppContext.Consumer>
                 {({ appCtx, updateContext }) => (
@@ -135,10 +135,10 @@ class FullContactForm extends React.Component {
                         <input type="hidden" name="form-name" value="testFullContact" />
                         <p>
                             <label>
-                                First: <input type="text" name="firstName" value={givenName} onChange={this.handleChange} />&nbsp;
+                                First: <input type="text" name="firstName" value={firstName} onChange={this.handleChange} />&nbsp;
                     </label>
                             <label>
-                                Last: <input type="text" name="lastName" value={familyName} onChange={this.handleChange} />
+                                Last: <input type="text" name="lastName" value={lastName} onChange={this.handleChange} />
                             </label>
                         </p>
 
