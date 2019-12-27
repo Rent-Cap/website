@@ -217,7 +217,10 @@ class FullContactForm extends React.Component {
                                         </p>
                                     </div>
                                     :
-                                    <div></div>
+                                    <div>
+                                        <input type="hidden" name="contactCell" value={contactCell} />
+                                        <input type="hidden" name="contactTxt" value={contactTxt} />
+                                    </div>
                                 }
                                 {this.state.email ?
                                     <p>
@@ -226,14 +229,16 @@ class FullContactForm extends React.Component {
                                 </label>
                                     </p>
                                     : <div>
-                                        <input type="hidden" name="contactCall" />
-                                        <input type="hidden" name="contactTxt" />
-                                        <input type="hidden" name="contactEmail" />
+                                         <input type="hidden" name="contactEmail" value={contactEmail} />
                                     </div>
                                 }
                             </fieldset>
                             :
-                            <div></div>
+                            <div>
+                                        <input type="hidden" name="contactCall" value={contactCall} />
+                                        <input type="hidden" name="contactTxt" value={contactTxt} />
+                                        <input type="hidden" name="contactEmail" value={contactEmail} />
+                            </div>
                         }
                         <p>
                             <button type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</button>
