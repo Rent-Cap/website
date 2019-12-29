@@ -17,8 +17,8 @@ class QuickContactForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            givenName: "",
-            familyName: "",
+            firstName: "",
+            lastName: "",
             cell: "",
             email: "",
             submitText: props.submitText,
@@ -48,7 +48,7 @@ class QuickContactForm extends React.Component {
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
     render() {
-        const { givenName, familyName, cell, email, submitText, dict } = this.state;
+        const { firstName, lastName, cell, email, submitText, dict } = this.state;
         return (
             <AppContext.Consumer>
                 {({ appCtx, updateContext }) => (
@@ -58,10 +58,10 @@ class QuickContactForm extends React.Component {
                                 <input type="hidden" name="form-name" value="testQuickContact" />
                                 <p>
                                     <label>
-                                        Given name: <input type="text" name="givenName" value={givenName} onChange={this.handleChange} />&nbsp;
+                                        First name: <input type="text" name="givenName" value={firstName} onChange={this.handleChange} />&nbsp;
                     </label>
                                     <label>
-                                        Family name: <input type="text" name="familyName" value={familyName} onChange={this.handleChange} />
+                                        Last name: <input type="text" name="familyName" value={lastName} onChange={this.handleChange} />
                                     </label>
                                 </p>
                                 <p>
