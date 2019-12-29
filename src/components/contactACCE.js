@@ -58,10 +58,10 @@ class QuickContactForm extends React.Component {
                                 <input type="hidden" name="form-name" value="testQuickContact" />
                                 <p>
                                     <label>
-                                        First name: <input type="text" name="givenName" value={firstName} onChange={this.handleChange} />&nbsp;
+                                        First name: <input type="text" name="firstName" value={firstName} onChange={this.handleChange} />&nbsp;
                     </label>
                                     <label>
-                                        Last name: <input type="text" name="familyName" value={lastName} onChange={this.handleChange} />
+                                        Last name: <input type="text" name="lastName" value={lastName} onChange={this.handleChange} />
                                     </label>
                                 </p>
                                 <p>
@@ -127,10 +127,10 @@ class FullContactForm extends React.Component {
     };
 
     render() {
-        const { firstName, lastName, cell, email, rentIncrease, eviction, landlordOther, understandRights, fightForRights, share1482Answers, sharecRentCalc, contactEmail, contactTxt, contactCall, submitText, dict } = this.state;
+        const { firstName, lastName, cell, email, rentIncrease, eviction, landlordOther, understandRights, fightForRights, share1482Answers, shareRentCalc, contactEmail, contactTxt, contactCall, submitText, dict } = this.state;
         return (
             <AppContext.Consumer>
-                {({ appCtx, updateContext }) => (
+                {({ appCtx }) => (
                     <form onSubmit={this.handleSubmit} name="testFullContact" data-netlify="true" data-netlify-honeypot="bot-field">
                         <input type="hidden" name="form-name" value="testFullContact" />
                         <p>
@@ -154,23 +154,27 @@ class FullContactForm extends React.Component {
                             <div>
                                 <p>
                                     <label>
-                                        <input type="checkbox" name="rentIncrease" checked={share1482Answers} onChange={this.handleChange} /> Can we share your answers about your housing situation and Tentant Protection Act status with ACCE?
+                                        <input type="checkbox" name="share1482Answers" checked={share1482Answers} onChange={this.handleChange} /> Can we share your answers about your housing situation and Tentant Protection Act status with ACCE?
                                 </label>
                                 </p>
                             </div>
                             :
-                            <div></div>
+                            <div>
+                                <input type="hidden" name="share1482Answers" />
+                            </div>
                         }
                         {(appCtx.rentCalc) ?
                             <div>
                                 <p>
                                     <label>
-                                        <input type="checkbox" name="rentIncrease" checked={sharecRentCalc} onChange={this.handleChange} /> Can we share your rent calculation answers with ACCE?
+                                        <input type="checkbox" name="shareRentCalc" checked={shareRentCalc} onChange={this.handleChange} /> Can we share your rent calculation answers with ACCE?
                                 </label>
                                 </p>
                             </div>
                             :
-                            <div></div>
+                            <div>
+                                <input type="hidden" name="shareRentCalc" />
+                            </div>
                         }
                         <fieldset>
                             <legend>What do you want to connect with ACCE about?</legend>
