@@ -38,10 +38,6 @@ const initStore = () => {
     )
   );
 
-  if (window.navigator.language === "es") {
-    store.lang = "es";
-  }
-
   return store;
 };
 

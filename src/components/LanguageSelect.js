@@ -1,17 +1,26 @@
 import React, { useEffect, useState, useRef } from "react";
 import { navigate } from "gatsby";
+import AppContext from "./AppContext";
 
-const LanguageSelect = ({ location, updateContext }) => {
+const LanguageSelect = ({ location, appCtx, updateContext }) => {
   const [currentLanguage, setCurrentLanguage] = useState();
 
   useEffect(() => {
     // Chain else-ifs for additional languages
-    if (location.pathname.startsWith("/es")) {
+    if (!appCtx.lang && appCtx.browserLang) {
+      // if we don't have a language yet allow browser lang to set the default
+      // then navigate to the right language
+      setCurrentLanguage(appCtx.browserLang);
+      updateContext({ lang: appCtx.browserLang });
+      navigateLang(appCtx.browserLang);
+    }
+    else if (location.pathname.startsWith("/es")) {
       updateContext({ lang: "es" });
       setCurrentLanguage("es");
     } else {
-      updateContext({ lang: "en" });
+      updateContext({ lang: "en" })
       setCurrentLanguage("en");
+
     }
   }, [location]);
 
@@ -21,15 +30,19 @@ const LanguageSelect = ({ location, updateContext }) => {
     return path;
   };
 
-  const handleChange = e => {
-    switch (e.target.value) {
-      case "es":
-        if (currentLanguage === "es") return;
-        navigate(`/es/${getPathWithoutLanguage()}`);
+  const handleChange = (e) => {
+    navigateLang(e.target.value);
+    console.log("state", currentLanguage);
+  };
 
-      default:
-        if (currentLanguage === "en") return;
-        navigate(getPathWithoutLanguage());
+  const navigateLang = (lang) => {
+  switch (lang) {
+    case "es":
+      if (currentLanguage === "es") return;
+      navigate(`/es/${getPathWithoutLanguage()}`);
+    default:
+      if (currentLanguage === "en") return;
+      navigate(getPathWithoutLanguage());
     }
   };
 
