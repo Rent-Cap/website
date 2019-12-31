@@ -22,7 +22,7 @@ shared_with_landlord_start_of_lease: null, // did they share with the landlord a
 */
 
 const defaultState = {
-  appCtx: { lang: "en", defaultLang: true },
+  appCtx: { lang: "en", defaultLang: true, browserLang: null },
   updateContext: () => {}
 };
 const AppContext = React.createContext(defaultState);
@@ -46,10 +46,8 @@ class AppContextProvider extends React.Component {
     } else {
       // if we don't have a stored state then try to set lang from browser
       if (window.navigator.language) {
-        console.log('yoo');
         if (window.navigator.language.startsWith("es")) { 
-          console.log('found browser lang', window.navigator.language);
-          this.setState({ appCtx: { browserLang:"es" }}, (s)=>{console.log(this.state)});
+          this.setState({ appCtx: { ...this.state.appCtx, ...{ browserLang: "es"} } }, (s)=>{console.log(this.state)});
         }
       }
     }
