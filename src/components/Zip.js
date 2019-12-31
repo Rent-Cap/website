@@ -8,11 +8,9 @@ class Zip extends React.Component {
     this.state = {
       zip: ""
     };
-    console.log(zipDB);
   }
 
   onChange = (newZip, appCtx, updateContext) => {
-    console.log(zipDB);
     // only allow digits
     if (!/\d+/.test(newZip.substr(newZip.length - 1, newZip.length))) {
       newZip = newZip.substr(0, newZip.length - 1);
