@@ -1,5 +1,6 @@
 import React from "react";
 import AppContext from "./AppContext"
+import { navigate } from "gatsby";
 
 const encode = (data) => {
     return Object.keys(data)
@@ -8,8 +9,28 @@ const encode = (data) => {
 };
 
 var contactDict = {
-    en: { submitText: "Connect with ACCE" },
-    es: { submitText: "Contactar ACCE" }
+    en: {
+        nameLegend: "Name",
+        firstName: "First",
+        lastName: "Last",
+        contactLegend: "Contact Information",
+        email: "Email",
+        cell: "Cell",
+        includeDetails: "Send details I enter about my tenancy",
+        disclaimer: "Any information you send is kept confidential and is only used to assist you with your case.",
+        submitText: "Connect with us",
+    },
+    es: {
+        nameLegend: "Nombre",
+        firstName: "Primer",
+        lastName: "Apellido",
+        contactLegend: "Información del contacto",
+        email: "Correo Electrónico",
+        cell: "Celular",
+        includeDetails: "Incluya detalles que ingrese sobre mi arrendamiento",
+        disclaimer: "Cualquier información que envíe se mantiene confidencial y solo se utiliza para ayudarlo con su caso.",
+        submitText: "Conéctate con nosotros",
+    }
 };
 
 
@@ -17,16 +38,17 @@ class QuickContactForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            autohide: props.autohide,
+            submitDestination: props.submitDestination,
             firstName: "",
             lastName: "",
             cell: "",
             email: "",
+            includeDetails: true,
             submitText: props.submitText,
             dict: contactDict,
         };
     }
-
-    /* Here’s the juicy bit for posting the form submission */
 
     handleSubmit = (e, updateContext) => {
         fetch("/", {
@@ -36,45 +58,56 @@ class QuickContactForm extends React.Component {
         })
             .then(() => {
                 const quickFormSubmit = true;
-                updateContext({ quickFormSubmit });
+                const includeDetails = this.state.includeDetails;
+                updateContext({ quickFormSubmit, includeDetails });
+
+                if (this.state.submitDestination) {
+                    navigate(this.state.submitDestination);
+                }
             })
-            .catch(error => alert(error));
+            .catch(error => console.log(error));
 
         e.preventDefault();
 
-
     };
 
-    handleChange = e => this.setState({ [e.target.name]: e.target.value });
+    checkBoxes = { "includeDetails": true };
+
+    handleChange = e => {
+        var value = e.target.value;
+        if (this.checkBoxes[e.target.name]) {
+            value = !this.state[e.target.name];
+        }
+        this.setState({ [e.target.name]: value })
+    };
 
     render() {
-        const { firstName, lastName, cell, email, submitText, dict } = this.state;
+        const { firstName, lastName, cell, email, includeDetails, submitText, dict, autohide } = this.state;
         return (
             <AppContext.Consumer>
                 {({ appCtx, updateContext }) => (
-                    !appCtx.quickFormSubmit ?
+                    (!appCtx.quickFormSubmit || !autohide) ?
                         <div>
                             <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} name="testQuickContact" data-netlify="true" data-netlify-honeypot="bot-field">
                                 <input type="hidden" name="form-name" value="testQuickContact" />
-                                <p>
-                                    <label>
-                                        First name: <input type="text" name="firstName" value={firstName} onChange={this.handleChange} />&nbsp;
-                    </label>
-                                    <label>
-                                        Last name: <input type="text" name="lastName" value={lastName} onChange={this.handleChange} />
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        Cell: <input type="tel" name="cell" value={cell} onChange={this.handleChange} />
-                                    </label>
-                                    <label>
-                                        Email: <input type="email" name="email" value={email} onChange={this.handleChange} />
-                                    </label>
-                                </p>
-                                <p>
-                                    <button type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</button>
-                                </p>
+                                <fieldset>
+                                    <legend>{dict[appCtx.lang].nameLegend}</legend>
+                                    <input type="text" name="firstName" value={firstName} onChange={this.handleChange} placeholder={dict[appCtx.lang].firstName} />&nbsp;
+                                    <input type="text" name="lastName" value={lastName} onChange={this.handleChange} placeholder={dict[appCtx.lang].lastName} />
+                                </fieldset>
+                                <fieldset>
+                                    <legend>{dict[appCtx.lang].contactLegend}</legend>
+                                    <input type="tel" name="cell" value={cell} onChange={this.handleChange} placeholder={dict[appCtx.lang].cell} />&nbsp;
+                                    <input type="email" name="email" value={email} onChange={this.handleChange} placeholder={dict[appCtx.lang].email} />
+                                </fieldset>
+                                <fieldset>
+                                <fieldset>
+                                    <label><input type="checkbox" name="includeDetails" checked={includeDetails} onChange={this.handleChange} /> {dict[appCtx.lang].includeDetails}</label>
+                                    <p>{dict[appCtx.lang].disclaimer}</p>
+                                </fieldset>
+                                
+                                <button type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</button>
+                                </fieldset>
                             </form>
                         </div>
                         :
@@ -116,7 +149,7 @@ class FullContactForm extends React.Component {
         e.preventDefault();
     };
 
-    checkBoxes = { "rentIncrease": true, "eviction": true, "landlordOther": true, "understandRights": true, "fightForRights": true , "contactCall": true, "contactEmail": true, "contactTxt": true};
+    checkBoxes = { "rentIncrease": true, "eviction": true, "landlordOther": true, "understandRights": true, "fightForRights": true, "contactCall": true, "contactEmail": true, "contactTxt": true };
 
     handleChange = e => {
         var value = e.target.value;
@@ -133,23 +166,16 @@ class FullContactForm extends React.Component {
                 {({ appCtx }) => (
                     <form onSubmit={this.handleSubmit} name="testFullContact" data-netlify="true" data-netlify-honeypot="bot-field">
                         <input type="hidden" name="form-name" value="testFullContact" />
-                        <p>
-                            <label>
-                                First: <input type="text" name="firstName" value={firstName} onChange={this.handleChange} />&nbsp;
-                    </label>
-                            <label>
-                                Last: <input type="text" name="lastName" value={lastName} onChange={this.handleChange} />
-                            </label>
-                        </p>
-
-                        <p>
-                            <label>
-                                Cell: <input type="tel" name="cell" value={cell} onChange={this.handleChange} />
-                            </label>
-                            <label>
-                                Email: <input type="email" name="email" value={email} onChange={this.handleChange} />
-                            </label>
-                        </p>
+                        <fieldset>
+                            <legend>Name</legend>
+                            <input type="text" name="firstName" value={firstName} onChange={this.handleChange} placeholder="First" />&nbsp;
+                                    <input type="text" name="lastName" value={lastName} onChange={this.handleChange} placeholder="Last" />
+                        </fieldset>
+                        <fieldset>
+                            <legend>Contact</legend>
+                            <input type="tel" name="cell" value={cell} onChange={this.handleChange} placeholder="Cell" />&nbsp;
+                                    <input type="email" name="email" value={email} onChange={this.handleChange} placeholder="Email" />
+                        </fieldset>
                         {(appCtx.eligibiltyAnswers) ?
                             <div>
                                 <p>
@@ -222,7 +248,7 @@ class FullContactForm extends React.Component {
                                     </div>
                                     :
                                     <div>
-                                        <input type="hidden" name="contactCell" value={contactCell} />
+                                        <input type="hidden" name="contactCall" value={contactCall} />
                                         <input type="hidden" name="contactTxt" value={contactTxt} />
                                     </div>
                                 }
@@ -233,15 +259,15 @@ class FullContactForm extends React.Component {
                                 </label>
                                     </p>
                                     : <div>
-                                         <input type="hidden" name="contactEmail" value={contactEmail} />
+                                        <input type="hidden" name="contactEmail" value={contactEmail} />
                                     </div>
                                 }
                             </fieldset>
                             :
                             <div>
-                                        <input type="hidden" name="contactCall" value={contactCall} />
-                                        <input type="hidden" name="contactTxt" value={contactTxt} />
-                                        <input type="hidden" name="contactEmail" value={contactEmail} />
+                                <input type="hidden" name="contactCall" value={contactCall} />
+                                <input type="hidden" name="contactTxt" value={contactTxt} />
+                                <input type="hidden" name="contactEmail" value={contactEmail} />
                             </div>
                         }
                         <p>
