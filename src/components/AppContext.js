@@ -22,7 +22,7 @@ shared_with_landlord_start_of_lease: null, // did they share with the landlord a
 */
 
 const defaultState = {
-  appCtx: { lang: "en", defaultLang: true, browserLang: null },
+  appCtx: { lang: "en", defaultLang: true },
   updateContext: () => {}
 };
 const AppContext = React.createContext(defaultState);
