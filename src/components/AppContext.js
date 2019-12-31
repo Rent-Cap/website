@@ -42,15 +42,17 @@ class AppContextProvider extends React.Component {
     const lsAppCtx = JSON.parse(localStorage.getItem("appCtx"));
   
     if (lsAppCtx) {
+      console.log('got storage');
       this.setState({ appCtx: { ...lsAppCtx } });
-    } else {
-      // if we don't have a stored state then try to set lang from browser
-      if (window.navigator.language) {
-        if (window.navigator.language.startsWith("es")) { 
-          this.setState({ appCtx: { ...this.state.appCtx, ...{ browserLang: "es"} } }, (s)=>{console.log(this.state)});
-        }
+    } 
+  
+    // try to set lang from browser
+    if (window.navigator.language) {
+      if (window.navigator.language.startsWith("es")) { 
+        this.setState({ appCtx: { ...this.state.appCtx, ...{ browserLang: "es"} } }, (s)=>{console.log(this.state)});
       }
     }
+    
   }
 
   render() {
