@@ -144,6 +144,7 @@ button:-moz-focusring {
 fieldset {
   border: 1px solid silver;
   margin: 0 2px;
+  margin-top: 0.5em !important;
   padding: 0.35em 0.625em 0.75em;
 }
 legend {
@@ -151,8 +152,13 @@ legend {
   color: inherit;
   display: table;
   max-width: 100%;
-  padding: 0;
+  margin-top: 0.35em;
+  padding: 0.35em 0;
   white-space: normal;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  font-size: 20px !important;
 }
 textarea {
   overflow: auto;

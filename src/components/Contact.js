@@ -2,6 +2,8 @@ import React from "react";
 import AppContext from "./AppContext"
 import { navigate } from "gatsby";
 
+import '../styles/contact.scss'
+
 const encode = (data) => {
     return Object.keys(data)
         .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -16,8 +18,8 @@ var contactDict = {
         contactLegend: "Contact Information",
         email: "Email",
         cell: "Cell",
-        includeDetails: "Send details I enter about my tenancy",
-        disclaimer: "Any information you send is kept confidential and is only used to assist you with your case.",
+        includeDetails: "Share information I enter about my tenancy",
+        disclaimer: "Any information you share is kept confidential and is only used to assist you with your case.",
         submitText: "Connect with us",
     },
     es: {
@@ -27,8 +29,8 @@ var contactDict = {
         contactLegend: "Información del contacto",
         email: "Correo Electrónico",
         cell: "Celular",
-        includeDetails: "Incluya detalles que ingrese sobre mi arrendamiento",
-        disclaimer: "Cualquier información que envíe se mantiene confidencial y solo se utiliza para ayudarlo con su caso.",
+        includeDetails: "Compartir información que ingreso sobre mi arrendamiento",
+        disclaimer: "Cualquier información que comparta se mantiene confidencial y solo se utiliza para ayudarlo con su caso.",
         submitText: "Conéctate con nosotros",
     }
 };
@@ -92,22 +94,20 @@ class QuickContactForm extends React.Component {
                                 <input type="hidden" name="form-name" value="testQuickContact" />
                                 <fieldset>
                                     <legend>{dict[appCtx.lang].nameLegend}</legend>
-                                    <input type="text" name="firstName" value={firstName} onChange={this.handleChange} placeholder={dict[appCtx.lang].firstName} />&nbsp;
-                                    <input type="text" name="lastName" value={lastName} onChange={this.handleChange} placeholder={dict[appCtx.lang].lastName} />
+                                    <input className="form-control" type="text" name="firstName" value={firstName} onChange={this.handleChange} placeholder={dict[appCtx.lang].firstName} />
+                                    <input className="form-control" type="text" name="lastName" value={lastName} onChange={this.handleChange} placeholder={dict[appCtx.lang].lastName} />
                                 </fieldset>
                                 <fieldset>
                                     <legend>{dict[appCtx.lang].contactLegend}</legend>
-                                    <input type="tel" name="cell" value={cell} onChange={this.handleChange} placeholder={dict[appCtx.lang].cell} />&nbsp;
-                                    <input type="email" name="email" value={email} onChange={this.handleChange} placeholder={dict[appCtx.lang].email} />
+                                    <input className="form-control" type="tel" name="cell" value={cell} onChange={this.handleChange} placeholder={dict[appCtx.lang].cell} />
+                                    <input className="form-control" type="email" name="email" value={email} onChange={this.handleChange} placeholder={dict[appCtx.lang].email} />
                                 </fieldset>
                                 <fieldset>
-                                <fieldset>
-                                    <label><input type="checkbox" name="includeDetails" checked={includeDetails} onChange={this.handleChange} /> {dict[appCtx.lang].includeDetails}</label>
-                                    <p>{dict[appCtx.lang].disclaimer}</p>
+                                    <label className="form-control"><input type="checkbox" name="includeDetails" checked={includeDetails} onChange={this.handleChange} /> {dict[appCtx.lang].includeDetails}</label>
                                 </fieldset>
+                                <p className="disclaimer">{dict[appCtx.lang].disclaimer}</p>
                                 
                                 <button type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</button>
-                                </fieldset>
                             </form>
                         </div>
                         :
