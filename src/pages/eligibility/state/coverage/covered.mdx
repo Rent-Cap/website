@@ -1,5 +1,6 @@
 import { PrimaryButton } from "../../../../components/Buttons";
 import AppContext from "../../../../components/AppContext"
+import AutoSubmit from "../../../../components/AutoSubmit"
 
 # Your Rights
 
@@ -8,6 +9,9 @@ import AppContext from "../../../../components/AppContext"
 <AppContext.Consumer>
     {({ appCtx }) => (
         <div>
+            { 
+                <AutoSubmit />
+            }
             <h2>Protection from "unjust" evictions</h2>
             {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ? 
                 <p><strong>Congratulations</strong> you are protected from "unjust" evictions under AB-1482.</p>

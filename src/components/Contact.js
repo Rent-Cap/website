@@ -60,8 +60,8 @@ class QuickContactForm extends React.Component {
         })
             .then(() => {
                 const quickFormSubmit = true;
-                const includeDetails = this.state.includeDetails;
-                updateContext({ quickFormSubmit, includeDetails });
+                const { includeDetails, firstName, lastName, email, cell } = this.state;
+                updateContext({ quickFormSubmit, includeDetails, firstName, lastName, email, cell });
 
                 if (this.state.submitDestination) {
                     navigate(this.state.submitDestination);

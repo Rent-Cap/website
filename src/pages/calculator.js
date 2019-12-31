@@ -20,6 +20,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import { QuickContactForm } from '../components/Contact';
 import AppContext from '../components/AppContext';
+import AutoSubmit from '../components/AutoSubmit';
 
 const emptyRentRange1 = {
   rent: 0,
@@ -258,6 +259,7 @@ class Calculator extends React.Component {
                 <div />
               }
             </div>
+            <AutoSubmit />
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">What is your zip code?</h5>
