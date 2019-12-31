@@ -6,19 +6,22 @@ const LanguageSelect = ({ location, appCtx, updateContext }) => {
   const [currentLanguage, setCurrentLanguage] = useState();
 
   useEffect(() => {
+    // reset this now we are setting it
+    let defaultLang = false;
+
     // Chain else-ifs for additional languages
-    if (!appCtx.lang && appCtx.browserLang) {
+    if (appCtx.defaultLang && appCtx.browserLang) {
       // if we don't have a language yet allow browser lang to set the default
       // then navigate to the right language
       setCurrentLanguage(appCtx.browserLang);
-      updateContext({ lang: appCtx.browserLang });
+      updateContext({ lang: appCtx.browserLang, defaultLang });
       navigateLang(appCtx.browserLang);
     }
     else if (location.pathname.startsWith("/es")) {
-      updateContext({ lang: "es" });
+      updateContext({ lang: "es", defaultLang });
       setCurrentLanguage("es");
     } else {
-      updateContext({ lang: "en" })
+      updateContext({ lang: "en", defaultLang })
       setCurrentLanguage("en");
 
     }
