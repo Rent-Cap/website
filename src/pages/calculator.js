@@ -65,6 +65,7 @@ class Calculator extends React.Component {
       // cpiSelection: INITIAL_SELECTION,
       cpiSelection: undefined,
       rentRanges: [emptyRentRange1, emptyRentRange2],
+      zip: ""
     };
     this.handleInput = handleInput.bind(this);
     this.handlePastRentChange = this.handlePastRentChange.bind(this);
@@ -77,18 +78,23 @@ class Calculator extends React.Component {
     this.addRentRange = this.addRentRange.bind(this);
   }
 
-  setCpiFromZip(e) {
+  setCpiFromZip(e, updateContext) {
     const input = e.target.value
-    const zip = zipDB[input]
+    const zip = zipDB[input];
+    const validCAZip = zip ? true : false;
+    var cpi, town, county, cpiSelection, area;
+
     if (zip) {
-      const cpi = areaToCpi[zip.area];
-      const town = zip.town;
-      const county = zip.county;
-      const cpiSelection = zip.area;
+      cpi = areaToCpi[zip.area];
+      town = zip.town;
+      county = zip.county;
+      area = zip.area;
+      cpiSelection = zip.area;
       this.setState({
-        cpi, cpiSelection, town, county,
+        cpi, cpiSelection, town, county, zip: input
       })
     }
+    updateContext({ zip: input,  validCAZip, county, town, area, cpiSelection });
   }
 
   handleRentRangeDateChange(e, idx) {
@@ -223,7 +229,7 @@ class Calculator extends React.Component {
     })
     return (
       <AppContext.Consumer>
-        {({ appCtx }) => (
+        {({ appCtx, updateContext }) => (
           <div className="calculator-container">
             {/* <SEO title="Calculator" /> */}
             <div className="calculator-description">
@@ -259,11 +265,10 @@ class Calculator extends React.Component {
                 <div />
               }
             </div>
-            <AutoSubmit />
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">What is your zip code?</h5>
-                <input className="form-control" type="text" onChange={(e) => this.setCpiFromZip(e)} placeholder="Your 5 digit zip code" />
+                <input className="form-control" type="text" onChange={(e) => this.setCpiFromZip(e, updateContext)} placeholder="Your 5 digit zip code" value={this.state.zip} />
                 {this.state.town
                   && (
                     <small><strong>{this.state.town}</strong>{this.state.county
@@ -283,7 +288,7 @@ class Calculator extends React.Component {
                     className="form-control"
                     value={this.state.pastRent}
                     placeholder="Monthly Rent"
-                    onChange={(e) => this.handlePastRentChange(e)}
+                    onChange={(e) => this.handlePastRentChange(e, updateContext)}
                   />
                 </div>
               </div>
@@ -308,6 +313,11 @@ class Calculator extends React.Component {
                 <small>Beginning Jan 1, 2020</small>
               </li>
             </ul>
+            { maxRent ?
+            <AutoSubmit />
+            :
+            <div />
+            }
             <Disclaimer />
             <br />
             <br />
