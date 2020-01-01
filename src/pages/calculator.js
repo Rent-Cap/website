@@ -107,20 +107,22 @@ class Calculator extends React.Component {
     this.setState(() => ({ rentRanges: t }));
   }
 
-  handleRentRangeValueChange(e, idx) {
+  handleRentRangeValueChange(e, idx, updateContext) {
     const t = this.state.rentRanges.slice(0);
     t[idx].rent = e.target.value;
     if (idx === 0) {
       this.setState({ pastRent: t[idx].rent });
     }
     this.setState({ rentRanges: t });
-    const temp = calculateTotalAmountOwedToTenant(t, this.state.cpi);
+    const temp = calculateTotalAmountOwedToTenant(t, this.state.cpi, updateContext);
+    updateContext({ rentIncrease: temp });
     this.props.changeRefund(temp);
   }
 
-  handlePastRentChange(e) {
+  handlePastRentChange(e, updateContext) {
     this.setState({ pastRent: e.target.value });
-    this.handleRentRangeValueChange(e, 0);
+    this.handleRentRangeValueChange(e, 0, updateContext);
+    updateContext({ pastRent: e.target.value })
   }
 
   removeRentRange(idx) {
