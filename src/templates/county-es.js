@@ -28,7 +28,7 @@ const County = () => {
             Puede comunicarse con estos recursos útiles en {appCtx.county} para
             determinar si es elegible.
           </p>
-          <PrimaryButton to="/es/gethelp">
+          <PrimaryButton to="/es/resources">
             Obtenga ayuda de un grupo adecuado de inquilinos locales.
           </PrimaryButton>
 

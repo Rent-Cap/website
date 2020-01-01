@@ -1,5 +1,6 @@
 import { PrimaryButton } from "../../../../components/Buttons";
 import AppContext from "../../../../components/AppContext"
+import AutoSubmit from "../../../../components/AutoSubmit"
 
 # Your Rights
 
@@ -8,6 +9,9 @@ import AppContext from "../../../../components/AppContext"
 <AppContext.Consumer>
     {({ appCtx }) => (
         <div>
+            { 
+                <AutoSubmit />
+            }
             <h2>Protection from "unjust" evictions</h2>
             {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ? 
                 <p><strong>Congratulations</strong> you are protected from "unjust" evictions under AB-1482.</p>
@@ -34,7 +38,7 @@ import AppContext from "../../../../components/AppContext"
             }
             <p>Remember these aren't your only rights as a tenant, just the ones covered by AB-1482. If you are in doubt, or worried about your living situation reach out to your local city or county government for support, or a local tenants rights group. We can connect you with them below.</p>
             <h1>Having issues with your tenancy?</h1>
-            <PrimaryButton to="/gethelp">Get help now!</PrimaryButton>
+            <PrimaryButton to="/getHelp">Get help now!</PrimaryButton>
         </div>
     )}
 </AppContext.Consumer>

@@ -26,6 +26,10 @@ import zipDB from "../../../data/zipDB.js";
 import calendar from "../../images/calendar.svg";
 import "bootstrap/dist/css/bootstrap.css";
 
+
+import { QuickContactForm } from '../../components/Contact';
+import AppContext from '../../components/AppContext';
+
 const emptyRentRange1 = {
   rent: 0,
   startDate: moment([2019, 2, 15]),
@@ -137,7 +141,7 @@ class Calculator extends React.Component {
   calculateRentIncreasePercentage() {
     return parseFloat(
       ((this.state.currentRent - this.state.pastRent) / this.state.pastRent) *
-        100
+      100
     ).toFixed(0);
   }
 
@@ -194,48 +198,48 @@ class Calculator extends React.Component {
             </div>
           </div>
         ) : (
-          <div className="rent-input">
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <span className="input-group-text">$</span>
+            <div className="rent-input">
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">$</span>
+                </div>
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Monthly Rent"
+                  onChange={e => this.handleRentRangeValueChange(e, idx)}
+                />
               </div>
-              <input
-                type="number"
-                className="form-control"
-                placeholder="Monthly Rent"
-                onChange={e => this.handleRentRangeValueChange(e, idx)}
-              />
-            </div>
-            <div className="rent-date">
-              <div className="rent-date-label">
-                <small>From</small>
-                <small>To</small>
-              </div>
-              <div className="rent-date-picker">
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend date-icon">
-                    <img
-                      className="input-group-text"
-                      src={calendar}
-                      alt="calendar"
+              <div className="rent-date">
+                <div className="rent-date-label">
+                  <small>From</small>
+                  <small>To</small>
+                </div>
+                <div className="rent-date-picker">
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend date-icon">
+                      <img
+                        className="input-group-text"
+                        src={calendar}
+                        alt="calendar"
+                      />
+                    </div>
+                    <DateRangePicker
+                      endDate={rentRanges[idx].endDate}
+                      endDateId="endDate"
+                      focusedInput={rentRanges[idx].focusedInput}
+                      isOutsideRange={() => null}
+                      onDatesChange={e => this.handleRentRangeDateChange(e, idx)}
+                      onFocusChange={e => this.handleFocusChange(e, idx)}
+                      startDate={rentRanges[idx].startDate}
+                      startDateId="startDate"
+                      orientation="vertical"
                     />
                   </div>
-                  <DateRangePicker
-                    endDate={rentRanges[idx].endDate}
-                    endDateId="endDate"
-                    focusedInput={rentRanges[idx].focusedInput}
-                    isOutsideRange={() => null}
-                    onDatesChange={e => this.handleRentRangeDateChange(e, idx)}
-                    onFocusChange={e => this.handleFocusChange(e, idx)}
-                    startDate={rentRanges[idx].startDate}
-                    startDateId="startDate"
-                    orientation="vertical"
-                  />
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
       </li>
     ));
     const refundBreakdown = rentRanges.map((range, idx) => {
@@ -263,115 +267,112 @@ class Calculator extends React.Component {
       );
     });
     return (
-      <div>
-        {/* <SEO title="Calculator" /> */}
-        <div className="calculator-description">
-          <h1>Calculadora de Renta</h1>
-          <p>
-            Los inquilinos elegibles para protección bajo la Ley de Protección
-            al Inquilino de 2019 están protegidos contra aumentos de renta
-            que exceden el 10% en un período de un año o la inflación + 5%, lo
-            que sea menor. Si ha recibido un aumento de renta, puede usar
-            nuestra calculadora para ayudarlo a determinar cuál es el aumento
-            permitido según la ley, y si su aumento de renta excede el límite.
-            Los inquilinos elegibles que obtuvieron un aumento en la renta en
-            cualquier momento a partir del 15 de marzo de 2019 deben usar la
-            calculadora de renta, ya que los aumentos en 2019 pueden
-            revertirse, lo que resulta en una reducción de la renta.
+      <AppContext.Consumer>
+        {({ appCtx }) => (
+          <div className="calculator-container">
+            {/* <SEO title="Calculator" /> */}
+            <div className="calculator-description">
+              <h1>Calculadora de Renta</h1>
+              <p>
+                Los inquilinos elegibles para protección bajo la Ley de Protección
+                al Inquilino de 2019 están protegidos contra aumentos de renta
+                que exceden el 10% en un período de un año o la inflación + 5%, lo
+                que sea menor. Si ha recibido un aumento de renta, puede usar
+                nuestra calculadora para ayudarlo a determinar cuál es el aumento
+                permitido según la ley, y si su aumento de renta excede el límite.
+                Los inquilinos elegibles que obtuvieron un aumento en la renta en
+                cualquier momento a partir del 15 de marzo de 2019 deben usar la
+                calculadora de renta, ya que los aumentos en 2019 pueden
+                revertirse, lo que resulta en una reducción de la renta.
           </p>
-          {/* {this.state.hideMailChimp
-            ? (
-              <PrimaryButton onClick={() => this.setState({ hideMailChimp: false })}>
-                I am interested in signing up to learn more
-              </PrimaryButton>
-            ) : (
-              <MailChimp />
-            )} */}
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLScXhoVcWIEwDiToU4kcA_Mz-O5QgcTUeyBla7Op3lf3k_GZ8w/viewform?embedded=true"
-            width="640"
-            height="250"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0"
-          >
-            Loading…
-          </iframe>
-        </div>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Cual es su Codigo Postal?</h5>
-            <input
-              className="form-control"
-              type="text"
-              onChange={e => this.setCpiFromZip(e)}
-              placeholder="Los 5 digitos de su codigo postal (zip code)"
-            />
-            {this.state.town && (
-              <small>
-                <strong>{this.state.town}</strong>
-                {this.state.county && (
-                  <strong>, Condado de {this.state.county}</strong>
-                )}
-              </small>
-            )}
-            <br />
-            <br />
-            <br />
-            <h5>Cuanto estaba pagando de renta en o desde Marzo 15, 2019?</h5>
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <span className="input-group-text">$</span>
-              </div>
-              <input
-                type="number"
-                className="form-control"
-                value={this.state.pastRent}
-                placeholder="Monto de renta"
-                onChange={e => this.handlePastRentChange(e)}
-              />
+              {!appCtx.quickFormSubmit ?
+                <div className="card">
+
+                  <div className="card-body">
+                    <h5>¡Pst ... antes de calcular su renta</h5>
+                    <p>Si comparte sus datos de contacto con nosotros, podemos hacer un seguimiento posterior para ayudarlo con su situación de vivienda</p>
+                    <QuickContactForm autohide={true} />
+                  </div>
+                </div>
+                :
+                <div />
+              }
+
             </div>
-          </div>
-        </div>
-        <br />
-        <br />
-        <ul className="calculator-results">
-          <li>
-            <h5 className="result-title">Maximo Incremento de Renta</h5>
-            {this.state.cpiSelection ? (
-              <h3>
-                {parseFloat((0.05 + parseFloat(this.state.cpi)) * 100).toFixed(
-                  2
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Cual es su Codigo Postal?</h5>
+                <input
+                  className="form-control"
+                  type="text"
+                  onChange={e => this.setCpiFromZip(e)}
+                  placeholder="Los 5 digitos de su codigo postal (zip code)"
+                />
+                {this.state.town && (
+                  <small>
+                    <strong>{this.state.town}</strong>
+                    {this.state.county && (
+                      <strong>, Condado de {this.state.county}</strong>
+                    )}
+                  </small>
                 )}
-                %
-              </h3>
-            ) : (
-              <h3>-</h3>
-            )}
-            <small>
-              5% Base + {parseFloat(this.state.cpi * 100).toFixed(2)}% CPI
-            </small>
+                <br />
+                <br />
+                <br />
+                <h5>Cuanto estaba pagando de renta en o desde Marzo 15, 2019?</h5>
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">$</span>
+                  </div>
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={this.state.pastRent}
+                    placeholder="Monto de renta"
+                    onChange={e => this.handlePastRentChange(e)}
+                  />
+                </div>
+              </div>
+            </div>
             <br />
-            <small>
-              <strong>
-                {this.state.cpiSelection ? this.state.cpiSelection : ""}
-              </strong>
+            <br />
+            <ul className="calculator-results">
+              <li>
+                <h5 className="result-title">Maximo Incremento de Renta</h5>
+                {this.state.cpiSelection ? (
+                  <h3>
+                    {parseFloat((0.05 + parseFloat(this.state.cpi)) * 100).toFixed(
+                      2
+                    )}
+                    %
+              </h3>
+                ) : (
+                    <h3>-</h3>
+                  )}
+                <small>
+                  5% Base + {parseFloat(this.state.cpi * 100).toFixed(2)}% CPI
             </small>
-          </li>
-          <li>
-            <h5 className="result-title">Monto de Renta Permitido</h5>
-            {maxRent > 0 && this.state.cpiSelection ? (
-              <h3>${maxRent}</h3>
-            ) : (
-              <h3>-</h3>
-            )}
-            <small>Comenzando el 1 de Enero del 2020</small>
-          </li>
-        </ul>
-        <Disclaimer />
-        <br />
-        <br />
-        {/* {this.state.showSection
+                <br />
+                <small>
+                  <strong>
+                    {this.state.cpiSelection ? this.state.cpiSelection : ""}
+                  </strong>
+                </small>
+              </li>
+              <li>
+                <h5 className="result-title">Monto de Renta Permitido</h5>
+                {maxRent > 0 && this.state.cpiSelection ? (
+                  <h3>${maxRent}</h3>
+                ) : (
+                    <h3>-</h3>
+                  )}
+                <small>Comenzando el 1 de Enero del 2020</small>
+              </li>
+            </ul>
+            <Disclaimer />
+            <br />
+            <br />
+            {/* {this.state.showSection
           ? (
             <h4>
               Enter your information below to determine how much money
@@ -382,39 +383,41 @@ class Calculator extends React.Component {
               Did your rent increase on or after January 1st, 2020?
             </PrimaryButton2>
           )} */}
-        <br />
-        {this.state.showSection && (
-          <section>
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">
-                  Ingrese su historial de renta desde el 1 de enero del 2020
-                  hasta ahora.
+            <br />
+            {this.state.showSection && (
+              <section>
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">
+                      Ingrese su historial de renta desde el 1 de enero del 2020
+                      hasta ahora.
                 </h5>
-                <section className="rent-increases">
-                  <ul>{rentRangeList}</ul>
-                  <SuccessButton className="add" onClick={this.addRentRange}>
-                    +
+                    <section className="rent-increases">
+                      <ul>{rentRangeList}</ul>
+                      <SuccessButton className="add" onClick={this.addRentRange}>
+                        +
                   </SuccessButton>
-                </section>
-              </div>
-            </div>
-            <br />
-            <h4 className="refund-information">
-              Según la información proporcionada, es posible que se le deban
+                    </section>
+                  </div>
+                </div>
+                <br />
+                <h4 className="refund-information">
+                  Según la información proporcionada, es posible que se le deban
             </h4>
-            <div className="refund-container">
-              <h1>${refund}</h1>
-              {refund > 0 && <ul>{refundBreakdown}</ul>}
-            </div>
-            <br />
-            {/* <PrimaryButton onClick={() => this.setState({showLetter: true})}>
+                <div className="refund-container">
+                  <h1>${refund}</h1>
+                  {refund > 0 && <ul>{refundBreakdown}</ul>}
+                </div>
+                <br />
+                {/* <PrimaryButton onClick={() => this.setState({showLetter: true})}>
             Generate a letter to your landlord</PrimaryButton> */}
-          </section>
-        )}
-        {/* {this.state.showLetter
+              </section>
+            )}
+            {/* {this.state.showLetter
           && <GenerateLetter />} */}
-      </div>
+          </div>
+        )}
+      </AppContext.Consumer>
     );
   }
 }
