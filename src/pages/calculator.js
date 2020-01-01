@@ -22,6 +22,11 @@ import { QuickContactForm } from '../components/Contact';
 import AppContext from '../components/AppContext';
 import AutoSubmit from '../components/AutoSubmit';
 
+import {
+  regulatedCities,
+  regulatedCounties
+} from "../../data/regulatedLocations";
+
 const emptyRentRange1 = {
   rent: 0,
   startDate: moment([2019, 2, 15]),
@@ -277,6 +282,21 @@ class Calculator extends React.Component {
                       && <strong>, {this.state.county} County</strong>}
                     </small>
                   )}
+                {
+                  (this.state.town && regulatedCities[this.state.town]) ?
+                  <div>
+                  <br />
+                  <p><strong>DISCLAIMER</strong> Since you live in {this.state.town} and {this.state.town} has local rent control laws these calculations may not apply to you. Please check local laws are not applicable to you before using these state-wide calculations.</p>
+                  </div>
+                  :
+                  (this.state.county && regulatedCounties[this.state.county]) ?
+                  <div>
+                  <br />
+                  <p><strong>DISCLAIMER</strong> If you live in unincorporated {this.state.county} county since {this.state.county} county has local rent control laws these calculations may not apply to you. Please check local laws are not applicable to you before using these state-wide calculations.</p>
+                  </div>
+                  :
+                  <div />
+                }
                 <br />
                 <br />
                 <br />
