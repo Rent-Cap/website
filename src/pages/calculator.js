@@ -316,7 +316,7 @@ class Calculator extends React.Component {
               </li>
             </ul>
             { maxRent ?
-            <AutoSubmit />
+            <AutoSubmit pageName="calculatorAutoSubmit" />
             :
             <div />
             }
