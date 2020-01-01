@@ -122,7 +122,7 @@ class Calculator extends React.Component {
   handlePastRentChange(e, updateContext) {
     this.setState({ pastRent: e.target.value });
     this.handleRentRangeValueChange(e, 0, updateContext);
-    updateContext({ pastRent: e.target.value })
+    updateContext({ pastRent: e.target.valueg })
   }
 
   removeRentRange(idx) {

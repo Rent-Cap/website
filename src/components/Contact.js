@@ -90,8 +90,8 @@ class QuickContactForm extends React.Component {
                 {({ appCtx, updateContext }) => (
                     (!appCtx.quickFormSubmit || !autohide) ?
                         <div>
-                            <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} name="testQuickContact" data-netlify="true" data-netlify-honeypot="bot-field">
-                                <input type="hidden" name="form-name" value="testQuickContact" />
+                            <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} name="quickContact" data-netlify="true" data-netlify-honeypot="bot-field">
+                                <input type="hidden" name="form-name" value="quickContact" />
                                 <fieldset>
                                     <legend>{dict[appCtx.lang].nameLegend}</legend>
                                     <input className="form-control" type="text" name="firstName" value={firstName} onChange={this.handleChange} placeholder={dict[appCtx.lang].firstName} />
