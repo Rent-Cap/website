@@ -56,7 +56,7 @@ class QuickContactForm extends React.Component {
         fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({ "form-name": "testQuickContact", ...this.state })
+            body: encode({ "form-name": "quickContact", ...this.state })
         })
             .then(() => {
                 const quickFormSubmit = true;
