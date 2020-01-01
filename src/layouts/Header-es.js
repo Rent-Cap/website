@@ -95,6 +95,16 @@ const Header = ({ location }) => {
               Recursos
             </Link>
           </li>
+          <li>
+            <Link
+              to="/es/about-us"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Sobre Nosotros
+            </Link>
+          </li>
         </ul>
       </div>
     </>

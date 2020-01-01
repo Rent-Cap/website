@@ -62,7 +62,7 @@ const Header = ({ location }) => {
                 setOpen(false);
               }}
             >
-              Are you Qualified?
+              Am I Protected?
             </Link>
           </li>
           <li>
@@ -93,6 +93,16 @@ const Header = ({ location }) => {
               }}
             >
               Resources
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about-us"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              About Us
             </Link>
           </li>
         </ul>
