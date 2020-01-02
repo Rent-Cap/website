@@ -5,7 +5,6 @@ import { Link, navigate } from "gatsby";
 import "../styles/header.scss";
 import AppContext from "../components/AppContext";
 import LanguageSelect from "../components/LanguageSelect";
-import ogSrc from "../images/Opengraph-en.png";
 
 const Header = ({ location }) => {
   const [open, setOpen] = useState(false);
@@ -19,7 +18,7 @@ const Header = ({ location }) => {
           property="og:description"
           content="Are you a California resident who wants to know whether your rent is protected under rent control or the new Tenant Protections Act? Rent Cap can help you find out!"
         />
-        <meta property="og:image" content={ogSrc} />
+        <meta property="og:image" content="/Opengraph-es.png" />
         <meta property="og:type" content="website" />
       </Helmet>
       <a id="skip-links" href="#main-content">
