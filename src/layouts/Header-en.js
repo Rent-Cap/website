@@ -18,7 +18,7 @@ const Header = ({ location }) => {
           property="og:description"
           content="Are you a California resident who wants to know whether your rent is protected under rent control or the new Tenant Protections Act? Rent Cap can help you find out!"
         />
-        <meta property="og:image" content="/Opengraph-es.png" />
+        <meta property="og:image" content="/Opengraph-en.png" />
         <meta property="og:type" content="website" />
       </Helmet>
       <a id="skip-links" href="#main-content">
