@@ -11,13 +11,14 @@ const Header = ({ location }) => {
   return (
     <>
       <Helmet>
-        <meta property="og:title" content="Rent Cap" />
-        <meta property="og:site_name" content="Rent Cap" />
-        <meta property="og:url" content="https://rentcap.info" />
+        <meta property="og:title" content="California Tenant Protections" />
+        <meta property="og:site_name" content="California Tenant Protections" />
+        <meta property="og:url" content="https://tenantprotections.org/es" />
         <meta
           property="og:description"
           content="Are you a California resident who wants to know whether your rent is protected under rent control or the new Tenant Protections Act? Rent Cap can help you find out!"
         />
+        <meta property="og:image" content="/Opengraph-es.png" />
         <meta property="og:type" content="website" />
       </Helmet>
       <a id="skip-links" href="#main-content">
