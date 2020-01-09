@@ -33,7 +33,9 @@ const AutoSubmit = ({ pageName }) => {
                 duplex: appCtx.duplex,
                 sharedDuplex: appCtx.sharedDuplex,
                 sharedUnitWithLandlord: appCtx.sharedUnitWithLandlord,
-                lang: appCtx.lang
+                lang: appCtx.lang,
+                pastRent: appCtx.pastRent,
+                rentIncrease: appCtx.rentIncrease
             }
             fetch("/", {
                 method: "POST",
@@ -55,6 +57,14 @@ const AutoSubmit = ({ pageName }) => {
             {({ appCtx, updateContext }) => (
                 <form  name="eligibiltyAnswers" data-netlify="true" data-netlify-honeypot="bot-field">
                     <input type="hidden" name="form-name" value="eligibiltyAnswers" />
+
+                    <input type="hidden" name="firstName" value={appCtx.firstName} />
+                    <input type="hidden" name="lastName" value={appCtx.lastName} />
+                    <input type="hidden" name="cell" value={appCtx.cell} />
+                    <input type="hidden" name="email" value={appCtx.email} />
+
+                    <input type="hidden" name="lang" value={appCtx.lang} />
+
                     <input type="hidden" name="ab1482TenancyDuration" value={appCtx.ab1482TenancyDuration} />
                     <input type="hidden" name="ineligibleType" value={appCtx.ineligibleType} />
                     <input type="hidden" name="voucher" value={appCtx.voucher} />
@@ -69,7 +79,10 @@ const AutoSubmit = ({ pageName }) => {
                     <input type="hidden" name="duplex" value={appCtx.duplex} />
                     <input type="hidden" name="sharedDuplex" value={appCtx.sharedDuplex} />
                     <input type="hidden" name="sharedUnitWithLandlord" value={appCtx.sharedUnitWithLandlord} />
-                    <input type="hidden" name="lang" value={appCtx.lang} />
+
+                    <input type="hidden" name="pastRent" value={appCtx.pastRent} />
+                    <input type="hidden" name="rentIncrease" value={appCtx.rentIncrease} />
+                    
                     {submitForm(appCtx, updateContext)}
                 </form>
             )}
