@@ -1,7 +1,7 @@
 import AppContext from "../../../../components/AppContext"
 import { PrimaryButton } from "../../../../components/Buttons";
 
-**Unfortunately**, we think that you are not covered either just cause eviction protection or rent control by the Tenant Proteciton Act. You may have other rights, so if you having issues with your housing situation reach out for help below!
+**Unfortunately**, we think that you are not covered either just cause eviction protection or rent control by the Tenant Protection Act. You may have other rights, so if you are having issues with your housing situation reach out for help below!
 
 ## Why we believe you are ineligible
 <AppContext.Consumer>
@@ -20,7 +20,7 @@ import { PrimaryButton } from "../../../../components/Buttons";
                 <p>Since you share with your landlord and they don't rent more than 2 units we think your unit is not covered by the Tenant Protection Act.</p>
                 : appCtx.exemptionNotice ?
                 <p>You answered that you rent a single family home from an indvidual landlord. Landlords of single family homes that aren't a corporation, a real estate trust, or an LLC owned by a corporation are exempt as long as they notify their tenants. You answered that your landlord did notify you that you were exempt.</p>
-                : 
+                :
                 <p>Sorry, we have an error and don't have the reason right now.</p>
             }
         </div>

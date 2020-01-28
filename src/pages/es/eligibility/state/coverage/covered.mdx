@@ -8,10 +8,10 @@ import { PrimaryButton } from "../../../../../components/Buttons";
     {({ appCtx }) => (
         <div>
             <h2>Protección contra desalojos "injustos"</h2>
-            {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ? 
+            {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ?
                 <p><strong>Felicitaciones</strong> usted está protegido de desalojos "injustos" bajo AB-1482.</p>
             : (appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='idk') ?
-                <p><strong>Felicitaciones</strong> creemos que es <em>probable</em> que usted esta protegido de desalojos "injustos" bajo AB-1482, siempre y cuando su edificio no haya recibido un "certificado de ocupación" en los últimos 15 años. Como no sabía la antigüedad de su edificio, le recomendamos que se conecte con los recursos locales a continuación para averiguarlo.</p>
+                <p>Buenas noticias, creemos que es <em>probable</em> que usted esta protegido de desalojos "injustos" bajo AB-1482, siempre y cuando su edificio no haya recibido un "certificado de ocupación" en los últimos 15 años. Como no sabía la antigüedad de su edificio, le recomendamos que se conecte con los recursos locales a continuación para averiguarlo.</p>
             :
                 <p><strong>Desafortunadamente</strong> no obtendrá protección de desalojo hasta que todas las personas con las que viva tengan allí durante 1 año, o al menos una persona con la que viva haya estado allí durante 2 años.</p>
             }
