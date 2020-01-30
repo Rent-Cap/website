@@ -5,7 +5,8 @@ module.exports = {
     title: "California Renter Protections",
     description:
       "Are you a California resident who wants to know whether your rent is protected under rent control or the new Tenant Protections Act? Rent Cap can help you find out!",
-    author: "@krpeacock"
+    author: "@krpeacock",
+    siteUrl: `https://tenantprotections.org`,
   },
   plugins: [
     `gatsby-plugin-mdx`,
@@ -38,6 +39,7 @@ module.exports = {
         icon: "src/images/rentcap5.svg" // This path is relative to the root of the site.
       }
     },
-    `gatsby-plugin-sass`
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-sitemap`
   ]
 };
