@@ -86,7 +86,7 @@ const Header = ({ location }) => {
                 setOpen(false);
               }}
             >
-              About the bill
+              About the Bill
             </Link>
           </li>
           <li>

@@ -9,21 +9,21 @@ import AutoSubmit from "../../../../components/AutoSubmit"
 <AppContext.Consumer>
     {({ appCtx }) => (
         <div>
-            { 
+            {
                 <AutoSubmit />
             }
             <h2>Protection from "unjust" evictions</h2>
-            {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ? 
+            {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ?
                 <p><strong>Congratulations</strong> you are protected from "unjust" evictions under AB-1482.</p>
             : (appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='idk') ?
-                <p><strong>Congratulations</strong> we think you are <em>likely</em> to be protected from "unjust" evictions under AB-1482, as long are your building hasn't recieved a "certificate of occupancy" within the last 15 years. Since you didn't know how old your building is we'd recommend connecting with local resources below to find out.</p>
+                <p>Good news, we think you are <em>likely</em> to be protected from "unjust" evictions under AB-1482, as long are your building hasn't received a "certificate of occupancy" within the last 15 years. Since you didn't know how old your building is we'd recommend connecting with local resources below to find out.</p>
             :
                 <p><strong>Unfortunately</strong> you won't get eviction protection until everyone you live with has there for 1 year, or at least one person you live with has been there for 2 years.</p>
             }
             <h2>Limited rent increases</h2>
             {(appCtx.voucher) ?
             <div>
-                <p>Since you recieve a voucher to support your housing costs you aren't eligible for capped rent under AB-1482. However you are very likely to have other protections on your rent. If you need help reach out below.</p>
+                <p>Since you receive a voucher to support your housing costs you aren't eligible for capped rent under AB-1482. However you are very likely to have other protections on your rent. If you need help reach out below.</p>
             </div>
             : (appCtx.builtBefore2005==='yes') ?
             <div>
