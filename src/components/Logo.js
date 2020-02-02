@@ -4,7 +4,7 @@ const Logo = () => (
   <div className="img-with-text">
     <svg viewBox="0 0 49.09 94.9">
       <defs>
-        <style>{`.cls-1{fill:#231f20;}`}</style>
+        <style>{`.cls-1{fill:#FFFFFF;}`}</style>
       </defs>
       <title>Asset 1</title>
       <g id="Layer_2" data-name="Layer 2">
