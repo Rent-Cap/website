@@ -20,7 +20,7 @@ const Header = ({ location }) => {
         />
         <meta
           property="og:image"
-          content="https://tenantprotections.org/Opengraph-es.png"
+          content="https://tenantprotections.org/opengraph.png"
         />
         <meta property="og:type" content="website" />
       </Helmet>
