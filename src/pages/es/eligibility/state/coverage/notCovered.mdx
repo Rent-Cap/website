@@ -9,18 +9,16 @@ import { PrimaryButton } from "../../../../../components/Buttons";
         <div>
             {
                 appCtx.ineligibleType ?
-                <p>No está cubierto por la Ley de Protección del Inquilino. Algunos tipos de edificios no son elegibles, como viviendas subsidiadas por el gobierno o residencias universitarias. Respondió que renta un tipo de vivienda que no es elegible, pero si vive en una vivienda subsidiada, puede tener otras protecciones legales contra desalojos y aumentos de renta. Le suregimos buscar asesoramiento legal gratuito al obtener ayuda de una organización local sin fines de lucro a continuación.</p>
+                <p>No está cubierto por la Ley de Protección del Inquilino. Algunos tipos de edificios no son elegibles, como viviendas subsidiadas por el gobierno o residencias universitarias, a menos que Ud paga con el Cupón. Respondió que renta un tipo de vivienda que no es elegible, pero si vive en una vivienda subsidiada, puede tener otras protecciones legales contra desalojos y aumentos de renta. Le suregimos buscar asesoramiento legal gratuito al obtener ayuda de una organización local sin fines de lucro a continuación.</p>
                 : (!appCtx.builtBefore2005) ?
                 <p>Solo son elegibles los edificios que no hayan recibido un "certificado de ocupación" en los últimos 15 años. Dado que usted indicó que su edificio tiene más de 15 años de antigüedad, es <em>probable</em> de estar exento. Será elegible en el futuro una vez que haya tenido un certificado de ocupación por 15 años.</p>
-                : appCtx.sharedKitchenOrBath ?
-                <p>Los propietarios que comparten una cocina y un baño en su residencia principal con los inquilinos están exentos. Usted respondió que vive con su arrendador y comparte una cocina o baño con ellos.</p>
                 : appCtx.sharedDuplex ?
                 <p>Si un propietario ocupa una unidad de un dúplex, la otra unidad del dúplex no está cubierta por la Ley de protección del inquilino. Usted respondió que su propietario ha vivido en una unidad de su Duplex desde que se mudó.</p>
                 : appCtx.sharedUnitWithLandlord ?
                 <p>Como usted comparte con su arrendador y no renta más de 2 unidades, creemos que su unidad no está cubierta por la Ley de Protección al Inquilino.</p>
                 : appCtx.exemptionNotice ?
                 <p>Usted respondió que renta una casa unifamiliar de un propietario individual. Los propietarios de viviendas unifamiliares que no son una corporación, un fideicomiso de bienes raíces o una LLC propiedad de una corporación están exentos siempre que notifiquen a sus inquilinos. Respondió que su arrendador le notificó que estaba exento.</p>
-                : 
+                :
                 <p>Lo sentimos, tenemos un error y no tenemos la razón en este momento.</p>
             }
         </div>

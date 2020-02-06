@@ -1,0 +1,24 @@
+import AppContext from  '../../../../../components/AppContext';
+import { PrimaryButton } from "../../../../../components/Buttons";
+
+
+# Your Rights
+
+**Felicitaciones**, su arrendador no puede aumentar legalmente su renta más de la cantidad establecida cada año en función de su renta actual y el lugar donde vive.
+
+<AppContext.Consumer>
+    {({ appCtx }) => (
+        <div>
+        {
+            appCtx.sharedKitchenOrBath ?
+            <p><strong>Desafortunadamente</strong>, los propietarios que comparten una cocina y un baño en su residencia principal con los inquilinos están exentos. Usted respondió que vive con su arrendador y comparte una cocina o baño con ellos.</p>
+            :
+            <p>Lo sentimos, tenemos un error y no tenemos la razón en este momento.</p>
+        }
+        <p>Recuerde que estos no son sus únicos derechos como inquilino, solo los cubiertos por AB-1482. Si tiene dudas o está preocupado por su situación de vida, comuníquese con el gobierno local de su ciudad o condado para obtener ayuda o con un grupo local de derechos de los inquilinos. Podemos conectarlo con ellos a continuación.</p>
+        </div>
+    )}
+</AppContext.Consumer>
+
+## ¿Tiene problemas con su arrendador?
+<PrimaryButton to="/es/getHelp">¡Lo podemos ayudar!</PrimaryButton>

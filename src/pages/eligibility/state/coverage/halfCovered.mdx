@@ -1,0 +1,24 @@
+import { PrimaryButton } from "../../../../components/Buttons";
+import AppContext from "../../../../components/AppContext"
+import AutoSubmit from "../../../../components/AutoSubmit"
+
+# Your Rights
+
+**Congratulations**, you are protected from unfair rent increases under the Tenant Protection Act.
+
+<AppContext.Consumer>
+    {({ appCtx }) => (
+        <div>
+        {
+            appCtx.sharedKitchenOrBath ?
+            <p><strong>Unfortunately</strong>, you're not covered by the Tenant Protection Act's just cause protection. Landlords who share a kitchen and bathroom in their primary residence with tenants are exempt from just cause. You answered that you live with your landlord and share a kitchen or bathroom with them. </p>
+            :
+            <p>Sorry, we have an error and don't have the reason right now.</p>
+        }
+        <p>Remember these aren't your only rights as a tenant, just the ones covered by the Tenant Protection Act. If you are in doubt, or worried about your living situation reach out to your local city or county government for support, or a local tenants rights group. We can connect you with them below.</p>
+        </div>
+    )}
+</AppContext.Consumer>
+
+## Having issues with your tenancy?
+<PrimaryButton to="/getHelp">Get help now!</PrimaryButton>

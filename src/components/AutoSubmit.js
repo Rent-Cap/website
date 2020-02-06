@@ -15,9 +15,9 @@ const AutoSubmit = ({ pageName }) => {
         if (appCtx.includeDetails && !appCtx[pageName]) {
 
             const values = {
-                firstName: appCtx.firstName, 
-                lastName: appCtx.lastName, 
-                email: appCtx.email, 
+                firstName: appCtx.firstName,
+                lastName: appCtx.lastName,
+                email: appCtx.email,
                 cell: appCtx.cell,
                 ab1482TenancyDuration: appCtx.ab1482TenancyDuration,
                 ineligibleType: appCtx.ineligibleType,
@@ -47,7 +47,7 @@ const AutoSubmit = ({ pageName }) => {
                 updateContext( { appCtx, ...newCtx });
                 console.log(values);
             }).catch(error => console.log(error));
-            
+
         }
 
     };
@@ -82,7 +82,7 @@ const AutoSubmit = ({ pageName }) => {
 
                     <input type="hidden" name="pastRent" value={appCtx.pastRent} />
                     <input type="hidden" name="rentIncrease" value={appCtx.rentIncrease} />
-                    
+
                     {submitForm(appCtx, updateContext)}
                 </form>
             )}
