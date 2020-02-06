@@ -22,7 +22,7 @@ shared_with_landlord_start_of_lease: null, // did they share with the landlord a
 */
 
 const defaultState = {
-  appCtx: { lang: "en" },
+  appCtx: { lang: "en", defaultLang: true },
   updateContext: () => {}
 };
 const AppContext = React.createContext(defaultState);
@@ -40,9 +40,19 @@ class AppContextProvider extends React.Component {
   componentDidMount() {
     // Getting appstate mode value from localStorage!
     const lsAppCtx = JSON.parse(localStorage.getItem("appCtx"));
+  
     if (lsAppCtx) {
+      console.log('got storage');
       this.setState({ appCtx: { ...lsAppCtx } });
+    } 
+  
+    // try to set lang from browser
+    if (window.navigator.language) {
+      if (window.navigator.language.startsWith("es")) { 
+        this.setState({ appCtx: { ...this.state.appCtx, ...{ browserLang: "es"} } }, (s)=>{console.log(this.state)});
+      }
     }
+    
   }
 
   render() {
