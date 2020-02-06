@@ -14,7 +14,7 @@ import AutoSubmit from "../../../../components/AutoSubmit"
             }
             <h2>Protection from "unjust" evictions</h2>
             {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ?
-                <p><strong>Congratulations</strong> you are protected from "unjust" evictions under AB-1482.</p>
+                <p><strong>Congratulations</strong> you are protected from "unjust" evictions under the Tenant Protection Act.</p>
             : (appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='idk') ?
                 <p>Good news, we think you are <em>likely</em> to be protected from "unjust" evictions under AB-1482, as long are your building hasn't received a "certificate of occupancy" within the last 15 years. Since you didn't know how old your building is we'd recommend connecting with local resources below to find out.</p>
             :
@@ -23,7 +23,7 @@ import AutoSubmit from "../../../../components/AutoSubmit"
             <h2>Limited rent increases</h2>
             {(appCtx.voucher) ?
             <div>
-                <p>Since you receive a voucher to support your housing costs you aren't eligible for capped rent under AB-1482. However you are very likely to have other protections on your rent. If you need help reach out below.</p>
+                <p><strong>Congratulations</strong>, you have a Housing Voucher and are protected by the new law. To fully understand these protections, as well as other protections that may be available to you, we recommend you seek legal counsel. If you need additional help, please reach out below.</p>
             </div>
             : (appCtx.builtBefore2005==='yes') ?
             <div>
@@ -36,9 +36,10 @@ import AutoSubmit from "../../../../components/AutoSubmit"
                 <PrimaryButton to="/calculator">Find out what my rent cap is</PrimaryButton>
             </div>
             }
-            <p>Remember these aren't your only rights as a tenant, just the ones covered by AB-1482. If you are in doubt, or worried about your living situation reach out to your local city or county government for support, or a local tenants rights group. We can connect you with them below.</p>
-            <h1>Having issues with your tenancy?</h1>
-            <PrimaryButton to="/getHelp">Get help now!</PrimaryButton>
+            <p>Remember these aren't your only rights as a tenant, just the ones covered by the Tenant Protection Act. If you are in doubt, or worried about your living situation reach out to your local city or county government for support, or a local tenants rights group. We can connect you with them below.</p>
         </div>
     )}
 </AppContext.Consumer>
+
+## Having issues with your tenancy?
+<PrimaryButton to="/getHelp">Get help now!</PrimaryButton>

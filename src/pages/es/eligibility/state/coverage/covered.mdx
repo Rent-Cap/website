@@ -9,7 +9,7 @@ import { PrimaryButton } from "../../../../../components/Buttons";
         <div>
             <h2>Protección contra desalojos "injustos"</h2>
             {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ?
-                <p><strong>Felicitaciones</strong> usted está protegido de desalojos "injustos" bajo AB-1482.</p>
+                <p><strong>Felicitaciones</strong> usted está protegido de desalojos "injustos" bajo la Ley de Protección de Inquilinos de 2019.</p>
             : (appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='idk') ?
                 <p>Buenas noticias, creemos que es <em>probable</em> que usted esta protegido de desalojos "injustos" bajo AB-1482, siempre y cuando su edificio no haya recibido un "certificado de ocupación" en los últimos 15 años. Como no sabía la antigüedad de su edificio, le recomendamos que se conecte con los recursos locales a continuación para averiguarlo.</p>
             :
@@ -18,7 +18,7 @@ import { PrimaryButton } from "../../../../../components/Buttons";
             <h2>Aumentos de renta limitados</h2>
             {(appCtx.voucher) ?
             <div>
-                <p>Dado que recibe un cupón para cubrir los costos de su vivienda, usted no es elegible para el limite de renta bajo AB-1482. Sin embargo, es muy probable que tenga otras protecciones en su renta. Si necesita ayuda, comuníquese a continuación.</p>
+                <p><strong>Felicitaciones</strong>, Ud tiene un Cupón de Vivienda y Ud es protegido por el nuevo leye. Para entender completamente estas protecciones, y tambien las protecciones que posiblimente estan disponibles para Ud, se recomendemos que busca consejo legal. If necesita ayuda adicional, por favor ponse en contacto con nosotros.</p>
             </div>
             : (appCtx.builtBefore2005==='yes') ?
             <div>
