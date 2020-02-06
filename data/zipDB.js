@@ -10172,7 +10172,7 @@ const zipDB = {
   "94303": {
     area: "Rest_Of_California",
     county: "Santa Clara",
-    town: "Palo Alto",
+    town: "Palo Alto/East Palo Alto",
     zip: "94303"
   },
   "94304": {
