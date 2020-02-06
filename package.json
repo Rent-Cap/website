@@ -45,6 +45,7 @@
     "react-helmet": "^5.2.1",
     "react-i18next": "^11.2.2",
     "react-pdf": "^4.1.0",
+    "react-responsive": "^8.0.3",
     "react-typography": "^0.16.19",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",

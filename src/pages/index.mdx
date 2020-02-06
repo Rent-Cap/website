@@ -1,20 +1,30 @@
-import Address from "../components/Address";
+import apartment from '../images/apartment.svg';
+import calculator from '../images/calculator.svg';
+import getHelp from '../images/getHelp.svg';
+import MainPageSection from "../components/MainPageSection";
 import { PrimaryButton, SecondaryButton } from "../components/Buttons";
 
-## Tenants: Know Your Rights!
+<MainPageSection
+  title="Tenants, know your rights!"
+  description="The Tenant Protection Act of 2019 protects a majority of California’s renters against outrageous rent increases and unfair evictions. However, not everyone is eligible for these protections. Use our tool to learn about your new rights and  determine if you’re covered by this new law."
+  buttonLabel="Am I Protected?"
+  link="eligibility"
+  imageSrc={apartment}
+/>
 
-The Tenant Protection Act of 2019 protects a majority of California’s renters against outrageous rent increases and unfair evictions. However, not everyone is eligible for these protections. Use our tool to learn about your new rights and  determine if you’re covered by this new law.
+<MainPageSection
+  title="How Much Can My Landlord Charge in Rent?"
+  description="Depending on whether or not you live in a city that already has a rent control ordinance, allowable rent increases may vary. If your unit is not covered by a local rent control ordinance, but you already know you’re protected by the Tenant Protection Act of 2019, our calculator will help you make sure you’re not being overcharged for your rent."
+  buttonLabel="Am I Being Overcharged?"
+  link="/calculator"
+  imageSrc={calculator}
+  imageAlign="left"
+/>
 
-<PrimaryButton to="eligibility">Am I protected?</PrimaryButton>
-
-## How Much Can My Landlord Charge in Rent?
-
-Depending on whether or not you live in a city that already has a rent control ordinance, allowable rent increases may vary. If your unit is not covered by a local rent control ordinance, but you already know you’re protected by the Tenant Protection Act of 2019, our calculator will help you make sure you’re not being overcharged for your rent
-
-<PrimaryButton to="/calculator">Am I Being Overcharged?</PrimaryButton>
-
-## Need Help Defending Your Rights?
-
-You’re not alone and we’re here to support! Do you still have questions and need further support? If you are facing an unfair eviction or illegal rent increase or if you are under threat of either, our resources can help you get the support you need to help you stay in your home and defend your rights.
-
-<PrimaryButton to="/resources">Get Help!</PrimaryButton>
+<MainPageSection
+  title="Need Help Defending Your Rights?"
+  description="You’re not alone and we’re here to support! Do you still have questions and need further support? If you are facing an unfair eviction or illegal rent increase or if you are under threat of either, our resources can help you get the support you need to help you stay in your home and defend your rights."
+  buttonLabel="Get Help!"
+  link="/resources"
+  imageSrc={getHelp}
+/>
