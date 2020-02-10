@@ -19,6 +19,7 @@ var contactDict = {
         email: "Email",
         cell: "Cell",
         includeDetails: "Share information I enter about my tenancy",
+        subscribe: "Subscribe to newsletters from Housing Now!",
         disclaimer: "Any information you share is kept confidential and is only used to assist you with your case.",
         submitText: "Connect with us",
     },
@@ -30,6 +31,7 @@ var contactDict = {
         email: "Correo Electrónico",
         cell: "Celular",
         includeDetails: "Compartir información que ingreso sobre mi arrendamiento",
+        subscribe: "suscribirse a boletines de Housing Now!",
         disclaimer: "Cualquier información que comparta se mantiene confidencial y solo se utiliza para ayudarlo con su caso.",
         submitText: "Conéctate con nosotros",
     }
@@ -47,6 +49,7 @@ class QuickContactForm extends React.Component {
             cell: "",
             email: "",
             includeDetails: true,
+            subscribe: false,
             submitText: props.submitText,
             dict: contactDict,
         };
@@ -60,8 +63,8 @@ class QuickContactForm extends React.Component {
         })
             .then(() => {
                 const quickFormSubmit = true;
-                const { includeDetails, firstName, lastName, email, cell } = this.state;
-                updateContext({ quickFormSubmit, includeDetails, firstName, lastName, email, cell });
+                const { includeDetails, subscribe, firstName, lastName, email, cell } = this.state;
+                updateContext({ quickFormSubmit, includeDetails, subscribe, firstName, lastName, email, cell });
 
                 if (this.state.submitDestination) {
                     navigate(this.state.submitDestination);
@@ -73,7 +76,7 @@ class QuickContactForm extends React.Component {
 
     };
 
-    checkBoxes = { "includeDetails": true };
+    checkBoxes = { "includeDetails": true, "subscribe": true };
 
     handleChange = e => {
         var value = e.target.value;
@@ -84,7 +87,7 @@ class QuickContactForm extends React.Component {
     };
 
     render() {
-        const { firstName, lastName, cell, email, includeDetails, submitText, dict, autohide } = this.state;
+        const { firstName, lastName, cell, email, includeDetails, subscribe, submitText, dict, autohide } = this.state;
         return (
             <AppContext.Consumer>
                 {({ appCtx, updateContext }) => (
@@ -105,8 +108,11 @@ class QuickContactForm extends React.Component {
                                 <fieldset>
                                     <label className="form-control"><input type="checkbox" name="includeDetails" checked={includeDetails} onChange={this.handleChange} /> {dict[appCtx.lang].includeDetails}</label>
                                 </fieldset>
+                                <fieldset>
+                                    <label className="form-control"><input type="checkbox" name="subscribe" checked={subscribe} onChange={this.handleChange} /> {dict[appCtx.lang].subscribe}</label>
+                                </fieldset>
                                 <p className="disclaimer">{dict[appCtx.lang].disclaimer}</p>
-                                
+
                                 <button type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</button>
                             </form>
                         </div>
