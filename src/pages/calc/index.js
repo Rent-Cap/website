@@ -13,7 +13,7 @@ function fn() {
         {({ appCtx, updateContext }) => (
           <div>
             <h1>Rent Calculator</h1>
-            {/* <div className="card">
+            <div className="card">
               <div className="card-body">
                 <p id="intro">
                   Renters eligible for protection under the Tenant Protection
@@ -32,7 +32,7 @@ function fn() {
               </div>
             </div>
             <br />
-            <QuickContact /> */}
+            <QuickContact />
             <Calculator />
             <br />
           </div>
