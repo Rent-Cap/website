@@ -54,6 +54,9 @@
     "typography-theme-lincoln": "^0.16.19"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "babel-preset-gatsby": "^0.2.29",
     "gatsby-plugin-sass": "^2.1.21",
     "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
