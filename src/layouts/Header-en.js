@@ -23,6 +23,8 @@ const Header = ({ location }) => {
           content="https://tenantprotections.org/opengraph.png"
         />
         <meta property="og:type" content="website" />
+        <meta http-equiv="content-language" content="en" />
+        <title>California Tenant Protections</title>
       </Helmet>
       <a id="skip-links" href="#main-content">
         Skip Links

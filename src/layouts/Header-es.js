@@ -23,6 +23,7 @@ const Header = ({ location }) => {
           content="https://tenantprotections.org/opengraph.png"
         />
         <meta property="og:type" content="website" />
+        <meta http-equiv="content-language" content="es" />
       </Helmet>
       <a id="skip-links" href="#main-content">
         Skip Links
