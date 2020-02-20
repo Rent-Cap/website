@@ -3,7 +3,7 @@ import React from "react";
 import AppContext from "../AppContext";
 import { navigate } from "gatsby";
 
-const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
+const YesNoState = ({ stateName, questionText, yesText, noText, yes, no}) => {
   var dict = {
     en: { yes: "Yes", no: "No" },
     es: { yes: "Si", no: "No" }
@@ -27,7 +27,11 @@ const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
       {({ appCtx, updateContext }) => {
         return (
           <div>
-            <p>{questionText}</p>
+            { questionText ?
+            <h2>{questionText}</h2>
+            :
+            <></>
+            }
             <StyledPrimaryButton
               onClick={e => {
                 onChange(true, appCtx, updateContext);

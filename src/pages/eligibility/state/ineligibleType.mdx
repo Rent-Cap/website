@@ -1,8 +1,17 @@
 import YesNoState from "../../../components/clauses/YesNoState";
+import QuestionSection from "../../../components/QuestionSection"
 
+<QuestionSection
+questionText="Are you renting subsidized housing or a school dorm?"
+shortDesc="Include buildings with LIHTC, or other goverment subsidies."
+longDesc={<><p>Buildings that recieve goverment subsidies, as well as some other types of building such as school dorms are exempt from the Tenant Protection Act 2019.</p>
+<p>If you rent a school dorm only answer yes if it is owned by the school you go to, do not include dorms owned by private landlords. Schools must be either K-12 or accredited higher education colleges.</p>
+<p>If you live in housing subsidized by a government program click yes.</p> 
+<p>This question helps us understand if you may live in a unit that isn't eligible for some or all of the protections in the Tenant Protection Act. That said, most of the units that are exempt from the Teant Protection Act have other forms of protections that you may be eligble for. If in doubt reach out for support to a local housing rights group. Once you finish these eligibility questions we'll give you an easy way to connect with one.</p></>}
+>
 <YesNoState
   yes="/eligibility/state/vouchers"
   no="/eligibility/state/buildingAge"
-  questionText="Are you renting subsidized housing or a college/school dorm? This includes buildings with LIHTC."
   stateName="ineligibleType"
 />
+</QuestionSection>
