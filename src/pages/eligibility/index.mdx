@@ -1,7 +1,11 @@
 import Zip from "../../components/Zip"
 import FlowSelector from "../../components/FlowSelector"
+import QuestionSection from "../../components/QuestionSection"
 
-What's your zip code? Depending on where you live, different laws can apply. Your zip code can help us figure out which protections may apply to you.
-
-<Zip /><p></p>
+<QuestionSection
+  questionText="What's your zip code?"
+  shortDesc="Depending on where you live, different laws can apply. Your zip code can help us figure out which protections may apply to you."
+>
+<p><Zip /></p>
 <FlowSelector errText="Please enter a valid California ZIP code" btnText="Look up!" />
+</QuestionSection>

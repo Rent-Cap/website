@@ -1,8 +1,14 @@
 import YesNoState from "../../../components/clauses/YesNoState";
+import QuestionSection from "../../../components/QuestionSection";
 
+<QuestionSection
+  questionText="Has everyone in your home lived there for at least 1 year (12 months), or, has at least 1 person lived in your home continuously for at least 2 years (24 months)?"
+  longDesc={<><p>This questions helps us validate some criteria around eviction protections. In order to recieve 'just-cause' eviction protection everyone must have been a tenant for at least 1+ years (12+ months), or one of the tenants must have been a tenant for 2+ years (24+ months). When working out who is a tenant you shouldn't include children (under the age of 18) or elderly dependants (who live with a legal guardian).</p><p><strong>For example:</strong> Brian lives with his partner Maxine, their daughter Roxy and Brian's son Jake. Brian, Maxine and Roxy have been living in their unit for 14 months but Jake has only been living with Brian and Maxine for 6 months. Since Brian and Maxine have been been living in the unit for more than a year, and Roxy and Jake are both children then all the tenants have been in the unit for more than a year. Brian should answer 'yes' to this question.</p></>}
+>
 <YesNoState
   yes="/eligibility/state/ineligibleType"
   no="/eligibility/state/ineligibleType"
-  questionText="Has everyone in your home lived there for at least 1 year (12 months), or, has at least 1 person lived in your home continuously for at least 2 years (24 months)?"
+  questionText=""
   stateName="ab1482TenancyDuration"
 />
+</QuestionSection>
