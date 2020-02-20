@@ -19,9 +19,6 @@ class FlowSelector extends React.Component {
   }
 
   onClick(appCtx) {
-    var zip = appCtx.zip;
-
-    var zip = appCtx.zip;
     var town = appCtx.town;
     var county = appCtx.county;
     var to = "";
@@ -34,7 +31,7 @@ class FlowSelector extends React.Component {
       to = "/eligibility/cities/" + town;
     } else if (county in regulatedCounties) {
       to = "/eligibility/counties/" + county;
-    } else if (town != "") {
+    } else if (town !== "") {
       to = "/eligibility/state";
     }
 
