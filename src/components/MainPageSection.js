@@ -7,7 +7,7 @@ const MainPageSection = ({ title, description, buttonLabel, link, imageSrc, imag
 
   const text = (
     <div className="section-txt">
-      <h4>{title}</h4>
+      <h1>{title}</h1>
       <p>{description}</p>
       <div className="section-btn">
         <PrimaryButton to={link}>{buttonLabel}</PrimaryButton>
@@ -15,7 +15,7 @@ const MainPageSection = ({ title, description, buttonLabel, link, imageSrc, imag
     </div>
   );
 
-  const image = <img className="section-img" src={imageSrc}/>;
+  const image = <img className="section-img" src={imageSrc} alt="" />;
 
   if (isMobile) {
     return (
