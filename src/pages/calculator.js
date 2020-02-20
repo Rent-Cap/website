@@ -4,7 +4,7 @@ import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 import Disclaimer from '../components/Disclaimer';
 import {
-  PrimaryButton, SuccessButton, DangerButton, PrimaryButton2,
+  SuccessButton, DangerButton,
 } from '../components/Buttons';
 import { handleInput, calculateTotalAmountOwedToTenant, calculateMaxRent } from '../methods/helpers';
 // import GenerateLetter from '../components/GenerateLetter';
@@ -21,6 +21,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { QuickContactForm } from '../components/Contact';
 import AppContext from '../components/AppContext';
 import AutoSubmit from '../components/AutoSubmit';
+import Modal from '../components/Modal';
+import { Link } from "gatsby";
+
 
 import {
   regulatedCities,
@@ -244,33 +247,14 @@ class Calculator extends React.Component {
               <p>
                 Renters eligible for protection under the Tenant Protection Act are protected against
                 rent increases that exceed 10% in a one year period or the cost of living + 5%,
-                whichever is lower. If you have received a rent increase you can use our calculator
+                whichever is lower. If you received a rent increase, you can use our calculator
                 to help you determine what the allowable increase is under the law, and if your rent
                 increase exceeds the limit.
                 Eligible renters who got a rent increase anytime on or after March 15, 2019
                 should use the rent calculator, as increases in 2019 may be rolled back
-                resulting in a rent reduction.
-          </p>
-              {/* {this.state.hideMailChimp
-            ? (
-              <PrimaryButton onClick={() => this.setState({ hideMailChimp: false })}>
-                I am interested in signing up to learn more
-              </PrimaryButton>
-            ) : (
-              <MailChimp />
-            )} */}
-              {!appCtx.quickFormSubmit ?
-                <div className="card">
-
-                  <div className="card-body">
-                    <h5>Psst... before you calculate your rent</h5>
-                    <p>If you share your contact details with us we can follow up later to support you with your housing situation</p>
-                    <QuickContactForm autohide={true} />
-                  </div>
-                </div>
-                :
-                <div />
-              }
+                resulting in a rent reduction. <b>Before using this calculator, check your eligibility <Link to="/eligibility">here</Link></b>!
+              </p>
+              <center><Modal /></center><br/>
             </div>
             <div className="card">
               <div className="card-body">
@@ -286,13 +270,13 @@ class Calculator extends React.Component {
                   (this.state.town && regulatedCities[this.state.town]) ?
                   <div>
                   <br />
-                  <p><strong>DISCLAIMER</strong> Since you live in {this.state.town} and {this.state.town} has local rent control laws these calculations may not apply to you. Please check local laws are not applicable to you before using these state-wide calculations.</p>
+                  <p><strong>DISCLAIMER:</strong> Since you live in {this.state.town}, which has local rent control laws, these calculations may not apply to you. Please check that your local laws are not applicable to you before using these state-wide calculations.</p>
                   </div>
                   :
                   (this.state.county && regulatedCounties[this.state.county]) ?
                   <div>
                   <br />
-                  <p><strong>DISCLAIMER</strong> If you live in unincorporated {this.state.county} county since {this.state.county} county has local rent control laws these calculations may not apply to you. Please check local laws are not applicable to you before using these state-wide calculations.</p>
+                  <p><strong>DISCLAIMER:</strong> Since you live in the unincorporated {this.state.county} County, which has local rent control laws, these calculations may not apply to you. Please check that your local laws are not applicable to you before using these state-wide calculations.</p>
                   </div>
                   :
                   <div />

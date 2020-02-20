@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { navigate } from "gatsby";
-import AppContext from "./AppContext";
 
 const LanguageSelect = ({ location, appCtx, updateContext }) => {
   const [currentLanguage, setCurrentLanguage] = useState();
