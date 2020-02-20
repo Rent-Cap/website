@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Helmet from "react-helmet";
 import Logo from "../components/Logo";
-import { Link, navigate } from "gatsby";
+import { Link } from "gatsby";
 import "../styles/header.scss";
 import AppContext from "../components/AppContext";
 import LanguageSelect from "../components/LanguageSelect";

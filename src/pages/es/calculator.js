@@ -4,10 +4,8 @@ import { DateRangePicker } from "react-dates";
 import moment from "moment";
 import Disclaimer from "../../components/Disclaimer";
 import {
-  PrimaryButton,
   SuccessButton,
   DangerButton,
-  PrimaryButton2
 } from "../../components/Buttons";
 import {
   handleInput,
@@ -16,7 +14,6 @@ import {
 } from "../../methods/helpers";
 // import GenerateLetter from  '../../components/GenerateLetter';
 import withRedux from "../../methods/withRedux";
-import { layout as Layout } from "../../layouts/index";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import SEO from "../../components/Seo";
