@@ -3,7 +3,7 @@ import React from "react";
 import AppContext from "../AppContext";
 import { navigate } from "gatsby";
 
-const YesNoState = ({ stateName, questionText, yesText, noText, yes, no, shortDesc, longDesc }) => {
+const YesNoState = ({ stateName, questionText, yesText, noText, yes, no}) => {
   var dict = {
     en: { yes: "Yes", no: "No" },
     es: { yes: "Si", no: "No" }
