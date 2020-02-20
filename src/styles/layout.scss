@@ -1,12 +1,13 @@
 :root {
-  margin: 0;
-  padding: 0;
   background: white;
   --header-height: 85px;
+  margin: 0;
+  padding: 0;
   @media (min-width: 980px) {
     --header-height: 100px;
   }
   .pageContainer {
+    font-family: 'Roboto', sans-serif;
     width: 100%;
     display: grid;
     grid-template-columns: 32px repeat(4, 1fr) 32px;
@@ -20,7 +21,7 @@
       grid-template-columns: 2fr repeat(12, 1fr) 2fr;
       grid-template-areas:
         "hd  hd   hd   hd   hd   hd   hd   hd   hd   hd   hd   hd   hd   hd"
-        "... main main main main main main main main main main main main ..."
+        "... ...  main main main main main main main main main main ...  ..."
         "ft  ft   ft   ft   ft   ft   ft   ft   ft   ft   ft   ft   ft   ft";
     }
     * {
@@ -76,13 +77,12 @@
   h5,
   h6 {
     text-align: center;
-    color: #3591cb;
     font-size: 24px;
     margin: 14px 0px;
   }
  
   h1 {
-    margin: 16px 0;
+    margin: 2rem 0 1rem 0;
     font-size: 28px;
   }
 
