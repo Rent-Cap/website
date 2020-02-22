@@ -3,7 +3,10 @@ import AppContext from "./AppContext"
 import { navigate } from "gatsby";
 import { Message } from "semantic-ui-react";
 import Alert from "../components/Alert";
+<<<<<<< HEAD
 import { StyledPrimaryButton } from "../components/Buttons";
+=======
+>>>>>>> adding thank you message
 
 import '../styles/contact.scss'
 
@@ -122,7 +125,11 @@ class QuickContactForm extends React.Component {
                         </div>
                         :
                         <div>
+<<<<<<< HEAD
                           <Alert /><br/>
+=======
+                          <Alert />
+>>>>>>> adding thank you message
                         </div>
                 )}
             </AppContext.Consumer>
