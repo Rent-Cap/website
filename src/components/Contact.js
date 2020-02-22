@@ -1,8 +1,11 @@
 import React from "react";
 import AppContext from "./AppContext"
 import { navigate } from "gatsby";
+import { Message } from "semantic-ui-react";
+import Alert from "../components/Alert";
 
 import '../styles/contact.scss'
+
 
 const encode = (data) => {
     return Object.keys(data)
@@ -52,6 +55,7 @@ class QuickContactForm extends React.Component {
             subscribe: false,
             submitText: props.submitText,
             dict: contactDict,
+            hasSubmitted: false,
         };
     }
 
@@ -69,11 +73,13 @@ class QuickContactForm extends React.Component {
                 if (this.state.submitDestination) {
                     navigate(this.state.submitDestination);
                 }
+                this.setState({
+                  hasSubmitted: true
+                });
             })
             .catch(error => console.log(error));
 
         e.preventDefault();
-
     };
 
     checkBoxes = { "includeDetails": true, "subscribe": true };
@@ -93,7 +99,7 @@ class QuickContactForm extends React.Component {
                 {({ appCtx, updateContext }) => (
                     (!appCtx.quickFormSubmit || !autohide) ?
                         <div>
-                            <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} name="quickContact" data-netlify="true" data-netlify-honeypot="bot-field">
+                            <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} success={this.state.hasSubmitted.toString()} name="quickContact" data-netlify="true" data-netlify-honeypot="bot-field">
                                 <input type="hidden" name="form-name" value="quickContact" />
                                 <fieldset>
                                     <legend>{dict[appCtx.lang].nameLegend}</legend>
@@ -117,7 +123,9 @@ class QuickContactForm extends React.Component {
                             </form>
                         </div>
                         :
-                        <div />
+                        <div>
+                          <Alert />
+                        </div>
                 )}
             </AppContext.Consumer>
         );
