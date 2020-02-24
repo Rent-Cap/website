@@ -26,7 +26,11 @@ import "bootstrap/dist/css/bootstrap.css";
 import { QuickContactForm } from '../../components/Contact';
 import AppContext from '../../components/AppContext';
 import Modal from '../../components/Modal';
+<<<<<<< HEAD
 import { Link } from "gatsby";
+=======
+
+>>>>>>> add a close button + styling to contact submission form
 
 const emptyRentRange1 = {
   rent: 0,
