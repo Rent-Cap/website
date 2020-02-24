@@ -25,6 +25,7 @@ const Header = ({ location }) => {
         <meta property="og:type" content="website" />
         <meta http-equiv="content-language" content="en" />
         <title>California Tenant Protections</title>
+        <meta name="description" content="Are you a California resident who wants to know whether you are protected from evictions or rent increases under the new Tenant Protections Act? We can help you find out!" />
       </Helmet>
       <a id="skip-links" href="#main-content">
         Skip Links
