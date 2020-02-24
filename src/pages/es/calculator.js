@@ -23,9 +23,10 @@ import zipDB from "../../../data/zipDB.js";
 import calendar from "../../images/calendar.svg";
 import "bootstrap/dist/css/bootstrap.css";
 
-
 import { QuickContactForm } from '../../components/Contact';
 import AppContext from '../../components/AppContext';
+import Modal from '../../components/Modal';
+
 
 const emptyRentRange1 = {
   rent: 0,
@@ -281,7 +282,8 @@ class Calculator extends React.Component {
                 cualquier momento a partir del 15 de marzo de 2019 deben usar la
                 calculadora de renta, ya que los aumentos en 2019 pueden
                 revertirse, lo que resulta en una reducción de la renta.
-          </p>
+              </p>
+              <center><Modal /></center><br/>
               {!appCtx.quickFormSubmit ?
                 <div className="card">
 

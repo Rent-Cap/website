@@ -4,6 +4,8 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { QuickContactForm } from '../components/Contact';
+import { StyledPrimaryButton } from "../components/Buttons";
+import AppContext from "./AppContext";
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -19,6 +21,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+var dict = {
+    en: {
+        button: "I'm Looking for Help!",
+        title: "Connect With Us!",
+        description: "Share your contact information and we will follow up shortly!",
+        close: "Close",
+    },
+    es: {
+        button: "Estoy Buscando Ayuda!",
+        title: "Conéctate con Nosotros!",
+        description: "¡Comparta su información de contacto y nos pondremos en contacto con usted en breve!",
+        close: "Cerrar",
+    }
+};
+
 export default function TransitionsModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -32,29 +49,33 @@ export default function TransitionsModal() {
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
-        I'm Looking for Help!
-      </button>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title">Share your contact information and we will follow up later!</h2>
-            <QuickContactForm autohide={true} />
-          </div>
-        </Fade>
-      </Modal>
-    </div>
+    <AppContext.Consumer>
+      {({ appCtx }) => (
+        <div>
+          <StyledPrimaryButton onClick={handleOpen} type="button">{dict[appCtx.lang].button}</StyledPrimaryButton>&nbsp;
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={open}>
+              <div className={classes.paper}>
+                <h2 id="transition-modal-title">{dict[appCtx.lang].title}</h2>
+                <center><p id="transition-modal-description">{dict[appCtx.lang].description}</p></center>
+                <QuickContactForm autohide={true} />
+                <center><StyledPrimaryButton onClick={handleClose} type="button">{dict[appCtx.lang].close}</StyledPrimaryButton></center>
+              </div>
+            </Fade>
+          </Modal>
+        </div>
+      )}
+    </AppContext.Consumer>
   );
 }
