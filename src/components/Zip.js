@@ -6,7 +6,9 @@ class Zip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      zip: ""
+      zip: props.zip ? props.zip : "",
+      appCtx: props.appCtx,
+      updateContext: props.updateContext
     };
   }
 
@@ -51,19 +53,25 @@ class Zip extends React.Component {
 
   render() {
     return (
-      <AppContext.Consumer>
-        {({ appCtx, updateContext }) => (
-          <input
-            type="text"
-            value={this.state.zip}
-            onChange={e => {
-              this.onChange(e.target.value, appCtx, updateContext);
-            }}
-          />
-        )}
-      </AppContext.Consumer>
+      <input
+        type="text"
+        value={this.state.zip}
+        onChange={e => {
+          this.onChange(e.target.value, this.state.appCtx, this.state.updateContext);
+        }}
+      />
     );
   }
 }
 
-export default Zip;
+const ctxWrapper = () => {
+  return (
+    <AppContext.Consumer>
+      {({ appCtx, updateContext }) => (
+        <Zip zip={appCtx.zip} appCtx={appCtx} updateContext={updateContext} />
+      )}
+    </AppContext.Consumer>
+  );
+}
+
+export default ctxWrapper;
