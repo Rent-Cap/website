@@ -1,16 +1,24 @@
 input.form-control {
-    margin: 0.35em 0.35em 0 0;
-    display: inline-block;
-    width: auto;
+  margin: 0 0.50em 0.30em 0;
+  display: inline-block;
+  width: auto;
 }
 
 label.form-control {
-    width: auto;
-    height: auto;
-    border: 1px solid #acacac;
-    display: inline-block;
+  width: auto;
+  height: auto;
+  border: 1px solid #acacac;
+  display: inline-block;
 }
 
+label.checkboxes {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  font-size: 0.7rem;
+}
+
+
 .disclaimer {
-    font-size: 0.8rem;
+  font-size: 0.5rem;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
+import AppContext from "./AppContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -11,12 +12,25 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+var dict = {
+    en: {
+        thankYou: "Thank you for submitting!",
+    },
+    es: {
+        thankYou: "Gracias por enviar!",
+    }
+};
+
 export default function ActionAlerts() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Alert>Thank you for submitting!</Alert>
-    </div>
+    <AppContext.Consumer>
+      {({ appCtx }) => (
+        <div className={classes.root}>
+          <Alert>{dict[appCtx.lang].thankYou}</Alert>
+        </div>
+      )}
+    </AppContext.Consumer>
   );
 }

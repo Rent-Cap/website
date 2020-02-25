@@ -12,7 +12,6 @@ import "../styles/layout.scss";
 if (typeof document !== "undefined") {
   require("details-element-polyfill");
 }
-// import "./layout.css";
 
 const Layout = ({ location, children }) => {
   return (
