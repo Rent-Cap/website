@@ -48,14 +48,14 @@ class FlowSelector extends React.Component {
     return (
       <AppContext.Consumer>
         {({ appCtx, updateContext }) => (
-          <div>
+          <div><center>
             <StyledPrimaryButton disabled={!appCtx.validCAZip} onClick={(e)=>{this.onClick(appCtx)}}>{this.state.btnText}</StyledPrimaryButton>
             {(appCtx.town === undefined && appCtx.zip !== undefined) ?
               <p className="error">{this.state.errText}</p>
             :
               <p className="error"></p>
             }
-          </div>
+          </center></div>
         )}
       </AppContext.Consumer>
     );

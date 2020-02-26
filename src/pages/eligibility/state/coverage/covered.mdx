@@ -16,7 +16,7 @@ import AutoSubmit from "../../../../components/AutoSubmit"
             {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ?
                 <p><strong>Congratulations</strong> you are protected from "unjust" evictions under the Tenant Protection Act.</p>
             : (appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='idk') ?
-                <p>Good news, we think you are <em>likely</em> to be protected from "unjust" evictions under AB-1482, as long are your building hasn't received a "certificate of occupancy" within the last 15 years. Since you didn't know how old your building is we'd recommend connecting with local resources below to find out.</p>
+                <p>Good news, we think you are <em>likely</em> to be protected from "unjust" evictions under the Tenant Protection Act, as long are your building hasn't received a "certificate of occupancy" within the last 15 years. Since you didn't know how old your building is we'd recommend connecting with local resources below to find out.</p>
             :
                 <p><strong>Unfortunately</strong> you won't get eviction protection until everyone you live with has there for 1 year, or at least one person you live with has been there for 2 years.</p>
             }
@@ -28,12 +28,12 @@ import AutoSubmit from "../../../../components/AutoSubmit"
             : (appCtx.builtBefore2005==='yes') ?
             <div>
                 <p><strong>Congratulations</strong> your landlord can't legally increase your rent more than a set amount each year based on your current rent and where you live.</p>
-                <PrimaryButton to="/calculator">Find out what my rent cap is</PrimaryButton>
+                <center><PrimaryButton to="/calculator">Find out what my rent cap is</PrimaryButton></center>
             </div>
             :
             <div>
                 <p><strong>Congratulations</strong> we think it is <em>likely</em> your landlord can't legally increase your rent more than a set amount each year based on your current rent and where you live.</p>
-                <PrimaryButton to="/calculator">Find out what my rent cap is</PrimaryButton>
+                <center><PrimaryButton to="/calculator">Find out what my rent cap is</PrimaryButton></center>
             </div>
             }
             <p>Remember these aren't your only rights as a tenant, just the ones covered by the Tenant Protection Act. If you are in doubt, or worried about your living situation reach out to your local city or county government for support, or a local tenants rights group. We can connect you with them below.</p>

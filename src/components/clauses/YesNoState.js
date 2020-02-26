@@ -5,8 +5,8 @@ import { navigate } from "gatsby";
 
 const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
   var dict = {
-    en: { yes: "Yes", no: "No" },
-    es: { yes: "Si", no: "No" }
+    en: { yes: 'Yes', no: 'No', eligibility: 'Check My Eligibility' },
+    es: { yes: 'Si', no: 'No', eligibility: 'Verificar Mi Elegibilidad' }
   };
 
   const onChange = (answer, oldCtx, updateContext) => {
@@ -27,8 +27,9 @@ const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
       {({ appCtx, updateContext }) => {
         return (
           <div>
+            <h1>{dict[appCtx.lang].eligibility}</h1>
             <p>{questionText}</p>
-            <StyledPrimaryButton
+            <center><StyledPrimaryButton
               onClick={e => {
                 onChange(true, appCtx, updateContext);
               }}
@@ -44,7 +45,7 @@ const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
               type="button"
             >
               {noText ? noText : dict[appCtx.lang].no}
-            </StyledPrimaryButton>
+            </StyledPrimaryButton></center>
           </div>
         );
       }}

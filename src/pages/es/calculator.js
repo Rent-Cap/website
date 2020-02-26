@@ -26,7 +26,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { QuickContactForm } from '../../components/Contact';
 import AppContext from '../../components/AppContext';
 import Modal from '../../components/Modal';
-
+import { Link } from "gatsby";
 
 const emptyRentRange1 = {
   rent: 0,
@@ -281,22 +281,10 @@ class Calculator extends React.Component {
                 Los inquilinos elegibles que obtuvieron un aumento en la renta en
                 cualquier momento a partir del 15 de marzo de 2019 deben usar la
                 calculadora de renta, ya que los aumentos en 2019 pueden
-                revertirse, lo que resulta en una reducción de la renta.
+                revertirse, lo que resulta en una reducción de la renta. <b>Antes de
+                usar esta calculadora, verifica tu elegibilidad <Link to="/eligibility">aquí</Link></b>!
               </p>
               <center><Modal /></center><br/>
-              {!appCtx.quickFormSubmit ?
-                <div className="card">
-
-                  <div className="card-body">
-                    <h5>¡Pst ... antes de calcular su renta</h5>
-                    <p>Si comparte sus datos de contacto con nosotros, podemos hacer un seguimiento posterior para ayudarlo con su situación de vivienda</p>
-                    <QuickContactForm autohide={true} />
-                  </div>
-                </div>
-                :
-                <div />
-              }
-
             </div>
             <div className="card">
               <div className="card-body">

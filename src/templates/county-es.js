@@ -20,7 +20,7 @@ const County = () => {
             Dado que el condado de {appCtx.county} tiene algunas protecciones,
             queremos determinar si usted es elegible para esas protecciones
             proporcionadas por la ley del condado de {appCtx.county}. Si esos no
-            aplican, las protecciones estatales en AB1482 aún pueden aplicarle a
+            aplican, las protecciones estatales en la Ley de Protección de Inquilinos de 2019 aún pueden aplicarle a
             usted.
           </p>
 
