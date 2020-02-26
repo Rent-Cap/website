@@ -6,36 +6,28 @@ const City = () => {
   return (
     <AppContext.Consumer>
       {({ appCtx, updateContext }) => (
-        <div>
+        <div><center>
           <p>
-            Parece que usted vive en {appCtx.town} en el condado de{" "}
-            {appCtx.county}.
+            <h1> ¡Espere! ¡Parece que usted vive en {appCtx.town} en el condado de {appCtx.county}, que tiene sus propias protecciones de renta y desalojo! </h1>
+            Antes de verificar su elegibilidad en todo el estado, primero debe determinar si las protecciones de {appCtx.town} lo cubren. Si no lo cubren,
+            entonces las protecciones estatales de la Ley de Protección del Inquilino aún pueden aplicarse.
           </p>
 
           <p>
-            Dado que {appCtx.town} tiene protecciones de renta y desalojo,
-            queremos determinar si usted es elegible para esos. Si esos no lo
-            cubren, entonces las protecciones estatales de AB 1482 aún pueden
-            aplicarse, y también lo ayudaremos a resolverlo.
-          </p>
-
-          <p>
-            Puede comunicarse con estos recursos útiles en {appCtx.town} para
-            determinar si es elegible.
+            Debe consultar el sitio web de la ciudad de {appCtx.town} para averiguar si está protegido por sus protecciones de alquiler y desalojo.
           </p>
           <PrimaryButton to="/es/resources">
-            Obtenga ayuda de un grupo adecuado de inquilinos locales.
+            ¡Revise nuestra página de recursos!
           </PrimaryButton>
 
           <p>
             <br />
-            ¿Cree que no esta cubierto por las disposiciones de control de
-            renta en {appCtx.town}?
+            <b>¿Cree que es posible que no esté cubierto por las protecciones de alquiler y desalojo de {appCtx.town}?</b>
           </p>
           <PrimaryButton to="/es/eligibility/state/">
             Verifique su situación en todo el estado de California.
           </PrimaryButton>
-        </div>
+        </center></div>
       )}
     </AppContext.Consumer>
   );

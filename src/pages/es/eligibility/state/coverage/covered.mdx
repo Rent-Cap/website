@@ -1,8 +1,7 @@
 import AppContext from  '../../../../../components/AppContext';
 import { PrimaryButton } from "../../../../../components/Buttons";
 
-# Your Rights
-
+# Tus Protecciones
 
 <AppContext.Consumer>
     {({ appCtx }) => (
@@ -11,7 +10,7 @@ import { PrimaryButton } from "../../../../../components/Buttons";
             {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ?
                 <p><strong>Felicitaciones</strong> usted está protegido de desalojos "injustos" bajo la Ley de Protección de Inquilinos de 2019.</p>
             : (appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='idk') ?
-                <p>Buenas noticias, creemos que es <em>probable</em> que usted esta protegido de desalojos "injustos" bajo AB-1482, siempre y cuando su edificio no haya recibido un "certificado de ocupación" en los últimos 15 años. Como no sabía la antigüedad de su edificio, le recomendamos que se conecte con los recursos locales a continuación para averiguarlo.</p>
+                <p>Buenas noticias, creemos que es <em>probable</em> que usted esta protegido de desalojos "injustos" bajo la Ley de Protección de Inquilinos de 2019, siempre y cuando su edificio no haya recibido un "certificado de ocupación" en los últimos 15 años. Como no sabía la antigüedad de su edificio, le recomendamos que se conecte con los recursos locales a continuación para averiguarlo.</p>
             :
                 <p><strong>Desafortunadamente</strong> no obtendrá protección de desalojo hasta que todas las personas con las que viva tengan allí durante 1 año, o al menos una persona con la que viva haya estado allí durante 2 años.</p>
             }
@@ -23,17 +22,18 @@ import { PrimaryButton } from "../../../../../components/Buttons";
             : (appCtx.builtBefore2005==='yes') ?
             <div>
                 <p><strong>Felicitaciones</strong> su arrendador no puede aumentar legalmente su renta más de la cantidad establecida cada año en función de su renta actual y el lugar donde vive.</p>
-                <PrimaryButton to="/es/calculator">Descubra cuál es su límite de renta</PrimaryButton>
+                <center><PrimaryButton to="/es/calculator">Descubra cuál es su límite de renta</PrimaryButton></center>
             </div>
             :
             <div>
                 <p><strong>Felicitaciones</strong> creemos que es <em>probable</em> que su arrendador no pueda aumentar legalmente su renta más de la cantidad establecida cada año en función de su renta actual y el lugar donde vive.</p>
-                <PrimaryButton to="/es/calculator">Descubra cuál es su límite de renta</PrimaryButton>
+                <center><PrimaryButton to="/es/calculator">Descubra cuál es su límite de renta</PrimaryButton></center>
             </div>
             }
-            <p>Recuerde que estos no son sus únicos derechos como inquilino, solo los cubiertos por AB-1482. Si tiene dudas o está preocupado por su situación de vida, comuníquese con el gobierno local de su ciudad o condado para obtener ayuda o con un grupo local de derechos de los inquilinos. Podemos conectarlo con ellos a continuación.</p>
-            <h1>¿Tienes problemas con su renta?</h1>
-            <PrimaryButton to="/es/getHelp">¡Lo podemos ayudar!</PrimaryButton>
+            <p>Recuerde que estos no son sus únicos derechos como inquilino, solo los cubiertos por la Ley de Protección de Inquilinos de 2019. Si tiene dudas o está preocupado por su situación de vida, comuníquese con el gobierno local de su ciudad o condado para obtener ayuda o con un grupo local de derechos de los inquilinos. Podemos conectarlo con ellos a continuación.</p>
         </div>
     )}
 </AppContext.Consumer>
+
+## ¿Tienes problemas con su renta?
+<PrimaryButton to="/es/getHelp">¡Lo podemos ayudar!</PrimaryButton>

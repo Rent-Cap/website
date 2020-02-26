@@ -22,6 +22,8 @@
     }
   ],
   "dependencies": {
+    "@material-ui/core": "^4.9.3",
+    "@material-ui/lab": "^4.0.0-alpha.43",
     "@mdx-js/loader": "^1.4.5",
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "^1.4.5",
@@ -50,6 +52,7 @@
     "react-typography": "^0.16.19",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.88.2",
     "typography": "^0.16.19",
     "typography-theme-lincoln": "^0.16.19"
   },

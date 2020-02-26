@@ -1,8 +1,12 @@
 import React from "react";
 import AppContext from "./AppContext"
 import { navigate } from "gatsby";
+import { Message } from "semantic-ui-react";
+import Alert from "../components/Alert";
+import { StyledPrimaryButton } from "../components/Buttons";
 
 import '../styles/contact.scss'
+
 
 const encode = (data) => {
     return Object.keys(data)
@@ -18,10 +22,10 @@ var contactDict = {
         contactLegend: "Contact Information",
         email: "Email",
         cell: "Cell",
-        includeDetails: "Share information I enter about my tenancy",
+        includeDetails: "Share my tenancy information with Housing Now!",
         subscribe: "Subscribe to newsletters from Housing Now!",
         disclaimer: "Any information you share is kept confidential and is only used to assist you with your case.",
-        submitText: "Connect with us",
+        submitText: "Submit",
     },
     es: {
         nameLegend: "Nombre",
@@ -30,10 +34,10 @@ var contactDict = {
         contactLegend: "Información del contacto",
         email: "Correo Electrónico",
         cell: "Celular",
-        includeDetails: "Compartir información que ingreso sobre mi arrendamiento",
-        subscribe: "suscribirse a boletines de Housing Now!",
+        includeDetails: "¡Comparta mi información de arrendamiento con Housing Now!",
+        subscribe: "Suscribirse a boletines de Housing Now!",
         disclaimer: "Cualquier información que comparta se mantiene confidencial y solo se utiliza para ayudarlo con su caso.",
-        submitText: "Conéctate con nosotros",
+        submitText: "Enviar",
     }
 };
 
@@ -52,6 +56,7 @@ class QuickContactForm extends React.Component {
             subscribe: false,
             submitText: props.submitText,
             dict: contactDict,
+            hasSubmitted: false,
         };
     }
 
@@ -69,11 +74,13 @@ class QuickContactForm extends React.Component {
                 if (this.state.submitDestination) {
                     navigate(this.state.submitDestination);
                 }
+                this.setState({
+                  hasSubmitted: true
+                });
             })
             .catch(error => console.log(error));
 
         e.preventDefault();
-
     };
 
     checkBoxes = { "includeDetails": true, "subscribe": true };
@@ -93,7 +100,7 @@ class QuickContactForm extends React.Component {
                 {({ appCtx, updateContext }) => (
                     (!appCtx.quickFormSubmit || !autohide) ?
                         <div>
-                            <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} name="quickContact" data-netlify="true" data-netlify-honeypot="bot-field">
+                            <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} success={this.state.hasSubmitted.toString()} name="quickContact" data-netlify="true" data-netlify-honeypot="bot-field">
                                 <input type="hidden" name="form-name" value="quickContact" />
                                 <fieldset>
                                     <legend>{dict[appCtx.lang].nameLegend}</legend>
@@ -106,18 +113,17 @@ class QuickContactForm extends React.Component {
                                     <input className="form-control" type="email" name="email" value={email} onChange={this.handleChange} placeholder={dict[appCtx.lang].email} />
                                 </fieldset>
                                 <fieldset>
-                                    <label className="form-control"><input type="checkbox" name="includeDetails" checked={includeDetails} onChange={this.handleChange} /> {dict[appCtx.lang].includeDetails}</label>
-                                </fieldset>
-                                <fieldset>
-                                    <label className="form-control"><input type="checkbox" name="subscribe" checked={subscribe} onChange={this.handleChange} /> {dict[appCtx.lang].subscribe}</label>
+                                    <label className="checkboxes"><input type="checkbox" name="includeDetails" checked={includeDetails} onChange={this.handleChange} /> {dict[appCtx.lang].includeDetails}</label><br/>
+                                    <label className="checkboxes"><input type="checkbox" name="subscribe" checked={subscribe} onChange={this.handleChange} /> {dict[appCtx.lang].subscribe}</label>
                                 </fieldset>
                                 <p className="disclaimer">{dict[appCtx.lang].disclaimer}</p>
-
-                                <button type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</button>
+                                <center><StyledPrimaryButton type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</StyledPrimaryButton></center>
                             </form>
                         </div>
                         :
-                        <div />
+                        <div>
+                          <Alert /><br/>
+                        </div>
                 )}
             </AppContext.Consumer>
         );
@@ -277,7 +283,7 @@ class FullContactForm extends React.Component {
                             </div>
                         }
                         <p>
-                            <button type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</button>
+                          <button type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</button>
                         </p>
                     </form>
                 )}

@@ -6,35 +6,29 @@ const City = () => {
   return (
     <AppContext.Consumer>
       {({ appCtx, updateContext }) => (
-        <div>
+        <div><center>
           <p>
-            It looks like you live in {appCtx.town} in {appCtx.county} county.
+            <h1>Wait! It looks like you live in {appCtx.town} in {appCtx.county} County, which has its own rent and eviction protections!</h1>
+            Before checking your state-wide eligibility, you should first determine if {appCtx.town}'s protections cover you. If they do not cover you,
+            then the state-wide protections of the Tenant Protection Act may still apply.
           </p>
 
           <p>
-            Since {appCtx.town} has rent and eviction protections we want to
-            figure out if you are eligible for those. If those don't cover you
-            then the state-wide protections of AB 1482 may still apply, and
-            we'll help you figure that out too.
-          </p>
-
-          <p>
-            You can reach out to these great resources in {appCtx.town} to
-            figure out if you are eligible.
+            You should check out {appCtx.town}'s city website to
+            figure out if you are protected by their rent and eviction protections.
           </p>
           <PrimaryButton to="/resources">
-            Get help from a local tenants right group!
+            Check out our resources page!
           </PrimaryButton>
 
           <p>
             <br />
-            Think you may not be covered under rent control provisions in{" "}
-            {appCtx.town}?
+            <b>Think you may not be covered under {appCtx.town}'s rent and eviction protections?</b>
           </p>
           <PrimaryButton to="/eligibility/state/">
             Check my status state-wide
           </PrimaryButton>
-        </div>
+        </center></div>
       )}
     </AppContext.Consumer>
   );
