@@ -1,7 +1,5 @@
 import React from "react";
-import Zip from "../components/Zip";
-import AppContext from "./AppContext";
-import YesNoState from "../components/clauses/YesNoState";
+import AppContext from "../AppContext";
 import CalculatorStepper from "./CalculatorStepper";
 
 function Calculator() {

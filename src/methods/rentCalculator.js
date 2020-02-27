@@ -64,7 +64,7 @@ export function rentHistoryToMonthlyRents(
     if (
       rentChanges.length > 0 &&
       changeIndex < rentChanges.length &&
-      rentChanges[changeIndex].month === nextMonth
+      dateToISOMonth(rentChanges[changeIndex].month) === nextMonth // make sure rent changes dates are iso months
     ) {
       // if the next month has a change in rent use that
       // TODO (@sh1mmer) assumption that there is only one rent increase in a month (probably true)

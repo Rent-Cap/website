@@ -1,9 +1,9 @@
-import { StyledPrimaryButton } from "../Buttons";
+import Button from '@material-ui/core/Button';
 import React from "react";
 import AppContext from "../AppContext";
 import { navigate } from "gatsby";
 
-const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
+const YesNoState = ({ stateName, questionText, yesText, noText, yes, no, callback}) => {
   var dict = {
     en: { yes: "Yes", no: "No" },
     es: { yes: "Si", no: "No" }
@@ -13,11 +13,11 @@ const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
     var newCtx = { ...oldCtx };
 
     newCtx[stateName] = answer;
-    updateContext(newCtx);
+    updateContext(newCtx, ()=>{if (callback) {callback({appCtx: newCtx, answer: answer})}});
 
-    if (answer) {
+    if (yes && answer) {
       navigate(yes);
-    } else {
+    } else if (no) {
       navigate(no);
     }
   };
@@ -28,23 +28,28 @@ const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
         return (
           <div>
             <p>{questionText}</p>
-            <StyledPrimaryButton
+            <Button
               onClick={e => {
                 onChange(true, appCtx, updateContext);
               }}
               type="button"
+              variant={(appCtx[stateName] !== undefined && appCtx[stateName]) ? "contained" : "outlined"}
+              color="primary"
             >
               {yesText ? yesText : dict[appCtx.lang].yes}
-            </StyledPrimaryButton>
+            </Button>
             &nbsp;
-            <StyledPrimaryButton
+            <Button
               onClick={e => {
                 onChange(false, appCtx, updateContext);
               }}
               type="button"
+              variant={(appCtx[stateName] !== undefined && !appCtx[stateName]) ? "contained" : "outlined"}
+              color="primary"
             >
               {noText ? noText : dict[appCtx.lang].no}
-            </StyledPrimaryButton>
+            </Button>
+            {console.log(appCtx)}
           </div>
         );
       }}

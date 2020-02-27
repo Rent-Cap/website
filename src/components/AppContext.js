@@ -32,9 +32,9 @@ class AppContextProvider extends React.Component {
     ...defaultState
   };
 
-  updateContext = appCtx => {
+  updateContext = (appCtx, callback) => {
     appCtx = { ...this.state.appCtx, ...appCtx };
-    this.setState({ appCtx });
+    this.setState({ appCtx }, callback);
   };
 
   componentDidMount() {

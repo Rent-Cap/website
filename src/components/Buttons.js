@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, navigate } from "gatsby";
 import "../styles/buttons.scss";
+import Button from '@material-ui/core/Button';
 
 const DefaultButton = ({ className, children, type = "button", ...props }) => (
   <button type={type} className={`button ${className}`} {...props}>

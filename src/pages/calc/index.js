@@ -1,9 +1,7 @@
 import React from "react";
-import { QuickContactForm } from "../../components/Contact";
-import Zip from "../../components/Zip";
 import AppContext from "../../components/AppContext";
-import CalcDisclaimer from "../../components/CalcDisclaimer";
-import Calculator from "../../components/Calculator";
+import CalcDisclaimer from "../../components/calculator/CalcDisclaimer";
+import Calculator from "../../components/calculator/Calculator";
 import QuickContact from "../../components/QuickContact";
 
 function fn() {

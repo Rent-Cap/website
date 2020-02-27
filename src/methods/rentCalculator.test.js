@@ -426,7 +426,7 @@ describe("Calcuating rollback rent", () => {
     expect(rollbackRent).toEqual(1002);
   });
 
-  it("should return 0 if there is no rollback", () => {
+  it("should return current max if there is no rollback", () => {
     var monthlyRents = {
       "2019-06": 1002,
       "2019-07": 1002,
