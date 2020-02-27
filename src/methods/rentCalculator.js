@@ -36,7 +36,7 @@ export function rentHistoryToMonthlyRents(
   let monthlyRents = {};
   let startMonth;
 
-  if (initialRent > 0) {
+  if (initialRent > 0 || !tenancyStartDate) {
     // include full history if we have it
     startMonth = dateToISOMonth(tenancyStartDate); // use dateToISOMonth to cover date strings or date objs
     monthlyRents[startMonth] = initialRent;
@@ -47,7 +47,7 @@ export function rentHistoryToMonthlyRents(
   } else {
     // error we should have one or the other
     throw new Error(
-      "Either tenancy start date must be provdied or rent on 2019-03-15"
+      "Either tenancy start date and initial rent must be provdied or rent on 2019-03-15"
     );
   }
 
