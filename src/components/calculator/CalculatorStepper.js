@@ -272,9 +272,8 @@ const Step3 = ({ appCtx }) => (
 const Step4 = ({ appCtx }) => {
   var ctx = appCtx.appCtx;
   var now = Date();
-  var monthlyRents = CalcCore.rentHistoryToMonthlyRents(ctx.rentOn20190315, ctx.initialRent, ctx.firstRentDate, ctx.rentChanges, now);
+  var monthlyRents = CalcCore.rentHistoryToMonthlyRents(ctx.rentOn20190315, ctx.initialRent, ctx.tenancyStartDate, ctx.rentChanges, now);
   var maxRents = CalcCore.calculateMaxRents(ctx.zip, monthlyRents);
-  var firstBadMo = CalcCore.findFirstIllegalIncreaseMonth(monthlyRents, maxRents);
   var overpayments = CalcCore.calculateOverpayments(monthlyRents, maxRents, now);
   var refund = CalcCore.calculateRefund(overpayments, now);
   var rollbackRent = CalcCore.calculateRollbackRent(monthlyRents, maxRents, now);
