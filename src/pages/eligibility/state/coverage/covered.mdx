@@ -14,7 +14,7 @@ import AutoSubmit from "../../../../components/AutoSubmit"
             }
             <h2>Protection from "unjust" evictions</h2>
             {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ?
-                <p><strong>Congratulations</strong> you are protected from "unjust" evictions under the Tenant Protection Act.</p>
+                <p><strong>Congratulations</strong>, you are protected from "unjust" evictions under the Tenant Protection Act.</p>
             : (appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='idk') ?
                 <p>Good news, we think you are <em>likely</em> to be protected from "unjust" evictions under the Tenant Protection Act, as long are your building hasn't received a "certificate of occupancy" within the last 15 years. Since you didn't know how old your building is we'd recommend connecting with local resources below to find out.</p>
             :
@@ -27,7 +27,7 @@ import AutoSubmit from "../../../../components/AutoSubmit"
             </div>
             : (appCtx.builtBefore2005==='yes') ?
             <div>
-                <p><strong>Congratulations</strong> your landlord can't legally increase your rent more than a set amount each year based on your current rent and where you live.</p>
+                <p><strong>Congratulations</strong>, your landlord can't legally increase your rent more than a set amount each year based on your current rent and where you live.</p>
                 <center><PrimaryButton to="/calculator">Find out what my rent cap is</PrimaryButton></center>
             </div>
             :

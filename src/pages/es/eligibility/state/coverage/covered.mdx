@@ -8,7 +8,7 @@ import { PrimaryButton } from "../../../../../components/Buttons";
         <div>
             <h2>Protección contra desalojos "injustos"</h2>
             {(appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='yes') ?
-                <p><strong>Felicitaciones</strong> usted está protegido de desalojos "injustos" bajo la Ley de Protección de Inquilinos de 2019.</p>
+                <p><strong>Felicitaciones</strong>, usted está protegido de desalojos "injustos" bajo la Ley de Protección de Inquilinos de 2019.</p>
             : (appCtx.ab1482TenancyDuration && appCtx.builtBefore2005==='idk') ?
                 <p>Buenas noticias, creemos que es <em>probable</em> que usted esta protegido de desalojos "injustos" bajo la Ley de Protección de Inquilinos de 2019, siempre y cuando su edificio no haya recibido un "certificado de ocupación" en los últimos 15 años. Como no sabía la antigüedad de su edificio, le recomendamos que se conecte con los recursos locales a continuación para averiguarlo.</p>
             :
@@ -21,7 +21,7 @@ import { PrimaryButton } from "../../../../../components/Buttons";
             </div>
             : (appCtx.builtBefore2005==='yes') ?
             <div>
-                <p><strong>Felicitaciones</strong> su arrendador no puede aumentar legalmente su renta más de la cantidad establecida cada año en función de su renta actual y el lugar donde vive.</p>
+                <p><strong>Felicitaciones</strong>, su arrendador no puede aumentar legalmente su renta más de la cantidad establecida cada año en función de su renta actual y el lugar donde vive.</p>
                 <center><PrimaryButton to="/es/calculator">Descubra cuál es su límite de renta</PrimaryButton></center>
             </div>
             :
