@@ -36,7 +36,7 @@ export function rentHistoryToMonthlyRents(
   let monthlyRents = {};
   let startMonth;
 
-  if (initialRent > 0 || !tenancyStartDate) {
+  if (initialRent > 0 && tenancyStartDate) {
     // include full history if we have it
     startMonth = dateToISOMonth(tenancyStartDate); // use dateToISOMonth to cover date strings or date objs
     monthlyRents[startMonth] = initialRent;

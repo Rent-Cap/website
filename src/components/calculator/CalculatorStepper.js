@@ -92,8 +92,10 @@ const Step2 = ({ appCtx }) => (
     <YesNoState
       questionText="Did you move in after March 15th, 2019?"
       stateName="moveInAfter15Mar2019"
-      callback={() => {
-        appCtx.updateContext({ tenancyStartDate: "2019-04" });
+      callback={({ answer }) => {
+        if (answer) {
+          appCtx.updateContext({ tenancyStartDate: new Date(2019, 3) });
+        }
       }}
     />
     <br />
@@ -132,7 +134,7 @@ const Step2 = ({ appCtx }) => (
                     appCtx.updateContext({ tenancyStartDate: d });
                   }
                 }
-                value={appCtx.appCtx.tenancyStartDate ? appCtx.appCtx.tenancyStartDate : new Date(2019, 3)}
+                value={appCtx.appCtx.tenancyStartDate}
               />
             </MuiPickersUtilsProvider>
           </>
@@ -152,14 +154,13 @@ const Step3 = ({ appCtx }) => (
           "Have you recieved a change in rent since you moved in?" :
           "Have you recieved a change in rent since March 15th 2019?"}
         stateName="rentChange"
-        callback={(answer) => {
-          console.log('bar');
-          // TODO dedupe copy pasta below
-          if (!appCtx.appCtx.rentChanges) {
-            // always make this object if it doesn't exist
+        callback={({ answer }) => {
+          if (!appCtx.appCtx.rentChanges || appCtx.appCtx.rentChanges.length === 0) {
+            // create/update the rent changes array if it doesn't exist or if the user changed their mind after it was created
             let rentChanges = [];
 
             if (answer) {
+              // if they answer yes add the first element for them
               let nextRentMonth;
               if (appCtx.appCtx.moveInAfter15Mar2019) {
                 nextRentMonth = CalcCore.addISOMonths(appCtx.appCtx.tenancyStartDate, 1);
@@ -172,7 +173,7 @@ const Step3 = ({ appCtx }) => (
 
             appCtx.updateContext({ rentChanges });
           }
-        }
+        } 
         }
       />
       <br />
@@ -238,7 +239,7 @@ const Step3 = ({ appCtx }) => (
                           break;
                         }
                       }
-                      if (delId) {
+                      if (delId !== undefined) {
                         rentChanges.splice(delId, 1);
                       }
                       appCtx.updateContext({ rentChanges });
