@@ -22,7 +22,6 @@ class Zip extends React.Component {
     if (newZip.length > 5) {
       newZip = newZip.substr(0, 5);
     }
-
     this.setState({ zip: newZip });
 
     if (newZip.length < 5) {
@@ -52,26 +51,37 @@ class Zip extends React.Component {
   };
 
   render() {
+    const { handleChange } = this.props;
     return (
       <input
         type="text"
         value={this.state.zip}
         onChange={e => {
-          this.onChange(e.target.value, this.state.appCtx, this.state.updateContext);
+          this.onChange(
+            e.target.value,
+            this.state.appCtx,
+            this.state.updateContext
+          );
+          handleChange(e);
         }}
       />
     );
   }
 }
 
-const ctxWrapper = () => {
+const ctxWrapper = ({ handleChange }) => {
   return (
     <AppContext.Consumer>
       {({ appCtx, updateContext }) => (
-        <Zip zip={appCtx.zip} appCtx={appCtx} updateContext={updateContext} />
+        <Zip
+          zip={appCtx.zip}
+          appCtx={appCtx}
+          updateContext={updateContext}
+          handleChange={handleChange}
+        />
       )}
     </AppContext.Consumer>
   );
-}
+};
 
 export default ctxWrapper;
