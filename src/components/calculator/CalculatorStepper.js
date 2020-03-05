@@ -46,13 +46,10 @@ function getSteps() {
 
 const StepAtIndex = ({ index, appCtx, handleNext, updateStepValidation }) => {
   if (index === 1) {
-    return (
-      <Step2
-        appCtx={appCtx}
-        moveInAfter15Mar2019={appCtx.moveInAfter15Mar2019}
-        updateStepValidation={updateStepValidation}
-      />
-    );
+    return <Step2
+      appCtx={appCtx}
+      updateStepValidation={updateStepValidation}
+    />;
   }
   if (index === 2) {
     return (
@@ -143,8 +140,8 @@ export default function CalculatorStepper({ appCtx }) {
                         {activeStep === steps.length - 2 ? "Calculate" : "Next"}
                       </Button>
                     ) : (
-                      <></>
-                    )}
+                        <></>
+                      )}
                   </div>
                 </div>
               </StepContent>
