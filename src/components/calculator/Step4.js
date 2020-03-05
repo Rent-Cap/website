@@ -24,12 +24,12 @@ export const Step4 = ({ appCtx }) => {
           <div>
             <h1>Suggested Refund</h1>
             <h2 className="bigInfo">${refund}</h2>
-            <p>Since you recieved a rent increase that was not legal you may be entitled to a refund from your landlord for each month you overpayed.</p>
+            <p>Since you received a rent increase that was not legal you may be entitled to a refund from your landlord for each month you overpayed.</p>
           </div>
           <div>
             <h1>Rollback Rent</h1>
             <h2 className="bigInfo">${rollbackRent}</h2>
-            <p>Since you recieved a rent increase that was not legal your rent should revert to the last legal rent you paid that was less than your current maximum legal rent.</p>
+            <p>Since you received a rent increase that was not legal your rent should revert to the last legal rent you paid that was less than your current maximum legal rent.</p>
           </div>
         </>
         : <></>}
