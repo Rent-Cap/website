@@ -135,6 +135,28 @@ describe("Monthly rents", () => {
       "2020-02": 1500
     });
   });
+
+  it("should be able to handle rent decreases", () => {
+    var monthlyRents = rentHistoryToMonthlyRents(
+      null,
+      1002,
+      "2019-06-01",
+      [{ month: "2019-08", rent: 1500 }, {month: "2020-01", rent: 1085}],
+      "2020-02-12"
+    );
+
+    expect(monthlyRents).toEqual({
+      "2019-06": 1002,
+      "2019-07": 1002,
+      "2019-08": 1500,
+      "2019-09": 1500,
+      "2019-10": 1500,
+      "2019-11": 1500,
+      "2019-12": 1500,
+      "2020-01": 1085,
+      "2020-02": 1085
+    });
+  });
 });
 
 describe("Max rents", () => {
