@@ -22,11 +22,11 @@ export const Step3 = ({ appCtx }) => (<>
             // if they answer yes add the first element for them
             let nextRentMonth;
             if (appCtx.appCtx.moveInAfter15Mar2019) {
-              tenancyStart = appCtx.appCtx.tenancyStartDate;
+              const tenancyStart = appCtx.appCtx.tenancyStartDate;
               nextRentMonth = new Date(tenancyStart.getFullYear(), tenancyStart.getMonth() +1, 15);
             }
             else {
-              nextRentMonth = new Date(2019, 03, 15); // if we are starting at March 2019 use April 2019
+              nextRentMonth = new Date(2019, 3, 15); // if we are starting at March 2019 use April 2019
             }
             rentChanges.push({ month: nextRentMonth, rent: null, key: shortid.generate() });
           }

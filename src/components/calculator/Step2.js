@@ -4,6 +4,14 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import YesNoState from "../clauses/YesNoState";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+  noInputBorder: {
+    border: "none"
+  }
+}));
+
 export const Step2 = ({ appCtx }) => (<>
   <YesNoState questionText="Did you move in after March 15th, 2019?" stateName="moveInAfter15Mar2019" callback={({ answer }) => {
     if (answer) {
@@ -14,7 +22,7 @@ export const Step2 = ({ appCtx }) => (<>
   {appCtx.appCtx.moveInAfter15Mar2019 !== undefined ? ( // only show rent after move in date
     <div>
       <p>What was your rent {appCtx.appCtx.moveInAfter15Mar2019 ? "when you started renting?" : "on March 15th, 2019?"}</p>
-      <TextField required name="initialRent" id="initialRent" type="number" variant="outlined" value={appCtx.appCtx.moveInAfter15Mar2019 ? appCtx.appCtx.initialRent : appCtx.appCtx.rentOn20190315} label={appCtx.appCtx.moveInAfter15Mar2019 ?
+      <TextField className="noInputBorder" required name="initialRent" id="initialRent" type="number" variant="outlined" value={appCtx.appCtx.moveInAfter15Mar2019 ? appCtx.appCtx.initialRent : appCtx.appCtx.rentOn20190315} label={appCtx.appCtx.moveInAfter15Mar2019 ?
         "Starting Rent" :
         "March 15th 2019 Rent"} InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }} onChange={(e) => {
           // TODO validation
