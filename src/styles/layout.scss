@@ -65,6 +65,14 @@
     border: 1px solid #acacac;
   }
 
+  #calculator input {
+    height: auto;
+  }
+
+  .noInputBorder input {
+    border: none;
+  }
+
   details {
     width: 100%;
     cursor: pointer;
@@ -85,6 +93,7 @@
     margin: 2rem 0 1rem 0;
     font-size: 28px;
   }
+
 
   .main-page-section {
     align-items: center;
