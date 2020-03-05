@@ -22,7 +22,7 @@ export const Step3 = ({ appCtx }) => (<>
             // if they answer yes add the first element for them
             let nextRentMonth;
             if (appCtx.appCtx.moveInAfter15Mar2019) {
-              const tenancyStart = appCtx.appCtx.tenancyStartDate;
+              let tenancyStart = appCtx.appCtx.tenancyStartDate;
               nextRentMonth = new Date(tenancyStart.getFullYear(), tenancyStart.getMonth() +1, 15);
             }
             else {
