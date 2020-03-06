@@ -45,7 +45,6 @@ const AutoSubmit = ({ pageName }) => {
                 var newCtx = {};
                 newCtx[pageName] = true;
                 updateContext( { appCtx, ...newCtx });
-                console.log(values);
             }).catch(error => console.log(error));
 
         }

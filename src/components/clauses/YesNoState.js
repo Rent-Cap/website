@@ -49,7 +49,6 @@ const YesNoState = ({ stateName, questionText, yesText, noText, yes, no, callbac
             >
               {noText ? noText : dict[appCtx.lang].no}
             </Button>
-            {console.log(appCtx)}
           </div>
         );
       }}
