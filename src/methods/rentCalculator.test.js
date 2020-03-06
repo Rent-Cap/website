@@ -1,15 +1,22 @@
-import { rentHistoryToMonthlyRents,
-          calculateMaxRents, 
-          calculateOverpayments, 
-          findFirstIllegalIncreaseMonth, 
-          calculateRollbackRent, 
-          calculateRefund 
-        } from "./rentCalculator";
+import {
+  rentHistoryToMonthlyRents,
+  calculateMaxRents,
+  calculateOverpayments,
+  findFirstIllegalIncreaseMonth,
+  calculateRollbackRent,
+  calculateRefund
+} from "./rentCalculator";
+
+// cpiChange Lookup - returns the "change in the cost of living" for the specificied date and zip
+function cpiChangeLookupMock({zip, date}) {
+  // TODO (@sh1mmer) implement me!!
+  return 0.033;
+}
 
 describe("Monthly rents", () => {
   it("should throw if it doesn't have a 2019-03-15 rent or a start rent", () => {
     let t = () => {
-      rentHistoryToMonthlyRents(null,null,null,[],"2020-02-29");
+      rentHistoryToMonthlyRents(null, null, null, [], "2020-02-29");
     };
     expect(t).toThrow();
 
@@ -141,7 +148,7 @@ describe("Monthly rents", () => {
       null,
       1002,
       "2019-06-01",
-      [{ month: "2019-08", rent: 1500 }, {month: "2020-01", rent: 1085}],
+      [{ month: "2019-08", rent: 1500 }, { month: "2020-01", rent: 1085 }],
       "2020-02-12"
     );
 
@@ -175,7 +182,7 @@ describe("Max rents", () => {
       "2020-02": 1500
     };
 
-    let maxRents = calculateMaxRents(94110, monthlyRents);
+    let maxRents = calculateMaxRents(94110, monthlyRents, cpiChangeLookupMock);
 
     expect(maxRents).toEqual({
       "2019-06": { maxRent: 1002, rollbackExempt: true },
@@ -208,7 +215,7 @@ describe("Max rents", () => {
       "2020-01": 1500
     };
 
-    let maxRents = calculateMaxRents(94110, monthlyRents);
+    let maxRents = calculateMaxRents(94110, monthlyRents, cpiChangeLookupMock);
 
     expect(maxRents).toEqual({
       "2018-12": { maxRent: Infinity, rollbackExempt: true },
@@ -228,43 +235,43 @@ describe("Max rents", () => {
     });
   });
 
-    it("should reset the cap correctly if the rent decreases", () => {
-      let monthlyRents = {
-        "2018-12": 300,
-        "2019-01": 300,
-        "2019-02": 300,
-        "2019-03": 1002,
-        "2019-04": 1002,
-        "2019-05": 1500,
-        "2019-06": 1500,
-        "2019-07": 900,
-        "2019-08": 900,
-        "2019-09": 2000,
-        "2019-10": 2000,
-        "2019-11": 2000,
-        "2019-12": 2000,
-        "2020-01": 2000
-      };
+  it("should reset the cap correctly if the rent decreases", () => {
+    let monthlyRents = {
+      "2018-12": 300,
+      "2019-01": 300,
+      "2019-02": 300,
+      "2019-03": 1002,
+      "2019-04": 1002,
+      "2019-05": 1500,
+      "2019-06": 1500,
+      "2019-07": 900,
+      "2019-08": 900,
+      "2019-09": 2000,
+      "2019-10": 2000,
+      "2019-11": 2000,
+      "2019-12": 2000,
+      "2020-01": 2000
+    };
 
-      let maxRents = calculateMaxRents(94110, monthlyRents);
+    let maxRents = calculateMaxRents(94110, monthlyRents, cpiChangeLookupMock);
 
-      expect(maxRents).toEqual({
-        "2018-12": { maxRent: Infinity, rollbackExempt: true },
-        "2019-01": { maxRent: Infinity, rollbackExempt: true },
-        "2019-02": { maxRent: Infinity, rollbackExempt: true },
-        "2019-03": { maxRent: 1002, rollbackExempt: true },
-        "2019-04": { maxRent: 1085, rollbackExempt: true },
-        "2019-05": { maxRent: 1085, rollbackExempt: true },
-        "2019-06": { maxRent: 1085, rollbackExempt: true },
-        "2019-07": { maxRent: 900, rollbackExempt: true },
-        "2019-08": { maxRent: 975, rollbackExempt: true },
-        "2019-09": { maxRent: 975, rollbackExempt: true },
-        "2019-10": { maxRent: 975, rollbackExempt: true },
-        "2019-11": { maxRent: 975, rollbackExempt: true },
-        "2019-12": { maxRent: 975, rollbackExempt: true },
-        "2020-01": { maxRent: 975, rollbackExempt: false },
-      });
+    expect(maxRents).toEqual({
+      "2018-12": { maxRent: Infinity, rollbackExempt: true },
+      "2019-01": { maxRent: Infinity, rollbackExempt: true },
+      "2019-02": { maxRent: Infinity, rollbackExempt: true },
+      "2019-03": { maxRent: 1002, rollbackExempt: true },
+      "2019-04": { maxRent: 1085, rollbackExempt: true },
+      "2019-05": { maxRent: 1085, rollbackExempt: true },
+      "2019-06": { maxRent: 1085, rollbackExempt: true },
+      "2019-07": { maxRent: 900, rollbackExempt: true },
+      "2019-08": { maxRent: 975, rollbackExempt: true },
+      "2019-09": { maxRent: 975, rollbackExempt: true },
+      "2019-10": { maxRent: 975, rollbackExempt: true },
+      "2019-11": { maxRent: 975, rollbackExempt: true },
+      "2019-12": { maxRent: 975, rollbackExempt: true },
+      "2020-01": { maxRent: 975, rollbackExempt: false },
     });
+  });
 
   it("after 2020-03 we look back a year to calculate max rent", () => {
     var monthlyRents = {
@@ -288,7 +295,7 @@ describe("Max rents", () => {
       "2020-05": 1500,
     };
 
-    let maxRents = calculateMaxRents(94110, monthlyRents);
+    let maxRents = calculateMaxRents(94110, monthlyRents, cpiChangeLookupMock);
 
     expect(maxRents).toEqual({
       "2018-12": { maxRent: Infinity, rollbackExempt: true },
@@ -379,45 +386,146 @@ describe("Finding first illegal increase", () => {
 
 describe("rent scenarios", () => {
   // experiment with rent history scenarios
-  
-    it("should reset the cap correctly if the rent decreases in weird ways", () => {
-      //currently fails by design, adjust the expect
-      let monthlyRents = {
-        "2018-12": 300,
-        "2019-01": 300,
-        "2019-02": 300,
-        "2019-03": 1002,
-        "2019-04": 1002,
-        "2019-05": 1500,
-        "2019-06": 1500,
-        "2019-07": 900,
-        "2019-08": 975,
-        "2019-09": 800,
-        "2019-10": 2000,
-        "2019-11": 2000,
-        "2019-12": 2000,
-        "2020-01": 2000
-      };
 
-      let maxRents = calculateMaxRents(94110, monthlyRents);
+  it("should reset the cap correctly if the rent decreases in weird ways", () => {
+    //currently fails by design, adjust the expect
+    let monthlyRents = {
+      "2018-12": 300,
+      "2019-01": 300,
+      "2019-02": 300,
+      "2019-03": 1002,
+      "2019-04": 1002,
+      "2019-05": 1500,
+      "2019-06": 1500,
+      "2019-07": 900,
+      "2019-08": 975,
+      "2019-09": 800,
+      "2019-10": 2000,
+      "2019-11": 2000,
+      "2019-12": 2000,
+      "2020-01": 2000
+    };
 
-      expect(maxRents).toEqual({
-        "2018-12": { maxRent: Infinity, rollbackExempt: true },
-        "2019-01": { maxRent: Infinity, rollbackExempt: true },
-        "2019-02": { maxRent: Infinity, rollbackExempt: true },
-        "2019-03": { maxRent: 1002, rollbackExempt: true },
-        "2019-04": { maxRent: 1085, rollbackExempt: true },
-        "2019-05": { maxRent: 1085, rollbackExempt: true },
-        "2019-06": { maxRent: 1085, rollbackExempt: true },
-        "2019-07": { maxRent: 900, rollbackExempt: true },
-        "2019-08": { maxRent: 975, rollbackExempt: true },
-        "2019-09": { maxRent: 975, rollbackExempt: true },
-        "2019-10": { maxRent: 975, rollbackExempt: true },
-        "2019-11": { maxRent: 975, rollbackExempt: true },
-        "2019-12": { maxRent: 975, rollbackExempt: true },
-        "2020-01": { maxRent: 975, rollbackExempt: false },
-      });
+    let maxRents = calculateMaxRents(94110, monthlyRents, cpiChangeLookupMock);
+
+    expect(maxRents).toEqual({
+      "2018-12": { maxRent: Infinity, rollbackExempt: true },
+      "2019-01": { maxRent: Infinity, rollbackExempt: true },
+      "2019-02": { maxRent: Infinity, rollbackExempt: true },
+      "2019-03": { maxRent: 1002, rollbackExempt: true },
+      "2019-04": { maxRent: 1085, rollbackExempt: true },
+      "2019-05": { maxRent: 1085, rollbackExempt: true },
+      "2019-06": { maxRent: 1085, rollbackExempt: true },
+      "2019-07": { maxRent: 900, rollbackExempt: true },
+      "2019-08": { maxRent: 975, rollbackExempt: true },
+      "2019-09": { maxRent: 800, rollbackExempt: true },
+      "2019-10": { maxRent: 866, rollbackExempt: true },
+      "2019-11": { maxRent: 866, rollbackExempt: true },
+      "2019-12": { maxRent: 866, rollbackExempt: true },
+      "2020-01": { maxRent: 866, rollbackExempt: false },
     });
+  });
+
+  it("should reset the cap correctly if the rent decreases in weird ways starting at 2019-03-15", () => {
+    //currently fails by design, adjust the expect
+    let monthlyRents = {
+      "2019-03": 1002,
+      "2019-04": 1002,
+      "2019-05": 1500,
+      "2019-06": 1500,
+      "2019-07": 900,
+      "2019-08": 975,
+      "2019-09": 800,
+      "2019-10": 2000,
+      "2019-11": 2000,
+      "2019-12": 2000,
+      "2020-01": 2000
+    };
+
+    let maxRents = calculateMaxRents(94110, monthlyRents, cpiChangeLookupMock);
+
+    expect(maxRents).toEqual({
+      "2019-03": { maxRent: 1002, rollbackExempt: true },
+      "2019-04": { maxRent: 1085, rollbackExempt: true },
+      "2019-05": { maxRent: 1085, rollbackExempt: true },
+      "2019-06": { maxRent: 1085, rollbackExempt: true },
+      "2019-07": { maxRent: 900, rollbackExempt: true },
+      "2019-08": { maxRent: 975, rollbackExempt: true },
+      "2019-09": { maxRent: 800, rollbackExempt: true },
+      "2019-10": { maxRent: 866, rollbackExempt: true },
+      "2019-11": { maxRent: 866, rollbackExempt: true },
+      "2019-12": { maxRent: 866, rollbackExempt: true },
+      "2020-01": { maxRent: 866, rollbackExempt: false },
+    });
+  });
+
+  it("should reset the cap correctly if the rent decreases in weird ways starting after 2019-03-15", () => {
+    //currently fails by design, adjust the expect
+    let monthlyRents = {
+      "2019-04": 1002,
+      "2019-05": 1500,
+      "2019-06": 1500,
+      "2019-07": 900,
+      "2019-08": 975,
+      "2019-09": 800,
+      "2019-10": 2000,
+      "2019-11": 2000,
+      "2019-12": 2000,
+      "2020-01": 2000
+    };
+
+    let maxRents = calculateMaxRents(94110, monthlyRents, cpiChangeLookupMock);
+
+    expect(maxRents).toEqual({
+      "2019-04": { maxRent: 1002, rollbackExempt: true },
+      "2019-05": { maxRent: 1085, rollbackExempt: true },
+      "2019-06": { maxRent: 1085, rollbackExempt: true },
+      "2019-07": { maxRent: 900, rollbackExempt: true },
+      "2019-08": { maxRent: 975, rollbackExempt: true },
+      "2019-09": { maxRent: 800, rollbackExempt: true },
+      "2019-10": { maxRent: 866, rollbackExempt: true },
+      "2019-11": { maxRent: 866, rollbackExempt: true },
+      "2019-12": { maxRent: 866, rollbackExempt: true },
+      "2020-01": { maxRent: 866, rollbackExempt: false },
+    });
+  });
+
+  it("stringified numbers get cast to actual number for comparison", () => {
+    //currently fails by design, adjust the expect
+    let monthlyRents = {
+      "2019-03": "1000",
+      "2019-04": "1001",
+      "2019-05": "10231",
+      "2019-06": "232",
+      "2019-07": "232",
+      "2019-08": "232",
+      "2019-09": "232",
+      "2019-10": "232",
+      "2019-11": "232",
+      "2019-12": "232",
+      "2020-01": "232",
+      "2020-02": "232",
+      "2020-03": "232",
+    };
+
+    let maxRents = calculateMaxRents(94110, monthlyRents, cpiChangeLookupMock);
+
+    expect(maxRents).toEqual({
+      "2019-03": { maxRent: 1000, rollbackExempt: true },
+      "2019-04": { maxRent: 1083, rollbackExempt: true },
+      "2019-05": { maxRent: 1083, rollbackExempt: true },
+      "2019-06": { maxRent: 232, rollbackExempt: true },
+      "2019-07": { maxRent: 251, rollbackExempt: true },
+      "2019-08": { maxRent: 251, rollbackExempt: true },
+      "2019-09": { maxRent: 251, rollbackExempt: true },
+      "2019-10": { maxRent: 251, rollbackExempt: true },
+      "2019-11": { maxRent: 251, rollbackExempt: true },
+      "2019-12": { maxRent: 251, rollbackExempt: true },
+      "2020-01": { maxRent: 251, rollbackExempt: false },
+      "2020-02": { maxRent: 251, rollbackExempt: false },
+      "2020-03": { maxRent: 251, rollbackExempt: false },
+    });
+  });
 
   it("lookback should handle increase then decrease", () => {
     let monthlyRents = {
@@ -441,7 +549,7 @@ describe("rent scenarios", () => {
       "2020-05": 1500,
     };
 
-    let maxRents = calculateMaxRents(94110, monthlyRents);
+    let maxRents = calculateMaxRents(94110, monthlyRents, cpiChangeLookupMock);
 
     expect(maxRents).toEqual({
       "2018-12": { maxRent: Infinity, rollbackExempt: true },

@@ -36,14 +36,14 @@ export function rentHistoryToMonthlyRents(
   let monthlyRents = {};
   let startMonth;
 
-  if (initialRent > 0 && tenancyStartDate) {
+  if (parseInt(initialRent) > 0 && tenancyStartDate) {
     // include full history if we have it
     startMonth = dateToISOMonth(tenancyStartDate); // use dateToISOMonth to cover date strings or date objs
-    monthlyRents[startMonth] = initialRent;
-  } else if (rentOn20190315 !== undefined && rentOn20190315 !== null) {
+    monthlyRents[startMonth] = parseInt(initialRent);
+  } else if (parseInt(rentOn20190315) > 0) {
     // otherwise start from April 2019
     startMonth = "2019-03";
-    monthlyRents[startMonth] = rentOn20190315;
+    monthlyRents[startMonth] = parseInt(rentOn20190315);
   } else {
     // error we should have one or the other
     throw new Error(
@@ -68,7 +68,7 @@ export function rentHistoryToMonthlyRents(
     ) {
       // if the next month has a change in rent use that
       // TODO (@sh1mmer) assumption that there is only one rent increase in a month (probably true)
-      monthlyRents[nextMonth] = rentChanges[changeIndex].rent;
+      monthlyRents[nextMonth] = parseInt(rentChanges[changeIndex].rent);
       changeIndex += 1; // increment the change index
     } else {
       // otherwise copy previous month's rent
@@ -92,7 +92,7 @@ export function rentHistoryToMonthlyRents(
  * @return {object} The max AB1482 rent each month indexed by date string {"2019-03":Infinity, ..., "2020-01": 165000} up to the current month. Infinity indicates no limit on rent
  *
  */
-export function calculateMaxRents(zip, monthlyRents) {
+export function calculateMaxRents(zip, monthlyRents, cpiChangeLookup) {
   let maxRents = {};
   let rentMonths = Object.keys(monthlyRents).sort();
   let index201903;
@@ -115,7 +115,7 @@ export function calculateMaxRents(zip, monthlyRents) {
       // if the month is 2019-03 set the epoch rent max to this rent annd not add an increase
       // TODO (@sh1mmer) this doesn't account for before after 2019-03-15 rent dates
       // e.g. if rent was due on 2019-03-20 then 2019-02 rent might be the legal max not rent paid in 2019-03
-      maxRent.maxRent = monthlyRents[rentMonths[i]]; 
+      maxRent.maxRent = parseInt(monthlyRents[rentMonths[i]]); 
     }
 
     if (month < "2019-03") {
@@ -134,15 +134,15 @@ export function calculateMaxRents(zip, monthlyRents) {
     */
     let startLookback = (month < "2020-04" && index201903) ? index201903 : i - 12; // use 2019-03 rent if we have it rent have it before 2020-04
     startLookback = (startLookback < 0) ? 0 : startLookback; // if lookback is further than rent history start at first rent month 
-    
+
     // find the lowest rent and its month in the lookback range
     var lowestRentMonth = rentMonths[startLookback];
-    var lowestRent = monthlyRents[lowestRentMonth];
+    var lowestRent = parseInt(monthlyRents[lowestRentMonth]);
     for (let j = startLookback + 1; j <= i; j++) {
       // make sure we include i so if the rent lowers we can reset to the current month
-      if (monthlyRents[rentMonths[j]] < lowestRent) {
+      if (parseInt(monthlyRents[rentMonths[j]]) < parseInt(lowestRent)) {
         lowestRentMonth = rentMonths[j];
-        lowestRent = monthlyRents[lowestRentMonth];
+        lowestRent = parseInt(monthlyRents[lowestRentMonth]);
       }
     }
 
@@ -151,14 +151,14 @@ export function calculateMaxRents(zip, monthlyRents) {
       if (month === lowestRentMonth) {
         // if this is the lowest rent month don't add the multiplier
         // this is important for the case when rent decreases
-        maxRent.maxRent = lowestRent;
+        maxRent.maxRent = parseInt(lowestRent);
       } else {
         // TODO (@sh1mmer) we might want a way to inject this CPI calc function especially if this gets a remote data driver later
-        let cpi = cpiChangeLookup(zip, lowestRentMonth); // lookup CPI for the month of lowest rent in this zip
+        let cpi = cpiChangeLookup({zip: zip, d: new Date(lowestRentMonth)}); // lookup CPI for the month of lowest rent in this zip
         let maxModifier = Math.min(cpi + 0.05, 0.1); // use least of cpi + 5% or 10%
         let maxRentAmt = monthlyRents[lowestRentMonth] * (1 + maxModifier);
         maxRentAmt = Number(maxRentAmt.toFixed(0)); // TODO (@sh1mmer) decide about rounding and precision here
-        maxRent.maxRent = maxRentAmt;
+        maxRent.maxRent = parseInt(maxRentAmt);
       }
     }
 
