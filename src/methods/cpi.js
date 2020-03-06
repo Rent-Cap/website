@@ -9,6 +9,8 @@ import cpis from "../../data/cpiDB";
 *  Price Index for All Urban Consumers for all items, as determined by the Department of Industrial Relations, shall apply.
 */
 
+// TODO (@sh1mmer) write unit tests
+
 export function dateAndAreaToCPI({ d, area, compat='soft' }) {
     // TODO (@sh1mmer) validate the compat modes, etc with the lawyers
     // tldr it's a bit messed up rn imo
