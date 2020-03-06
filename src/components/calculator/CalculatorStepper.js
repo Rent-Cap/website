@@ -65,6 +65,8 @@ const StepAtIndex = ({ index, appCtx, handleNext, updateStepValidation }) => {
     <Step1
       handleNext={handleNext}
       zip={appCtx.appCtx.zip}
+      town={appCtx.appCtx.town}
+      county={appCtx.appCtx.county}
       updateStepValidation={updateStepValidation}
     />
   );
