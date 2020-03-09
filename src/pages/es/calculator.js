@@ -284,7 +284,7 @@ class Calculator extends React.Component {
                 revertirse, lo que resulta en una reducción de la renta. <b>Antes de
                 usar esta calculadora, verifica tu elegibilidad <Link to="/eligibility">aquí</Link></b>!
               </p>
-              <center><Modal /></center><br/>
+              <p className="center-layout"><Modal /></p><br/>
             </div>
             <div className="card">
               <div className="card-body">

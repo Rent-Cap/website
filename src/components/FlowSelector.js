@@ -31,7 +31,7 @@ class FlowSelector extends React.Component {
       to = "/eligibility/cities/" + town;
     } else if (county in regulatedCounties) {
       to = "/eligibility/counties/" + county;
-    } else if (town !== "") {
+    } else if (town != "") {
       to = "/eligibility/state";
     }
 
@@ -48,14 +48,14 @@ class FlowSelector extends React.Component {
     return (
       <AppContext.Consumer>
         {({ appCtx, updateContext }) => (
-          <div><center>
+          <div className="center-layout">
             <StyledPrimaryButton disabled={!appCtx.validCAZip} onClick={(e)=>{this.onClick(appCtx)}}>{this.state.btnText}</StyledPrimaryButton>
             {(appCtx.town === undefined && appCtx.zip !== undefined) ?
               <p className="error">{this.state.errText}</p>
             :
               <p className="error"></p>
             }
-          </center></div>
+          </div>
         )}
       </AppContext.Consumer>
     );

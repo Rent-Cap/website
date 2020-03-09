@@ -6,7 +6,7 @@ const City = () => {
   return (
     <AppContext.Consumer>
       {({ appCtx, updateContext }) => (
-        <div><center>
+        <div className="center-layout">
           <p>
             <h1>Wait! It looks like you live in {appCtx.town} in {appCtx.county} County, which has its own rent and eviction protections!</h1>
             Before checking your state-wide eligibility, you should first determine if {appCtx.town}'s protections cover you. If they do not cover you,
@@ -28,7 +28,7 @@ const City = () => {
           <PrimaryButton to="/eligibility/state/">
             Check my status state-wide
           </PrimaryButton>
-        </center></div>
+        </div>
       )}
     </AppContext.Consumer>
   );

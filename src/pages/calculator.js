@@ -254,7 +254,7 @@ class Calculator extends React.Component {
                 should use the rent calculator, as increases in 2019 may be rolled back
                 resulting in a rent reduction. <b>Before using this calculator, check your eligibility <Link to="/eligibility">here</Link></b>!
               </p>
-              <center><Modal /></center><br/>
+              <div className="center-layout"><Modal /></div><br/>
             </div>
             <div className="card">
               <div className="card-body">
