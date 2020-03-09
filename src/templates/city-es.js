@@ -27,7 +27,7 @@ const City = () => {
           <PrimaryButton to="/es/eligibility/state/">
             Verifique su situación en todo el estado de California.
           </PrimaryButton>
-        </center></div>
+        </div>
       )}
     </AppContext.Consumer>
   );
