@@ -28,7 +28,7 @@ const City = () => {
           <PrimaryButton to="/eligibility/state/">
             Check my status state-wide
           </PrimaryButton>
-        </div>
+        </center></div>
       )}
     </AppContext.Consumer>
   );
