@@ -13,8 +13,22 @@ export const StyledPrimaryButton = props => (
 export const StyledSecondaryButton = props => (
   <DefaultButton className="secondaryButton" {...props}></DefaultButton>
 );
-export const PrimaryButton2 = ({ onClick, children, style }) => (
-  <button type="button" onClick={onClick} style={style} className="btn btn-primary">{children}</button>
+export const PrimaryButton2 = ({
+  onClick,
+  children,
+  style,
+  type = "button",
+  ...props
+}) => (
+  <button
+    type={type}
+    onClick={onClick}
+    style={style}
+    className="btn btn-primary"
+    {...props}
+  >
+    {children}
+  </button>
 );
 
 export const SecondaryButton = ({ to, children }) => {
@@ -25,7 +39,7 @@ export const SecondaryButton = ({ to, children }) => {
   );
 };
 
-export const PrimaryButton = ({ to, children}) => {
+export const PrimaryButton = ({ to, children }) => {
   return (
     <StyledPrimaryButton onClick={() => navigate(to)} type="button">
       {children}
