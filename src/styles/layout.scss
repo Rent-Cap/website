@@ -69,7 +69,7 @@
     width: 100%;
     cursor: pointer;
   }
- 
+
   h1,
   h2,
   h3,
@@ -80,7 +80,7 @@
     font-size: 24px;
     margin: 14px 0px;
   }
- 
+
   h1 {
     margin: 2rem 0 1rem 0;
     font-size: 28px;
@@ -114,12 +114,20 @@
         width: 460px;
       }
     }
-    
+
     .section-txt {
       display: flex;
       flex: 1;
       flex-direction: column;
       justify-content: center;
     }
+  }
+
+  .center-layout {
+    text-align: center;
+  }
+
+  .text-description {
+    width: 500px;
   }
 }

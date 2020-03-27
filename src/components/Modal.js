@@ -25,7 +25,7 @@ var dict = {
     en: {
         button: "I'm Looking for Help!",
         title: "Connect With Us!",
-        description: "Share your contact information and we will follow up shortly!",
+        description: "Share your contact information & we will follow up shortly!",
         close: "Close",
     },
     es: {
@@ -55,7 +55,7 @@ export default function TransitionsModal() {
           <StyledPrimaryButton onClick={handleOpen} type="button">{dict[appCtx.lang].button}</StyledPrimaryButton>&nbsp;
           <Modal
             aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
+            aria-describedby="text-description"
             className={classes.modal}
             open={open}
             onClose={handleClose}
@@ -68,9 +68,9 @@ export default function TransitionsModal() {
             <Fade in={open}>
               <div className={classes.paper}>
                 <h2 id="transition-modal-title">{dict[appCtx.lang].title}</h2>
-                <center><p id="transition-modal-description">{dict[appCtx.lang].description}</p></center>
+                <p class="text-description">{dict[appCtx.lang].description}</p>
                 <QuickContactForm autohide={true} />
-                <center><StyledPrimaryButton onClick={handleClose} type="button">{dict[appCtx.lang].close}</StyledPrimaryButton></center>
+                <p className="center-layout"><StyledPrimaryButton onClick={handleClose} type="button">{dict[appCtx.lang].close}</StyledPrimaryButton></p>
               </div>
             </Fade>
           </Modal>

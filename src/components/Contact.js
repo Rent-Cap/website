@@ -4,7 +4,6 @@ import { navigate } from "gatsby";
 import { Message } from "semantic-ui-react";
 import Alert from "../components/Alert";
 import { StyledPrimaryButton } from "../components/Buttons";
-
 import '../styles/contact.scss'
 
 
@@ -22,7 +21,7 @@ var contactDict = {
         contactLegend: "Contact Information",
         email: "Email",
         cell: "Cell",
-        includeDetails: "Share my tenancy information with Housing Now!",
+        includeDetails: "Share my tenancy information with ",
         subscribe: "Subscribe to newsletters from Housing Now!",
         disclaimer: "Any information you share is kept confidential and is only used to assist you with your case.",
         submitText: "Submit",
@@ -34,7 +33,7 @@ var contactDict = {
         contactLegend: "Información del contacto",
         email: "Correo Electrónico",
         cell: "Celular",
-        includeDetails: "¡Comparta mi información de arrendamiento con Housing Now!",
+        includeDetails: "¡Comparta mi información de arrendamiento con ",
         subscribe: "Suscribirse a boletines de Housing Now!",
         disclaimer: "Cualquier información que comparta se mantiene confidencial y solo se utiliza para ayudarlo con su caso.",
         submitText: "Enviar",
@@ -113,16 +112,17 @@ class QuickContactForm extends React.Component {
                                     <input className="form-control" type="email" name="email" value={email} onChange={this.handleChange} placeholder={dict[appCtx.lang].email} />
                                 </fieldset>
                                 <fieldset>
-                                    <label className="checkboxes"><input type="checkbox" name="includeDetails" checked={includeDetails} onChange={this.handleChange} /> {dict[appCtx.lang].includeDetails}</label><br/>
+                                    <label className="checkboxes"><input type="checkbox" name="includeDetails" checked={includeDetails} onChange={this.handleChange} /> {dict[appCtx.lang].includeDetails} <a href="https://www.housingnowca.org/about">Housing Now!</a></label><br/>
                                     <label className="checkboxes"><input type="checkbox" name="subscribe" checked={subscribe} onChange={this.handleChange} /> {dict[appCtx.lang].subscribe}</label>
                                 </fieldset>
                                 <p className="disclaimer">{dict[appCtx.lang].disclaimer}</p>
-                                <center><StyledPrimaryButton type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</StyledPrimaryButton></center>
+                                <p className="center-layout"><StyledPrimaryButton type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</StyledPrimaryButton></p>
                             </form>
                         </div>
                         :
                         <div>
                           <Alert /><br/>
+
                         </div>
                 )}
             </AppContext.Consumer>

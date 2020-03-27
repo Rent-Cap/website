@@ -29,7 +29,7 @@ const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
           <div>
             <h1>{dict[appCtx.lang].eligibility}</h1>
             <p>{questionText}</p>
-            <center><StyledPrimaryButton
+            <p className="center-layout"><StyledPrimaryButton
               onClick={e => {
                 onChange(true, appCtx, updateContext);
               }}
@@ -45,7 +45,7 @@ const YesNoState = ({ stateName, questionText, yesText, noText, yes, no }) => {
               type="button"
             >
               {noText ? noText : dict[appCtx.lang].no}
-            </StyledPrimaryButton></center>
+            </StyledPrimaryButton></p>
           </div>
         );
       }}
