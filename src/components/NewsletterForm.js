@@ -10,7 +10,7 @@ import { PrimaryButton2 } from "./Buttons";
 
 const NewsletterForm = ({ location }) => {
   const [success, setSuccess] = useState(false);
-  const [host, setHost] = useState();
+  const [action, setAction] = useState();
 
   useEffect(() => {
     let currentHost =
@@ -21,6 +21,9 @@ const NewsletterForm = ({ location }) => {
     const { pathname, search, hash } = location;
     const actionUrl = new URL(`${currentHost}${pathname}${search}${hash}`);
     actionUrl.searchParams.append("contact", "success");
+
+    setAction(actionUrl.href);
+
     if (location.href) {
       const { searchParams } = new URL(location.href);
       if (searchParams.get("contact")) {
@@ -35,7 +38,7 @@ const NewsletterForm = ({ location }) => {
       data-netlify="true"
       id="newsletterSubscribe"
       method="post"
-      action={actionUrl.href}
+      action={action}
     >
       {success ? (
         <p>Thank you for subscribing!</p>
