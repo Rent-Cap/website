@@ -12,7 +12,7 @@ const NewsletterForm = ({ location }) => {
   const [success, setSuccess] = useState(false);
   const actionUrl = location
     ? new URL(location.href)
-    : new URL(process.env.CONTEXT_URL);
+    : new URL(process.env.GATSBY_CONTEXT_URL);
   actionUrl.searchParams.append("contact", "success");
 
   useEffect(() => {
