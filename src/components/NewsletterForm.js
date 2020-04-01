@@ -3,20 +3,25 @@ import {
   FormControl,
   InputLabel,
   Input,
-  FormHelperText
+  FormHelperText,
 } from "@material-ui/core";
 import "./NewsletterForm.scss";
 import { PrimaryButton2 } from "./Buttons";
 
 const NewsletterForm = ({ location }) => {
   const [success, setSuccess] = useState(false);
-  const actionUrl = location.href
-    ? new URL(location.href)
-    : new URL(process.env.GATSBY_CONTEXT_URL);
-  actionUrl.searchParams.append("contact", "success");
+  const [host, setHost] = useState();
 
   useEffect(() => {
-    if (location) {
+    let currentHost =
+      location && location.host
+        ? location.host
+        : process.env.GATSBY_CONTEXT_URL;
+
+    const { pathname, search, hash } = location;
+    const actionUrl = new URL(`${currentHost}${pathname}${search}${hash}`);
+    actionUrl.searchParams.append("contact", "success");
+    if (location.href) {
       const { searchParams } = new URL(location.href);
       if (searchParams.get("contact")) {
         setSuccess(true);

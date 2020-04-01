@@ -9,4 +9,6 @@ yarn.lock
 yarn-error.log
 # Local Netlify folder
 .netlify
+.env
 .env.production
+.env.development
