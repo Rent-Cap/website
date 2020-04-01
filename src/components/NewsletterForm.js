@@ -10,7 +10,7 @@ import { PrimaryButton2 } from "./Buttons";
 
 const NewsletterForm = ({ location }) => {
   const [success, setSuccess] = useState(false);
-  const actionUrl = location
+  const actionUrl = location.href
     ? new URL(location.href)
     : new URL(process.env.GATSBY_CONTEXT_URL);
   actionUrl.searchParams.append("contact", "success");
