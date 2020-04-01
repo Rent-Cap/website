@@ -25,6 +25,7 @@ const NewsletterForm = () => {
           style={{ boxSizing: "initial", border: "0" }}
         />
       </FormControl>
+      <input type="hidden" name="form-name" value="contact" />
       <PrimaryButton2 className="primaryButton" type="submit">
         →
       </PrimaryButton2>
