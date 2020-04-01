@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   FormControl,
   InputLabel,
@@ -9,26 +9,48 @@ import "./NewsletterForm.scss";
 import { PrimaryButton2 } from "./Buttons";
 
 const NewsletterForm = () => {
+  const [success, setSuccess] = useState(false);
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "/";
+  const actionUrl = new URL(currentUrl);
+  actionUrl.searchParams.append("contact", "success");
+  console.log(actionUrl);
+
+  useEffect(() => {
+    if (actionUrl.searchParams.get("contact")) {
+      setSuccess(true);
+    }
+  }, []);
+
   return (
     <form
       name="newsletterSubscribe"
       data-netlify="true"
       id="newsletterSubscribe"
+      method="post"
+      action={actionUrl.href}
     >
-      <span className="notice">Subscribe to newsletter from Housing Now!</span>
-      <FormControl>
-        <InputLabel htmlFor="newsletter-email">Email Address</InputLabel>
-        <Input
-          id="newsletter-email"
-          type="email"
-          autoComplete="email"
-          style={{ boxSizing: "initial", border: "0" }}
-        />
-      </FormControl>
-      <input type="hidden" name="form-name" value="contact" />
-      <PrimaryButton2 className="primaryButton" type="submit">
-        →
-      </PrimaryButton2>
+      {success ? (
+        <p>Thank you for subscribing!</p>
+      ) : (
+        <>
+          <span className="notice">
+            Subscribe to newsletter from Housing Now!
+          </span>
+          <FormControl>
+            <InputLabel htmlFor="newsletter-email">Email Address</InputLabel>
+            <Input
+              id="newsletter-email"
+              type="email"
+              autoComplete="email"
+              style={{ boxSizing: "initial", border: "0" }}
+            />
+          </FormControl>
+          <input type="hidden" name="form-name" value="contact" />
+          <PrimaryButton2 className="primaryButton" type="submit">
+            →
+          </PrimaryButton2>
+        </>
+      )}
     </form>
   );
 };
