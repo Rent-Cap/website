@@ -10,14 +10,17 @@ import { PrimaryButton2 } from "./Buttons";
 
 const NewsletterForm = ({ location }) => {
   const [success, setSuccess] = useState(false);
-  const actionUrl = new URL(location.href);
+  const actionUrl = location
+    ? new URL(location.href)
+    : new URL(process.env.CONTEXT_URL);
   actionUrl.searchParams.append("contact", "success");
-  console.log(actionUrl);
 
   useEffect(() => {
-    const { searchParams } = new URL(location.href);
-    if (searchParams.get("contact")) {
-      setSuccess(true);
+    if (location) {
+      const { searchParams } = new URL(location.href);
+      if (searchParams.get("contact")) {
+        setSuccess(true);
+      }
     }
   }, [location]);
 
