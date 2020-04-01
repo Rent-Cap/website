@@ -3,9 +3,9 @@ import "../styles/footer.scss";
 import { Link } from "gatsby";
 import NewsletterForm from "../components/NewsletterForm";
 
-const Footer = () => (
+const Footer = ({ location }) => (
   <footer>
-    <NewsletterForm />
+    <NewsletterForm location={location} />
     <p>
       The information contained on this website is provided for informational
       purposes only, and should not be considered legal advice on any matter.{" "}

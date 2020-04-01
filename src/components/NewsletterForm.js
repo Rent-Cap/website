@@ -8,18 +8,18 @@ import {
 import "./NewsletterForm.scss";
 import { PrimaryButton2 } from "./Buttons";
 
-const NewsletterForm = () => {
+const NewsletterForm = ({ location }) => {
   const [success, setSuccess] = useState(false);
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "/";
-  const actionUrl = new URL(currentUrl);
+  const actionUrl = new URL(location.href);
   actionUrl.searchParams.append("contact", "success");
   console.log(actionUrl);
 
   useEffect(() => {
-    if (actionUrl.searchParams.get("contact")) {
+    const { searchParams } = new URL(location.href);
+    if (searchParams.get("contact")) {
       setSuccess(true);
     }
-  }, []);
+  }, [location]);
 
   return (
     <form

@@ -45,9 +45,9 @@ const Layout = ({ location, children }) => {
                     )}
                     <main id="main-content">{children}</main>
                     {appCtx.lang && appCtx.lang === "es" ? (
-                      <FooterEs />
+                      <FooterEs location={location} />
                     ) : (
-                      <FooterEn />
+                      <FooterEn location={location} />
                     )}
                   </>
                 );
