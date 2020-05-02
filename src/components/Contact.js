@@ -4,11 +4,11 @@ import { navigate } from "gatsby";
 import { Message } from "semantic-ui-react";
 import Alert from "../components/Alert";
 import { StyledPrimaryButton } from "../components/Buttons";
-import '../styles/contact.scss'
+import "../styles/contact.scss";
 
-const encode = data => {
+const encode = (data) => {
   return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&");
 };
 
@@ -20,10 +20,11 @@ var contactDict = {
     contactLegend: "Contact Information",
     email: "Email",
     cell: "Cell",
-    includeDetails: "Share my tenancy information with Housing Now!",
+    includeDetails: "Share my tenancy information with ",
+    subscribe: "Subscribe to newsletters from Housing Now!",
     disclaimer:
       "Any information you share is kept confidential and is only used to assist you with your case.",
-    submitText: "Submit"
+    submitText: "Submit",
   },
   es: {
     nameLegend: "Nombre",
@@ -32,12 +33,12 @@ var contactDict = {
     contactLegend: "Información del contacto",
     email: "Correo Electrónico",
     cell: "Celular",
-    includeDetails:
-      "¡Comparta mi información de arrendamiento con Housing Now!",
+    includeDetails: "¡Comparta mi información de arrendamiento con ",
+    subscribe: "Suscribirse a boletines de Housing Now!",
     disclaimer:
       "Cualquier información que comparta se mantiene confidencial y solo se utiliza para ayudarlo con su caso.",
-    submitText: "Enviar"
-  }
+    submitText: "Enviar",
+  },
 };
 
 class QuickContactForm extends React.Component {
@@ -51,9 +52,10 @@ class QuickContactForm extends React.Component {
       cell: "",
       email: "",
       includeDetails: true,
+      subscribe: false,
       submitText: props.submitText,
       dict: contactDict,
-      hasSubmitted: false
+      hasSubmitted: false,
     };
   }
 
@@ -61,64 +63,46 @@ class QuickContactForm extends React.Component {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "quickContact", ...this.state })
+      body: encode({ "form-name": "quickContact", ...this.state }),
     })
       .then(() => {
         const quickFormSubmit = true;
-        const { includeDetails, firstName, lastName, email, cell } = this.state;
-        updateContext({
-          quickFormSubmit,
+        const {
           includeDetails,
+          subscribe,
           firstName,
           lastName,
           email,
-          cell
+          cell,
+        } = this.state;
+        updateContext({
+          quickFormSubmit,
+          includeDetails,
+          subscribe,
+          firstName,
+          lastName,
+          email,
+          cell,
         });
 
         if (this.state.submitDestination) {
           navigate(this.state.submitDestination);
         }
         this.setState({
-          hasSubmitted: true
+          hasSubmitted: true,
         });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
 
-    render() {
-        const { firstName, lastName, cell, email, includeDetails, subscribe, submitText, dict, autohide } = this.state;
-        return (
-            <AppContext.Consumer>
-                {({ appCtx, updateContext }) => (
-                    (!appCtx.quickFormSubmit || !autohide) ?
-                        <div>
-                            <form onSubmit={(e) => { this.handleSubmit(e, updateContext) }} success={this.state.hasSubmitted.toString()} name="quickContact" data-netlify="true" data-netlify-honeypot="bot-field">
-                                <input type="hidden" name="form-name" value="quickContact" />
-                                <fieldset>
-                                    <legend>{dict[appCtx.lang].nameLegend}</legend>
-                                    <input className="form-control" type="text" name="firstName" value={firstName} onChange={this.handleChange} placeholder={dict[appCtx.lang].firstName} />
-                                    <input className="form-control" type="text" name="lastName" value={lastName} onChange={this.handleChange} placeholder={dict[appCtx.lang].lastName} />
-                                </fieldset>
-                                <fieldset>
-                                    <legend>{dict[appCtx.lang].contactLegend}</legend>
-                                    <input className="form-control" type="tel" name="cell" value={cell} onChange={this.handleChange} placeholder={dict[appCtx.lang].cell} />
-                                    <input className="form-control" type="email" name="email" value={email} onChange={this.handleChange} placeholder={dict[appCtx.lang].email} />
-                                </fieldset>
-                                <fieldset>
-                                    <label className="checkboxes"><input type="checkbox" name="includeDetails" checked={includeDetails} onChange={this.handleChange} /> {dict[appCtx.lang].includeDetails} <a href="https://www.housingnowca.org/about">Housing Now!</a></label><br/>
-                                    <label className="checkboxes"><input type="checkbox" name="subscribe" checked={subscribe} onChange={this.handleChange} /> {dict[appCtx.lang].subscribe}</label>
-                                </fieldset>
-                                <p className="disclaimer">{dict[appCtx.lang].disclaimer}</p>
-                                <p className="center-layout"><StyledPrimaryButton type="submit">{submitText ? submitText : dict[appCtx.lang].submitText}</StyledPrimaryButton></p>
-                            </form>
-                        </div>
-                        :
-                        <div>
-                          <Alert /><br/>
+    e.preventDefault();
+  };
 
-                        </div>
-                )}
-            </AppContext.Consumer>
-        );
+  checkBoxes = { includeDetails: true, subscribe: true };
+
+  handleChange = (e) => {
+    var value = e.target.value;
+    if (this.checkBoxes[e.target.name]) {
+      value = !this.state[e.target.name];
     }
     this.setState({ [e.target.name]: value });
   };
@@ -130,9 +114,10 @@ class QuickContactForm extends React.Component {
       cell,
       email,
       includeDetails,
+      subscribe,
       submitText,
       dict,
-      autohide
+      autohide,
     } = this.state;
     return (
       <AppContext.Consumer>
@@ -140,7 +125,7 @@ class QuickContactForm extends React.Component {
           !appCtx.quickFormSubmit || !autohide ? (
             <div>
               <form
-                onSubmit={e => {
+                onSubmit={(e) => {
                   this.handleSubmit(e, updateContext);
                 }}
                 success={this.state.hasSubmitted.toString()}
@@ -195,16 +180,28 @@ class QuickContactForm extends React.Component {
                       checked={includeDetails}
                       onChange={this.handleChange}
                     />{" "}
-                    {dict[appCtx.lang].includeDetails}
+                    {dict[appCtx.lang].includeDetails}{" "}
+                    <a href="https://www.housingnowca.org/about">
+                      Housing Now!
+                    </a>
                   </label>
                   <br />
+                  <label className="checkboxes">
+                    <input
+                      type="checkbox"
+                      name="subscribe"
+                      checked={subscribe}
+                      onChange={this.handleChange}
+                    />{" "}
+                    {dict[appCtx.lang].subscribe}
+                  </label>
                 </fieldset>
                 <p className="disclaimer">{dict[appCtx.lang].disclaimer}</p>
-                <center>
+                <p className="center-layout">
                   <StyledPrimaryButton type="submit">
                     {submitText ? submitText : dict[appCtx.lang].submitText}
                   </StyledPrimaryButton>
-                </center>
+                </p>
               </form>
             </div>
           ) : (
@@ -242,20 +239,20 @@ class FullContactForm extends React.Component {
       understandRights: false,
       fightForRights: false,
       submitText: props.submitText,
-      dict: contactDict
+      dict: contactDict,
     };
   }
 
   /* Here’s the juicy bit for posting the form submission */
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "testFullContact", ...this.state })
+      body: encode({ "form-name": "testFullContact", ...this.state }),
     })
       .then(() => alert("Success!"))
-      .catch(error => alert(error));
+      .catch((error) => alert(error));
 
     e.preventDefault();
   };
@@ -268,10 +265,10 @@ class FullContactForm extends React.Component {
     fightForRights: true,
     contactCall: true,
     contactEmail: true,
-    contactTxt: true
+    contactTxt: true,
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     var value = e.target.value;
     if (this.checkBoxes[e.target.name]) {
       value = !this.state[e.target.name];
@@ -296,7 +293,7 @@ class FullContactForm extends React.Component {
       contactTxt,
       contactCall,
       submitText,
-      dict
+      dict,
     } = this.state;
     return (
       <AppContext.Consumer>
