@@ -10,27 +10,6 @@ import { PrimaryButton2 } from "./Buttons";
 
 const NewsletterForm = ({ location }) => {
   const [success, setSuccess] = useState(false);
-  const [action, setAction] = useState();
-
-  useEffect(() => {
-    let currentHost =
-      location && location.host
-        ? location.host
-        : process.env.GATSBY_CONTEXT_URL;
-
-    const { pathname, search, hash } = location;
-    const actionUrl = new URL(`${currentHost}${pathname}${search}${hash}`);
-    actionUrl.searchParams.append("contact", "success");
-
-    setAction(actionUrl.href);
-
-    if (location.href) {
-      const { searchParams } = new URL(location.href);
-      if (searchParams.get("contact")) {
-        setSuccess(true);
-      }
-    }
-  }, [location]);
 
   return (
     <form
@@ -38,30 +17,56 @@ const NewsletterForm = ({ location }) => {
       data-netlify="true"
       id="newsletterSubscribe"
       method="post"
-      action={action}
+      onSubmit={(event) => {
+        const data = new URLSearchParams(
+          new FormData(document.querySelector("#newsletterSubscribe"))
+        );
+        event.preventDefault();
+        fetch(location.href, {
+          method: "POST",
+          body: data,
+        })
+          .then(() => {
+            setSuccess(true);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }}
     >
-      {success ? (
-        <p>Thank you for subscribing!</p>
-      ) : (
-        <>
-          <span className="notice">
-            Subscribe to newsletter from Housing Now!
-          </span>
-          <FormControl>
-            <InputLabel htmlFor="newsletter-email">Email Address</InputLabel>
-            <Input
-              id="newsletter-email"
-              type="email"
-              autoComplete="email"
-              style={{ boxSizing: "initial", border: "0" }}
-            />
-          </FormControl>
-          <input type="hidden" name="form-name" value="contact" />
-          <PrimaryButton2 className="primaryButton" type="submit">
-            →
-          </PrimaryButton2>
-        </>
-      )}
+      <p style={{ display: success ? "block" : "none" }}>
+        Thank you for subscribing!
+      </p>
+      <div
+        style={{
+          display: success ? "none" : "block",
+          display: "flex",
+          alignItems: "baseline",
+          flexFlow: "row wrap",
+          justifyContent: "center",
+        }}
+      >
+        <span className="notice">
+          Subscribe to newsletter from Housing Now!
+        </span>
+        <FormControl style={{ display: "block", marginRight: "4px" }}>
+          <InputLabel htmlFor="newsletter-email">Email Address</InputLabel>
+          <Input
+            id="newsletter-email"
+            type="email"
+            autoComplete="email"
+            name="newsletter-email"
+            style={{ boxSizing: "initial", border: "0" }}
+          />
+        </FormControl>
+        <PrimaryButton2
+          className="primaryButton"
+          type="submit"
+          style={{ margin: 0 }}
+        >
+          →
+        </PrimaryButton2>
+      </div>
     </form>
   );
 };
