@@ -89,7 +89,7 @@ const Header = ({ location }) => {
                 setOpen(false);
               }}
             >
-              About the Bill
+              Rent and Eviction Protections
             </Link>
           </li>
           <li>

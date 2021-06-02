@@ -46,11 +46,11 @@ const emptyRentRange2 = {
 };
 
 const areaToCpi = {
-  Rest_Of_California: 0.033,
-  'Oakland-Hayward-San_Francisco': 0.04,
-  'Los_Angeles-Long_Beach-Anaheim': 0.033,
-  'San_Diego-Carlsbad': 0.022,
-  'Riverside-San_Bernardino-Ontario': 0.028,
+  Rest_Of_California: 0.038,
+  'Oakland-Hayward-San_Francisco': 0.038,
+  'Los_Angeles-Long_Beach-Anaheim': 0.036,
+  'San_Diego-Carlsbad': 0.038,
+  'Riverside-San_Bernardino-Ontario': 0.038,
 
 }
 
@@ -250,9 +250,9 @@ class Calculator extends React.Component {
                 whichever is lower. If you received a rent increase, you can use our calculator
                 to help you determine what the allowable increase is under the law, and if your rent
                 increase exceeds the limit.
-                Eligible renters who got a rent increase anytime on or after March 15, 2019
-                should use the rent calculator, as increases in 2019 may be rolled back
-                resulting in a rent reduction. <b>Before using this calculator, check your eligibility <Link to="/eligibility">here</Link></b>!
+                Eligible renters who got a rent increase in the past 12 months should use the rent
+                calculator, as any increase that exceeds the limit may be rolled back resulting in
+                a rent reduction. <b>Before using this calculator, check your eligibility <Link to="/eligibility">here</Link></b>!
               </p>
               <div className="center-layout"><Modal /></div><br/>
             </div>
@@ -284,7 +284,7 @@ class Calculator extends React.Component {
                 <br />
                 <br />
                 <br />
-                <h5>What was your rent on or since March 15, 2019?</h5>
+                <h5>What is the lowest monthly rent you paid over the past 12 months?</h5>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span className="input-group-text">$</span>
@@ -316,7 +316,7 @@ class Calculator extends React.Component {
                 {(maxRent > 0 && this.state.cpiSelection)
                   ? <h3>${maxRent}</h3>
                   : <h3>-</h3>}
-                <small>Beginning Jan 1, 2020</small>
+                <small>Max Rent After Increase</small>
               </li>
             </ul>
             { maxRent ?
