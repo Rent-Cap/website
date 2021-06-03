@@ -62,7 +62,7 @@ class Calculator extends React.Component {
     this.state = {
       pastRent: undefined,
       currentRent: 0,
-      cpi: 0.033,
+      cpi: 0.038,
       showSection: false,
       showLetter: false,
       town: undefined,
