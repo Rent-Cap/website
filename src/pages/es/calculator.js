@@ -306,7 +306,7 @@ class Calculator extends React.Component {
                 <br />
                 <br />
                 <br />
-                <h5>What is the lowest monthly rent you paid over the past 12 months?</h5>
+                <h5>¿Cuál es el alquiler mensual más bajo que ha pagado en los últimos 12 meses?</h5>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span className="input-group-text">$</span>
