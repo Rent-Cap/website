@@ -87,7 +87,7 @@ const Header = ({ location }) => {
                 setOpen(false);
               }}
             >
-              Sobre La Protección de Inquilinos
+              Protecciones de Alquiler y Desalojo
             </Link>
           </li>
           <li>

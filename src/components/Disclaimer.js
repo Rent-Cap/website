@@ -9,7 +9,7 @@ var dict = {
         text3: "for more help.",
     },
     es: {
-        text1: "Esto no considera las ordenanzas locales de control de alquileres. Consulte nuestra",
+        text1: "Esto no considera las ordenanzas locales de control de alquileres. Consulte nuestra ",
         text2: "página de recursos",
         text3: "para obtener más ayuda.",
     }

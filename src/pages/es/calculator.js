@@ -278,11 +278,11 @@ class Calculator extends React.Component {
                 que sea menor. Si ha recibido un aumento de renta, puede usar
                 nuestra calculadora para ayudarlo a determinar cuál es el aumento
                 permitido según la ley, y si su aumento de renta excede el límite.
-                Los inquilinos elegibles que obtuvieron un aumento en la renta en
-                cualquier momento a partir del 15 de marzo de 2019 deben usar la
-                calculadora de renta, ya que los aumentos en 2019 pueden
-                revertirse, lo que resulta en una reducción de la renta. <b>Antes de
-                usar esta calculadora, verifica tu elegibilidad <Link to="/eligibility">aquí</Link></b>!
+                Los inquilinos que reúnan los requisitos necesarios y que hayan obtenido
+                un aumento del alquiler en los últimos 12 meses deben utilizar la
+                calculadora de alquileres, ya que cualquier aumento que supere el límite
+                puede revertirse y dar lugar a una reducción del alquiler. <b>Antes de
+                usar esta calculadora, verifica tu elegibilidad <Link to="/es/eligibility">aquí</Link></b>!
               </p>
               <p className="center-layout"><Modal /></p><br/>
             </div>
@@ -306,7 +306,7 @@ class Calculator extends React.Component {
                 <br />
                 <br />
                 <br />
-                <h5>Cuanto estaba pagando de renta en o desde Marzo 15, 2019?</h5>
+                <h5>What is the lowest monthly rent you paid over the past 12 months?</h5>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span className="input-group-text">$</span>
@@ -353,7 +353,7 @@ class Calculator extends React.Component {
                 ) : (
                     <h3>-</h3>
                   )}
-                <small>Comenzando el 1 de Enero del 2020</small>
+                <small>Alquiler máximo después del aumento</small>
               </li>
             </ul>
             <Disclaimer />
