@@ -284,7 +284,6 @@ class Calculator extends React.Component {
                 puede revertirse y dar lugar a una reducción del alquiler. <b>Antes de
                 usar esta calculadora, verifica tu elegibilidad <Link to="/es/eligibility">aquí</Link></b>!
               </p>
-              <p className="center-layout"><Modal /></p><br/>
             </div>
             <div className="card">
               <div className="card-body">

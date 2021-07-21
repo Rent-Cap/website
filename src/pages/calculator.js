@@ -254,7 +254,6 @@ class Calculator extends React.Component {
                 calculator, as any increase that exceeds the limit may be rolled back resulting in
                 a rent reduction. <b>Before using this calculator, check your eligibility <Link to="/eligibility">here</Link></b>!
               </p>
-              <div className="center-layout"><Modal /></div><br/>
             </div>
             <div className="card">
               <div className="card-body">
