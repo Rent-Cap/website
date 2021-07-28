@@ -1,6 +1,6 @@
 {
-  "name": "rent-cap",
-  "version": "0.1.0",
+  "name": "tenantprotections2",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "gatsby build",
@@ -9,18 +9,6 @@
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "contributors": [
-    {
-      "name": "Kyle Peacock",
-      "email": "kyle@peacock.dev",
-      "url": "https://kyle-peacock.com"
-    },
-    {
-      "name": "Herman Borrego",
-      "email": "herman@borrego.ca",
-      "url": "https://borrego.ca"
-    }
-  ],
   "dependencies": {
     "@material-ui/core": "^4.9.3",
     "@material-ui/lab": "^4.0.0-alpha.43",
@@ -61,14 +49,5 @@
     "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
     "react-redux": "^7.1.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Rent-Cap/website"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
   }
 }
