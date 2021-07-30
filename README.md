@@ -18,26 +18,28 @@ Contributions are always welcome. For larger contributions, feel free to get in 
 
 ## Development
 
+### Quickstart
+
 This guide assumes the usage of **MacOS**, and is intended as a quickstart for beginners with only a passing familiarity in command line and tooling or for experienced devs wanting to jump in as fast as possible. Therefore it is opinionated on what tooling to use. Feel free to use your own set up and tooling if you prefer.
 
-### Homebrew
+#### Homebrew
 
 If you don’t have Homebrew, install it by following the instructions [in this link](https://brew.sh/).
 
-### Git
+#### Git
 
 To get an updated version of `git`, install it via Homebrew by running the following command in your terminal.
 
     brew install git
 
-### Node
+#### Node
 
 Currently, the site runs on Node 14. Install node via the `n` package manager. This package will allow you to cleanly manage multiple Node installations on your machine. The instructions below will set you up with Node 14, but `n` provides more features. Check out [their documentation](https://www.npmjs.com/package/n) for more instructions and options.
 
     brew install n
     sudo n 14
 
-### Vips
+#### Vips
 
 Currently, one of the site's dependencies depends on an external image processing library called `vips`. `vips` installs a large number of dependencies, and so it is not optimal. In the future, this dependency could be removed.
 
@@ -48,7 +50,7 @@ Should the `vips` dependency ever be removed, we can remove it and its dependenc
     brew uninstall vips
     brew autoremove
 
-### Clone Repo
+#### Clone Repo
 
 Clone the repo. Choose a directory that you can access easily. Ensure you are cloning the repo from `techequitycollaborative`, which is forked from the (now unmaintained) original, and not the original itself.
 
@@ -60,20 +62,28 @@ Once set up, you can clone via SSH (this allows you to perform GitHub actions wi
 
     git clone git@github.com:techequitycollaborative/tenantprotections2.git
 
-### Build
+#### Build
 
 Navigate into the tenantprotections2 folder:
 
     npm install
     npm run build
 
-### Run
+#### Run
 
 The site is built via the Gatbsy framework, which provides the abilty to run the website on your local machine for testing. To see a local version of your site, run:
 
     npm run develop
 
 The command will continuously run in your terminal. Navigate to `localhost:8000` in your browser to see the website running.
+
+### Testing
+
+This project follows the [Gatsby guide on testing](https://www.gatsbyjs.com/docs/how-to/testing/).
+
+#### Cypress E2E Testing
+
+This project follows the [Gatsby guide on Cypress](https://www.gatsbyjs.com/docs/how-to/testing/end-to-end-testing/) as well as the [Cypress Getting Started docs](https://docs.cypress.io/guides/getting-started/writing-your-first-test).
 
 ## Acknowledgments
 
