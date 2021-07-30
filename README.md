@@ -1,3 +1,5 @@
+![example workflow](https://github.com/techequitycollaborative/tenantprotections2/actions/workflows/e2e_tests.yml/badge.svg)
+
 # Tenant Protections 2
 
 This project is an effort to help Californians figure out whether the Tenant Protection Act of 2019 will protect them from excessive rent increases.
