@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Autocomplete from "react-google-autocomplete";
 import Helmet from "react-helmet";
 
-const API_KEY = "AIzaSyA2zJGf2oJthhaFoUXjT3365O1u7qdZQNg";
+const API_KEY = "";
 
 const Address = () => {
   const [shouldRender, setShouldRender] = useState();
