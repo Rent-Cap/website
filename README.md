@@ -41,17 +41,6 @@ Currently, the site runs on Node 14. Install node via the `n` package manager. T
     brew install n
     sudo n 14
 
-#### Vips
-
-Currently, one of the site's dependencies depends on an external image processing library called `vips`. `vips` installs a large number of dependencies, and so it is not optimal. In the future, this dependency could be removed.
-
-    brew install vips
-
-Should the `vips` dependency ever be removed, we can remove it and its dependencies with the following commands:
-
-    brew uninstall vips
-    brew autoremove
-
 #### Clone Repo
 
 Clone the repo. Choose a directory that you can access easily. Ensure you are cloning the repo from `techequitycollaborative`, which is forked from the (now unmaintained) original, and not the original itself.
