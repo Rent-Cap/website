@@ -51,7 +51,6 @@ const areaToCpi = {
   'Los_Angeles-Long_Beach-Anaheim': 0.036,
   'San_Diego-Carlsbad': 0.038,
   'Riverside-San_Bernardino-Ontario': 0.038,
-
 }
 
 // const INITIAL_SELECTION = 'Enter your zip code'

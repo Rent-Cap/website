@@ -44,11 +44,11 @@ const emptyRentRange2 = {
 };
 
 const areaToCpi = {
-  Rest_Of_California: 0.033,
-  "Oakland-Hayward-San_Francisco": 0.04,
-  "Los_Angeles-Long_Beach-Anaheim": 0.033,
-  "San_Diego-Carlsbad": 0.022,
-  "Riverside-San_Bernardino-Ontario": 0.028
+  Rest_Of_California: 0.038,
+  'Oakland-Hayward-San_Francisco': 0.038,
+  'Los_Angeles-Long_Beach-Anaheim': 0.036,
+  'San_Diego-Carlsbad': 0.038,
+  'Riverside-San_Bernardino-Ontario': 0.038
 };
 
 // const INITIAL_SELECTION = 'Enter your zip code'
@@ -59,7 +59,7 @@ class Calculator extends React.Component {
     this.state = {
       pastRent: undefined,
       currentRent: 0,
-      cpi: 0.033,
+      cpi: 0.038,
       showSection: false,
       showLetter: false,
       town: undefined,
