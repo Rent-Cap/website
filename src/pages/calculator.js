@@ -45,12 +45,23 @@ const emptyRentRange2 = {
   id: 1,
 };
 
-const areaToCpi = {
-  Rest_Of_California: 0.038,
+const baseCpi2020 = 0.013;
+const baseCpi2021 = 0.039;
+
+const areaToCpi2020 = {
+  Rest_Of_California: baseCpi2020,
+  'Oakland-Hayward-San_Francisco': 0.011,
+  'Los_Angeles-Long_Beach-Anaheim': 0.007,
+  'San_Diego-Carlsbad': baseCpi2020,
+  'Riverside-San_Bernardino-Ontario': baseCpi2020,
+}
+
+const areaToCpi2021 = {
+  Rest_Of_California: baseCpi2021,
   'Oakland-Hayward-San_Francisco': 0.038,
   'Los_Angeles-Long_Beach-Anaheim': 0.036,
-  'San_Diego-Carlsbad': 0.038,
-  'Riverside-San_Bernardino-Ontario': 0.038,
+  'San_Diego-Carlsbad': baseCpi2021,
+  'Riverside-San_Bernardino-Ontario': baseCpi2021,
 }
 
 // const INITIAL_SELECTION = 'Enter your zip code'
@@ -61,7 +72,7 @@ class Calculator extends React.Component {
     this.state = {
       pastRent: undefined,
       currentRent: 0,
-      cpi: 0.038,
+      cpi: baseCpi2021,
       showSection: false,
       showLetter: false,
       town: undefined,
@@ -72,7 +83,8 @@ class Calculator extends React.Component {
       // cpiSelection: INITIAL_SELECTION,
       cpiSelection: undefined,
       rentRanges: [emptyRentRange1, emptyRentRange2],
-      zip: ""
+      zip: "",
+      increaseDate: "this-year"
     };
     this.handleInput = handleInput.bind(this);
     this.handlePastRentChange = this.handlePastRentChange.bind(this);
@@ -83,6 +95,7 @@ class Calculator extends React.Component {
     this.handleFocusChange = this.handleFocusChange.bind(this);
     this.setCpiFromZip = this.setCpiFromZip.bind(this);
     this.addRentRange = this.addRentRange.bind(this);
+    this.handleIncreaseDateChange = this.handleIncreaseDateChange.bind(this);
   }
 
   setCpiFromZip(e, updateContext) {
@@ -92,7 +105,7 @@ class Calculator extends React.Component {
     var cpi, town, county, cpiSelection, area;
 
     if (zip) {
-      cpi = areaToCpi[zip.area];
+      cpi = this.cpiFromZip(zip, this.state.increaseDate);
       town = zip.town;
       county = zip.county;
       area = zip.area;
@@ -102,6 +115,34 @@ class Calculator extends React.Component {
       })
     }
     updateContext({ zip: input,  validCAZip, county, town, area, cpiSelection });
+  }
+
+  cpiFromZip(zip, increaseDate) {
+    var cpi;
+    if (increaseDate === "this-year") {
+      cpi = areaToCpi2021[zip.area];
+    }
+    else {
+      cpi = areaToCpi2020[zip.area];
+    }
+    return cpi;
+  }
+
+  handleIncreaseDateChange(e) {
+    var newIncreaseDate = e.currentTarget.value;
+
+    if (this.state.zip === "") {
+      if (newIncreaseDate === "this-year") {
+        this.setState({ cpi: baseCpi2021 });
+      }
+      else {
+        this.setState({ cpi: baseCpi2020 });
+      }
+    }
+    else {
+      this.setState({ cpi: this.cpiFromZip(zipDB[this.state.zip], newIncreaseDate) });
+    }
+    this.setState({ increaseDate: newIncreaseDate });
   }
 
   handleRentRangeDateChange(e, idx) {
@@ -280,9 +321,15 @@ class Calculator extends React.Component {
                   <div />
                 }
                 <br />
+                <h5 className="card-title">When did your rent increase go into effect?</h5>
+                <div className="date-selector">
+                  <input type="radio" id="last-year" name="increase-date" value="last-year" onChange={(e) => this.handleIncreaseDateChange(e)} />
+                  <label for="last-year">Before August 1, 2021</label>
+                  <input defaultChecked type="radio" id="this-year" name="increase-date" value="this-year" onChange={(e) => this.handleIncreaseDateChange(e)} />
+                  <label for="this-year">On or after August 1, 2021</label>
+                </div>
                 <br />
-                <br />
-                <h5>What is the lowest monthly rent you paid over the past 12 months?</h5>
+                <h5>What was your rent before the increase?</h5>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span className="input-group-text">$</span>

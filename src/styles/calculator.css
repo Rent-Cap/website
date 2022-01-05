@@ -78,6 +78,16 @@
 .calc-row.zero {
   text-decoration: line-through;
 }
+
+.date-selector input {
+  float: left;
+  margin: 8px 8px 0 0;
+}
+.date-selector label {
+  display: block;
+  margin-bottom: 0;
+}
+
 @media only screen and (min-width: 768px) {
   .rent-input {
     flex-direction: row;

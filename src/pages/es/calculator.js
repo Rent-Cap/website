@@ -1,55 +1,68 @@
-import React from "react";
+import React from 'react';
 // import { withTranslation } from 'react-i18next';
-import { DateRangePicker } from "react-dates";
-import moment from "moment";
-import Disclaimer from "../../components/Disclaimer";
+import { DateRangePicker } from 'react-dates';
+import moment from 'moment';
+import Disclaimer from '../../components/Disclaimer';
 import {
-  SuccessButton,
-  DangerButton,
-} from "../../components/Buttons";
-import {
-  handleInput,
-  calculateTotalAmountOwedToTenant,
-  calculateMaxRent
-} from "../../methods/helpers";
-// import GenerateLetter from  '../../components/GenerateLetter';
-import withRedux from "../../methods/withRedux";
-import "react-dates/initialize";
-import "react-dates/lib/css/_datepicker.css";
-import SEO from "../../components/Seo";
-// import MailChimp from  '../../components/MailChimp';
-import "../../styles/calculator.css";
-import zipDB from "../../../data/zipDB.js";
-import calendar from "../../images/calendar.svg";
-import "bootstrap/dist/css/bootstrap.css";
+  SuccessButton, DangerButton,
+} from '../../components/Buttons';
+import { handleInput, calculateTotalAmountOwedToTenant, calculateMaxRent } from '../../methods/helpers';
+// import GenerateLetter from '../components/GenerateLetter';
+import withRedux from '../../methods/withRedux';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import SEO from '../../components/Seo';
+// import MailChimp from '../components/MailChimp'
+import '../../styles/calculator.css'
+import zipDB from '../../../data/zipDB.js'
+import calendar from '../../images/calendar.svg'
+import 'bootstrap/dist/css/bootstrap.css';
 
 import { QuickContactForm } from '../../components/Contact';
 import AppContext from '../../components/AppContext';
+import AutoSubmit from '../../components/AutoSubmit';
 import Modal from '../../components/Modal';
 import { Link } from "gatsby";
+
+
+import {
+  regulatedCities,
+  regulatedCounties
+} from "../../../data/regulatedLocations";
 
 const emptyRentRange1 = {
   rent: 0,
   startDate: moment([2019, 2, 15]),
   endDate: moment([2019, 2, 15]),
   focusedInput: null,
-  id: 0
+  id: 0,
 };
 const emptyRentRange2 = {
   rent: 0,
   startDate: moment([2020, 0, 1]),
   endDate: moment([2020, 1, 1]),
   focusedInput: null,
-  id: 1
+  id: 1,
 };
 
-const areaToCpi = {
-  Rest_Of_California: 0.038,
+const baseCpi2020 = 0.013;
+const baseCpi2021 = 0.039;
+
+const areaToCpi2020 = {
+  Rest_Of_California: baseCpi2020,
+  'Oakland-Hayward-San_Francisco': 0.011,
+  'Los_Angeles-Long_Beach-Anaheim': 0.007,
+  'San_Diego-Carlsbad': baseCpi2020,
+  'Riverside-San_Bernardino-Ontario': baseCpi2020,
+}
+
+const areaToCpi2021 = {
+  Rest_Of_California: baseCpi2021,
   'Oakland-Hayward-San_Francisco': 0.038,
   'Los_Angeles-Long_Beach-Anaheim': 0.036,
-  'San_Diego-Carlsbad': 0.038,
-  'Riverside-San_Bernardino-Ontario': 0.038
-};
+  'San_Diego-Carlsbad': baseCpi2021,
+  'Riverside-San_Bernardino-Ontario': baseCpi2021,
+}
 
 // const INITIAL_SELECTION = 'Enter your zip code'
 
@@ -59,7 +72,7 @@ class Calculator extends React.Component {
     this.state = {
       pastRent: undefined,
       currentRent: 0,
-      cpi: 0.038,
+      cpi: baseCpi2021,
       showSection: false,
       showLetter: false,
       town: undefined,
@@ -69,38 +82,67 @@ class Calculator extends React.Component {
       hideMailChimp: true,
       // cpiSelection: INITIAL_SELECTION,
       cpiSelection: undefined,
-      rentRanges: [emptyRentRange1, emptyRentRange2]
+      rentRanges: [emptyRentRange1, emptyRentRange2],
+      zip: "",
+      increaseDate: "this-year"
     };
     this.handleInput = handleInput.bind(this);
     this.handlePastRentChange = this.handlePastRentChange.bind(this);
     this.removeRentRange = this.removeRentRange.bind(this);
-    this.calculateRentIncreasePercentage = this.calculateRentIncreasePercentage.bind(
-      this
-    );
-    this.handleRentRangeValueChange = this.handleRentRangeValueChange.bind(
-      this
-    );
+    this.calculateRentIncreasePercentage = this.calculateRentIncreasePercentage.bind(this);
+    this.handleRentRangeValueChange = this.handleRentRangeValueChange.bind(this);
     this.handleRentRangeDateChange = this.handleRentRangeDateChange.bind(this);
     this.handleFocusChange = this.handleFocusChange.bind(this);
     this.setCpiFromZip = this.setCpiFromZip.bind(this);
     this.addRentRange = this.addRentRange.bind(this);
+    this.handleIncreaseDateChange = this.handleIncreaseDateChange.bind(this);
   }
 
-  setCpiFromZip(e) {
-    const input = e.target.value;
+  setCpiFromZip(e, updateContext) {
+    const input = e.target.value
     const zip = zipDB[input];
+    const validCAZip = zip ? true : false;
+    var cpi, town, county, cpiSelection, area;
+
     if (zip) {
-      const cpi = areaToCpi[zip.area];
-      const town = zip.town;
-      const county = zip.county;
-      const cpiSelection = zip.area;
+      cpi = this.cpiFromZip(zip, this.state.increaseDate);
+      town = zip.town;
+      county = zip.county;
+      area = zip.area;
+      cpiSelection = zip.area;
       this.setState({
-        cpi,
-        cpiSelection,
-        town,
-        county
-      });
+        cpi, cpiSelection, town, county, zip: input
+      })
     }
+    updateContext({ zip: input,  validCAZip, county, town, area, cpiSelection });
+  }
+
+  cpiFromZip(zip, increaseDate) {
+    var cpi;
+    if (increaseDate === "this-year") {
+      cpi = areaToCpi2021[zip.area];
+    }
+    else {
+      cpi = areaToCpi2020[zip.area];
+    }
+    return cpi;
+  }
+
+  handleIncreaseDateChange(e) {
+    var newIncreaseDate = e.currentTarget.value;
+
+    if (this.state.zip === "") {
+      if (newIncreaseDate === "this-year") {
+        this.setState({ cpi: baseCpi2021 });
+      }
+      else {
+        this.setState({ cpi: baseCpi2020 });
+      }
+    }
+    else {
+      this.setState({ cpi: this.cpiFromZip(zipDB[this.state.zip], newIncreaseDate) });
+    }
+    this.setState({ increaseDate: newIncreaseDate });
   }
 
   handleRentRangeDateChange(e, idx) {
@@ -113,20 +155,22 @@ class Calculator extends React.Component {
     this.setState(() => ({ rentRanges: t }));
   }
 
-  handleRentRangeValueChange(e, idx) {
+  handleRentRangeValueChange(e, idx, updateContext) {
     const t = this.state.rentRanges.slice(0);
     t[idx].rent = e.target.value;
     if (idx === 0) {
       this.setState({ pastRent: t[idx].rent });
     }
     this.setState({ rentRanges: t });
-    const temp = calculateTotalAmountOwedToTenant(t, this.state.cpi);
+    const temp = calculateTotalAmountOwedToTenant(t, this.state.cpi, updateContext);
+    updateContext({ rentIncrease: temp });
     this.props.changeRefund(temp);
   }
 
-  handlePastRentChange(e) {
+  handlePastRentChange(e, updateContext) {
     this.setState({ pastRent: e.target.value });
-    this.handleRentRangeValueChange(e, 0);
+    this.handleRentRangeValueChange(e, 0, updateContext);
+    updateContext({ pastRent: e.target.valueg })
   }
 
   removeRentRange(idx) {
@@ -137,10 +181,8 @@ class Calculator extends React.Component {
   }
 
   calculateRentIncreasePercentage() {
-    return parseFloat(
-      ((this.state.currentRent - this.state.pastRent) / this.state.pastRent) *
-      100
-    ).toFixed(0);
+    return parseFloat(((this.state.currentRent - this.state.pastRent) / this.state.pastRent) * 100)
+      .toFixed(0);
   }
 
   handleFocusChange(focusedInput, idx) {
@@ -153,7 +195,7 @@ class Calculator extends React.Component {
     const t = this.state.rentRanges.slice(0);
     const r = { ...emptyRentRange2 };
     r.startDate = moment(t[t.length - 1].endDate);
-    r.endDate = moment(t[t.length - 1].endDate).add(1, "months", true);
+    r.endDate = moment(t[t.length - 1].endDate).add(1, 'months', true);
     r.id = +new Date();
     t.push(r);
     r.rent = 0;
@@ -167,46 +209,28 @@ class Calculator extends React.Component {
     const that = this;
     const rentRangeList = rentRanges.map((rent, idx) => (
       <li className="rent-input-row" key={rent.id}>
-        {idx > 1 && (
-          <DangerButton
-            className="remove"
-            onClick={() => that.removeRentRange(idx)}
-          >
-            &times;
-          </DangerButton>
-        )}
-        {idx === 0 ? (
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text">
-                <strong>Rent on March 15, 2019</strong>
-              </span>
-            </div>
+        {idx > 1
+          && <DangerButton className="remove" onClick={() => that.removeRentRange(idx)}>&times;</DangerButton>}
+        {idx === 0
+          ? (
             <div className="input-group mb-3">
               <div className="input-group-prepend">
-                <span className="input-group-text">$</span>
+                <span className="input-group-text"><strong>Rent on March 15, 2019</strong></span>
               </div>
-              <input
-                type="number"
-                value={this.state.pastRent}
-                className="form-control"
-                placeholder="Rent on March 15, 2019"
-                onChange={e => this.handleRentRangeValueChange(e, idx)}
-              />
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">$</span>
+                </div>
+                <input type="number" value={this.state.pastRent} className="form-control" placeholder="Rent on March 15, 2019" onChange={(e) => this.handleRentRangeValueChange(e, idx)} />
+              </div>
             </div>
-          </div>
-        ) : (
+          ) : (
             <div className="rent-input">
               <div className="input-group mb-3">
                 <div className="input-group-prepend">
                   <span className="input-group-text">$</span>
                 </div>
-                <input
-                  type="number"
-                  className="form-control"
-                  placeholder="Monthly Rent"
-                  onChange={e => this.handleRentRangeValueChange(e, idx)}
-                />
+                <input type="number" className="form-control" placeholder="Monthly Rent" onChange={(e) => this.handleRentRangeValueChange(e, idx)} />
               </div>
               <div className="rent-date">
                 <div className="rent-date-label">
@@ -216,19 +240,15 @@ class Calculator extends React.Component {
                 <div className="rent-date-picker">
                   <div className="input-group mb-3">
                     <div className="input-group-prepend date-icon">
-                      <img
-                        className="input-group-text"
-                        src={calendar}
-                        alt="calendar"
-                      />
+                      <img className="input-group-text" src={calendar} alt="calendar" />
                     </div>
                     <DateRangePicker
                       endDate={rentRanges[idx].endDate}
                       endDateId="endDate"
                       focusedInput={rentRanges[idx].focusedInput}
                       isOutsideRange={() => null}
-                      onDatesChange={e => this.handleRentRangeDateChange(e, idx)}
-                      onFocusChange={e => this.handleFocusChange(e, idx)}
+                      onDatesChange={(e) => this.handleRentRangeDateChange(e, idx)}
+                      onFocusChange={(e) => this.handleFocusChange(e, idx)}
                       startDate={rentRanges[idx].startDate}
                       startDateId="startDate"
                       orientation="vertical"
@@ -246,27 +266,20 @@ class Calculator extends React.Component {
       const start = range.startDate;
       const end = range.endDate;
       const janFirst2020 = moment([2020, 0, 1]);
-      const diff = range.endDate.diff(janFirst2020, "months", true);
+      const diff = range.endDate.diff(janFirst2020, 'months', true);
       const isAfterJan2020 = diff > 0;
-      const monthsPaidAfterJan2020 = isAfterJan2020
-        ? parseFloat(end.diff(start, "months", true)).toFixed(2)
-        : 0;
-      const val = r > maxRent ? (r - maxRent) * monthsPaidAfterJan2020 : 0;
+      const monthsPaidAfterJan2020 = isAfterJan2020 ? parseFloat(end.diff(start, 'months', true)).toFixed(2) : 0;
+      const val = (r > maxRent) ? (r - maxRent) * monthsPaidAfterJan2020 : 0;
       return (
-        <li className={`calc-row${val === 0 ? " zero" : ""}`}>
-          {idx > 0 && (
-            <small>
-              ({range.rent} - {maxRent}) * {monthsPaidAfterJan2020} Month
-              {monthsPaidAfterJan2020 === 1 ? "" : "s"} = $
-              {parseFloat(val).toFixed(2)}
-            </small>
-          )}
+        <li className={`calc-row${val === 0 ? ' zero' : ''}`}>
+          {idx > 0
+            && <small>({range.rent} - {maxRent}) * {monthsPaidAfterJan2020} Month{monthsPaidAfterJan2020 === 1 ? '' : 's'} = ${parseFloat(val).toFixed(2)}</small>}
         </li>
-      );
-    });
+      )
+    })
     return (
       <AppContext.Consumer>
-        {({ appCtx }) => (
+        {({ appCtx, updateContext }) => (
           <div className="calculator-container">
             {/* <SEO title="Calculator" /> */}
             <div className="calculator-description">
@@ -287,25 +300,39 @@ class Calculator extends React.Component {
             </div>
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title">Cual es su Codigo Postal?</h5>
-                <input
-                  className="form-control"
-                  type="text"
-                  onChange={e => this.setCpiFromZip(e)}
-                  placeholder="Los 5 digitos de su codigo postal (zip code)"
-                />
-                {this.state.town && (
-                  <small>
-                    <strong>{this.state.town}</strong>
-                    {this.state.county && (
-                      <strong>, Condado de {this.state.county}</strong>
-                    )}
-                  </small>
-                )}
+                <h5 className="card-title">¿Cuál es su código postal?</h5>
+                <input className="form-control" type="text" onChange={(e) => this.setCpiFromZip(e, updateContext)} placeholder="Los 5 digitos de su codigo postal (zip code)" />
+                {this.state.town
+                  && (
+                    <small><strong>{this.state.town}</strong>{this.state.county
+                      && <strong>, Condado de {this.state.county}</strong>}
+                    </small>
+                  )}
+                {
+                  (this.state.town && regulatedCities[this.state.town]) ?
+                  <div>
+                  <br />
+                  <p><strong>DESCARGO DE RESPONSIBILIDAD:</strong> Dado que vive en {this.state.town}, que tiene leyes locales de control de alquileres, es posible que estos cálculos no se apliquen en su caso. Verifique que las leyes locales no le sean aplicables antes de utilizar estos cálculos estatales.</p>
+                  </div>
+                  :
+                  (this.state.county && regulatedCounties[this.state.county]) ?
+                  <div>
+                  <br />
+                  <p><strong>DESCARGO DE RESPONSIBILIDAD:</strong> Dado que vive en el condado no incorporado de {this.state.county}, que tiene leyes locales de control de alquileres, es posible que estos cálculos no se apliquen en su caso. Verifique que las leyes locales no le sean aplicables antes de utilizar estos cálculos estatales.</p>
+                  </div>
+                  :
+                  <div />
+                }
                 <br />
+                <h5 className="card-title">¿Cuándo entró en vigencia su aumento de alquiler?</h5>
+                <div className="date-selector">
+                  <input type="radio" id="last-year" name="increase-date" value="last-year" onChange={(e) => this.handleIncreaseDateChange(e)} />
+                  <label for="last-year">Antes del 1 de agosto de 2021</label>
+                  <input defaultChecked type="radio" id="this-year" name="increase-date" value="this-year" onChange={(e) => this.handleIncreaseDateChange(e)} />
+                  <label for="this-year">A partir del 1 de agosto de 2021 o posteriormente</label>
+                </div>
                 <br />
-                <br />
-                <h5>¿Cuál es el alquiler mensual más bajo que ha pagado en los últimos 12 meses?</h5>
+                <h5>¿Cuál era su alquiler antes del aumento?</h5>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span className="input-group-text">$</span>
@@ -314,8 +341,8 @@ class Calculator extends React.Component {
                     type="number"
                     className="form-control"
                     value={this.state.pastRent}
-                    placeholder="Monto de renta"
-                    onChange={e => this.handlePastRentChange(e)}
+                    placeholder="Monthly Rent"
+                    onChange={(e) => this.handlePastRentChange(e, updateContext)}
                   />
                 </div>
               </div>
@@ -325,36 +352,26 @@ class Calculator extends React.Component {
             <ul className="calculator-results">
               <li>
                 <h5 className="result-title">Maximo Incremento de Renta</h5>
-                {this.state.cpiSelection ? (
-                  <h3>
-                    {parseFloat((0.05 + parseFloat(this.state.cpi)) * 100).toFixed(
-                      2
-                    )}
-                    %
-              </h3>
-                ) : (
-                    <h3>-</h3>
-                  )}
-                <small>
-                  5% Base + {parseFloat(this.state.cpi * 100).toFixed(2)}% CPI
-            </small>
+                {this.state.cpiSelection
+                  ? <h3>{parseFloat((0.05 + parseFloat(this.state.cpi)) * 100).toFixed(2)}%</h3>
+                  : <h3>-</h3>}
+                <small>5% Base + {parseFloat(this.state.cpi * 100).toFixed(2)}% CPI</small>
                 <br />
-                <small>
-                  <strong>
-                    {this.state.cpiSelection ? this.state.cpiSelection : ""}
-                  </strong>
-                </small>
+                <small><strong>{this.state.cpiSelection ? this.state.cpiSelection : ''}</strong></small>
               </li>
               <li>
                 <h5 className="result-title">Monto de Renta Permitido</h5>
-                {maxRent > 0 && this.state.cpiSelection ? (
-                  <h3>${maxRent}</h3>
-                ) : (
-                    <h3>-</h3>
-                  )}
+                {(maxRent > 0 && this.state.cpiSelection)
+                  ? <h3>${maxRent}</h3>
+                  : <h3>-</h3>}
                 <small>Alquiler máximo después del aumento</small>
               </li>
             </ul>
+            { maxRent ?
+            <AutoSubmit pageName="calculatorAutoSubmit" />
+            :
+            <div />
+            }
             <Disclaimer />
             <br />
             <br />
@@ -370,35 +387,36 @@ class Calculator extends React.Component {
             </PrimaryButton2>
           )} */}
             <br />
-            {this.state.showSection && (
-              <section>
-                <div className="card">
-                  <div className="card-body">
-                    <h5 className="card-title">
-                      Ingrese su historial de renta desde el 1 de enero del 2020
-                      hasta ahora.
-                </h5>
-                    <section className="rent-increases">
-                      <ul>{rentRangeList}</ul>
-                      <SuccessButton className="add" onClick={this.addRentRange}>
-                        +
-                  </SuccessButton>
-                    </section>
+            {this.state.showSection
+              && (
+                <section>
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Ingrese su historial de renta desde el 1 de enero del 2020 hasta ahora.</h5>
+                      <section className="rent-increases">
+                        <ul>{rentRangeList}</ul>
+                        <SuccessButton className="add" onClick={this.addRentRange}>+</SuccessButton>
+                      </section>
+                    </div>
                   </div>
-                </div>
-                <br />
-                <h4 className="refund-information">
-                  Según la información proporcionada, es posible que se le deban
+                  <br />
+                  <h4 className="refund-information">
+                    Según la información proporcionada, es posible que se le deban
             </h4>
-                <div className="refund-container">
-                  <h1>${refund}</h1>
-                  {refund > 0 && <ul>{refundBreakdown}</ul>}
-                </div>
-                <br />
-                {/* <PrimaryButton onClick={() => this.setState({showLetter: true})}>
+                  <div className="refund-container">
+                    <h1>${refund}</h1>
+                    {refund > 0
+                      && (
+                        <ul>
+                          {refundBreakdown}
+                        </ul>
+                      )}
+                  </div>
+                  <br />
+                  {/* <PrimaryButton onClick={() => this.setState({showLetter: true})}>
             Generate a letter to your landlord</PrimaryButton> */}
-              </section>
-            )}
+                </section>
+              )}
             {/* {this.state.showLetter
           && <GenerateLetter />} */}
           </div>
