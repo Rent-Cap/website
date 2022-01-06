@@ -45,8 +45,8 @@ const emptyRentRange2 = {
   id: 1,
 };
 
-const baseCpi2020 = 0.013;
-const baseCpi2021 = 0.039;
+const baseCpi2020 = 0.01;
+const baseCpi2021 = 0.04;
 
 const areaToCpi2020 = {
   Rest_Of_California: baseCpi2020,
@@ -324,7 +324,7 @@ class Calculator extends React.Component {
                 <h5 className="card-title">When did your rent increase go into effect?</h5>
                 <div className="date-selector">
                   <input type="radio" id="last-year" name="increase-date" value="last-year" onChange={(e) => this.handleIncreaseDateChange(e)} />
-                  <label for="last-year">Before August 1, 2021</label>
+                  <label for="last-year">Between August 1, 2020 and July 31, 2021</label>
                   <input defaultChecked type="radio" id="this-year" name="increase-date" value="this-year" onChange={(e) => this.handleIncreaseDateChange(e)} />
                   <label for="this-year">On or after August 1, 2021</label>
                 </div>

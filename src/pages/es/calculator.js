@@ -45,8 +45,8 @@ const emptyRentRange2 = {
   id: 1,
 };
 
-const baseCpi2020 = 0.013;
-const baseCpi2021 = 0.039;
+const baseCpi2020 = 0.01;
+const baseCpi2021 = 0.04;
 
 const areaToCpi2020 = {
   Rest_Of_California: baseCpi2020,
@@ -327,7 +327,7 @@ class Calculator extends React.Component {
                 <h5 className="card-title">¿Cuándo entró en vigencia su aumento de alquiler?</h5>
                 <div className="date-selector">
                   <input type="radio" id="last-year" name="increase-date" value="last-year" onChange={(e) => this.handleIncreaseDateChange(e)} />
-                  <label for="last-year">Antes del 1 de agosto de 2021</label>
+                  <label for="last-year">Entre el 1 de agosto de 2020 y el 31 de julio de 2021</label>
                   <input defaultChecked type="radio" id="this-year" name="increase-date" value="this-year" onChange={(e) => this.handleIncreaseDateChange(e)} />
                   <label for="this-year">A partir del 1 de agosto de 2021 o posteriormente</label>
                 </div>
