@@ -24,7 +24,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.3",
     "@material-ui/lab": "^4.0.0-alpha.43",
-    "@mdx-js/loader": "^1.4.5",
+    "@mdx-js/loader": "^1.6.22",
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "^1.4.5",
     "bootstrap": "^4.4.1",
